@@ -1,0 +1,262 @@
+/* =========================================
+   BANNER
+========================================= */
+
+.banner-cursos{
+
+    width:100%;
+    min-height:420px;
+
+    background:
+    linear-gradient(
+        rgba(2,26,84,.8),
+        rgba(2,26,84,.8)
+    ),
+    url("../imagenes/banner2.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
+}
+
+.contenido-banner h1{
+
+    color:white;
+
+    font-size:65px;
+
+    margin-bottom:20px;
+}
+
+.contenido-banner p{
+
+    color:#F5F5F5;
+
+    font-size:22px;
+}
+
+/* =========================================
+   CURSOS
+========================================= */
+
+.contenedor-cursos{
+
+    padding:90px 8%;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:40px;
+}
+
+/* TARJETA */
+
+.curso{
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:40px 30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
+
+    transition:.4s;
+}
+
+/* EFECTO */
+
+.curso::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-100px;
+    right:-100px;
+
+    width:220px;
+    height:220px;
+
+    background:#FFCEE3;
+
+    border-radius:50%;
+
+    transition:.5s;
+}
+
+.curso:hover::before{
+
+    transform:scale(1.4);
+}
+
+.curso:hover{
+
+    transform:translateY(-12px);
+}
+
+/* ICONO */
+
+.icono{
+
+    width:90px;
+    height:90px;
+
+    background:#021A54;
+
+    border-radius:25px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-bottom:25px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.icono i{
+
+    font-size:40px;
+
+    color:white;
+}
+
+/* TITULO */
+
+.curso h2{
+
+    color:#021A54;
+
+    margin-bottom:18px;
+
+    font-size:32px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+/* TEXTO */
+
+.curso p{
+
+    color:#555;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+/* TEMAS */
+
+.temas{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-bottom:30px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.tema{
+
+    background:#F5F5F5;
+
+    padding:12px 18px;
+
+    border-radius:30px;
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:bold;
+
+    color:#021A54;
+
+    transition:.3s;
+}
+
+.tema:hover{
+
+    background:#FF85BB;
+
+    color:white;
+
+    transform:translateY(-4px);
+}
+
+/* BOTON */
+
+.btn-curso{
+
+    display:inline-block;
+
+    padding:14px 26px;
+
+    background:#021A54;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:40px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.btn-curso:hover{
+
+    background:#FF85BB;
+
+    transform:scale(1.05);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:900px){
+
+    .contenido-banner h1{
+        font-size:45px;
+    }
+
+    .contenido-banner p{
+        font-size:18px;
+    }
+}

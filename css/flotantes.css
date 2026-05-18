@@ -1,0 +1,304 @@
+
+.social-bar{
+    position:fixed;
+    top:50%;
+    left:0;
+    transform:translateY(-50%);
+    z-index:5000;
+}
+
+/* ICONOS */
+
+.social-icon{
+    position:relative;
+    width:35px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    overflow:hidden;
+    transition:.4s ease;
+    background:#021b54e0;
+    color:white;
+}
+
+/* ICONO */
+
+.social-icon i{
+
+    width:25px;
+    height:25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    flex-shrink:0;
+}
+
+/* TEXTO */
+
+.social-icon span{
+    white-space:nowrap;
+    padding:0 20px;
+    font-weight:bold;
+    opacity:0;
+    transition:.4s;
+}
+
+/* EXPANDIR */
+
+.social-icon:hover{
+    width:260px;
+}
+
+/* MOSTRAR TEXTO */
+
+.social-icon:hover span{
+    opacity:1;
+}
+
+/* COLORES HOVER*/
+
+.facebook:hover{
+    background:#1877F2;
+}
+
+.instagram:hover{
+    background:#f868cc;
+}
+
+.twitter:hover{
+    background:#111;
+}
+
+.linkedin:hover{
+    background:#0077B5;
+}
+
+.youtube:hover{
+    background:#FF0000;
+}
+
+.tiktok:hover{
+    background:#000;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .social-icon{
+
+        width:50px;
+        height:50px;
+    }
+
+    .social-icon i{
+
+        width:50px;
+        height:50px;
+
+        font-size:20px;
+    }
+
+    .social-icon:hover{
+
+        width:220px;
+    }
+}
+
+
+
+/* =========================================
+   el flotante del tema 
+========================================= */
+/* =========================================
+   BOTON TEMA
+========================================= */
+
+.theme-toggle{
+
+    width:55px;
+    height:55px;
+
+    position:fixed;
+
+    top:20px;
+    right:20px;
+
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    z-index:999999;
+
+    font-size:22px;
+
+    color:#021A54;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,.15);
+
+    transition:.4s ease;
+}
+
+.theme-toggle:hover{
+
+    transform:rotate(180deg)
+    scale(1.1);
+
+    background:#FF85BB;
+
+    color:white;
+}
+
+/* =========================================
+   DARK MODE GENERAL
+========================================= */
+
+body{
+
+    transition:
+    background .4s ease,
+    color .4s ease;
+}
+
+body.dark-mode{
+
+    background:#0b1120;
+    color:white;
+}
+
+/* TEXTOS */
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode p,
+body.dark-mode label,
+body.dark-mode a{
+
+    color:white;
+}
+
+/* SECCIONES */
+
+body.dark-mode section{
+
+    background:#111827 !important;
+}
+
+/* TARJETAS */
+
+body.dark-mode .card,
+body.dark-mode .curso-card,
+body.dark-mode .caja-pregunta,
+body.dark-mode .pregunta-item,
+body.dark-mode .ubicacion,
+body.dark-mode .presentacion,
+body.dark-mode .mision,
+body.dark-mode .vision{
+
+    background:#1e293b !important;
+
+    color:white;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,.4);
+}
+
+/* INPUTS */
+
+body.dark-mode input,
+body.dark-mode textarea{
+
+    background:#0f172a;
+
+    color:white;
+
+    border:1px solid #334155;
+}
+
+/* PLACEHOLDER */
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder{
+
+    color:#cbd5e1;
+}
+
+/* HEADER */
+
+body.dark-mode .header{
+
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #0f172a,
+        #1e293b
+    );
+}
+
+/* NAV */
+
+body.dark-mode .nav{
+
+    background:#020617;
+}
+
+/* FOOTER */
+
+body.dark-mode .footer{
+
+    background:#020617;
+}
+
+/* HERO */
+
+body.dark-mode .hero{
+
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #111827
+    );
+}
+
+/* TITULOS */
+
+body.dark-mode .titulo,
+body.dark-mode .titulo-preguntas,
+body.dark-mode .contenido-texto h2{
+
+    color:#FF85BB;
+}
+
+/* BOTONES */
+
+body.dark-mode .btn-principal{
+
+    background:#FF85BB;
+}
+
+body.dark-mode .btn-secundario{
+
+    border:2px solid #FF85BB;
+
+    color:#FF85BB;
+}
+
+body.dark-mode .btn-secundario:hover{
+
+    background:#FF85BB;
+
+    color:white;
+}

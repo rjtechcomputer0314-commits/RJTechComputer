@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Cursos | TechComputer</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"href="../css/header_footer.css">
+
+    <link rel="stylesheet"href="../css/flotantes.css">
+
+    <link rel="stylesheet"href="../css/cursos.css">
+    <link rel="stylesheet"href="../css/modales.css">
+
+    <!-- ICONOS -->
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- COMPONENTES -->
+    <div id="header"></div>
+
+    <div id="modales"></div>
+
+    <div id="flotantes"></div>
+
+    <!-- =========================================
+         BANNER
+    ========================================= -->
+
+    <section class="banner-cursos">
+
+        <div class="contenido-banner">
+
+            <h1>
+                Cursos Tecnológicos
+            </h1>
+
+            <p>
+
+                Aprende tecnología de manera moderna,
+                interactiva y visual.
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================
+         CURSOS
+    ========================================= -->
+
+    <section class="contenedor-cursos">
+
+        <!-- CURSO 1 -->
+
+        <div class="curso">
+
+            <div class="icono">
+
+                <i class="fas fa-desktop"></i>
+
+            </div>
+
+            <h2>Fundamentos de Computación</h2>
+
+            <p>Aprende los conceptos básicos de una computadora y su funcionamiento. </p>
+
+            <!-- TEMAS -->
+
+            <div class="temas">
+
+                <div class="tema">
+
+                    <i class="fas fa-microchip"></i>
+
+                    <span> Hardware</span>
+
+                </div>
+
+                <div class="tema">
+
+                    <i class="fas fa-laptop-code"></i>
+
+                    <span>Software </span>
+
+                </div>
+
+                <div class="tema">
+
+                    <i class="fas fa-memory"></i>
+
+                    <span> Componentes</span>
+
+                </div>
+
+            </div>
+            <a href="#" class="btn-curso"> Explorar curso </a>
+
+        </div>
+
+        <!-- CURSO 2 -->
+
+        <div class="curso">
+
+            <div class="icono">
+
+                <i class="fas fa-code"></i>
+
+            </div>
+
+            <h2> Programación </h2>
+
+            <p> Descubre el mundo del desarrollo web y la lógica de programación.</p>
+
+            <div class="temas">
+
+                <div class="tema">
+
+                    <i class="fab fa-html5"></i>
+
+                    <span> HTML </span>
+
+                </div>
+
+                <div class="tema">
+
+                    <i class="fab fa-css3-alt"></i>
+
+                    <span> CSS </span>
+
+                </div>
+
+                <div class="tema">
+
+                    <i class="fab fa-js"></i>
+
+                    <span> JavaScript </span>
+
+                </div>
+
+            </div>
+
+            <a href="#"class="btn-curso"> Explorar cursos </a>
+
+        </div>
+
+        <!-- CURSO 3 -->
+
+        <div class="curso">
+
+            <div class="icono">
+
+                <i class="fas fa-shield-halved"></i>
+
+            </div>
+
+            <h2> Seguridad Informática </h2>
+
+            <p> Protege tu información y aprende buenas
+                prácticas digitales.</p>
+
+            <div class="temas">
+
+                <div class="tema">
+
+                    <i class="fas fa-lock"></i>
+
+                    <span> Contraseñas </span>
+
+                </div>
+
+                <div class="tema">
+
+                    <i class="fas fa-user-secret"></i>
+
+                    <span> Privacidad </span>
+
+                </div>
+
+                <div class="tema">
+
+                    <i class="fas fa-virus"></i>
+
+                    <span> Antivirus </span>
+
+                </div>
+
+            </div>
+
+            <a href="#"class="btn-curso"> Explorar curso </a>
+
+        </div>
+
+        <!-- CURSO 4 -->
+
+        <div class="curso">
+            <div class="icono">
+                <i class="fas fa-wifi"></i>
+
+            </div>
+
+            <h2> Redes y Tecnología </h2>
+
+            <p>Comprende cómo funciona internet y las conexiones digitales.</p>
+
+            <div class="temas">
+
+                <div class="tema">
+
+                    <i class="fas fa-network-wired"></i>
+
+                    <span> Redes </span>
+
+                </div>
+
+                <div class="tema">
+
+                    <i class="fas fa-globe"></i>
+
+                    <span> Internet </span>
+
+                </div>
+
+                <div class="tema">
+
+                    <i class="fas fa-server"></i>
+
+                    <span> Servidores </span>
+
+                </div>
+
+            </div>
+
+            <a href="#" class="btn-curso"> Explorar curso </a>
+
+        </div>
+
+    </section>
+
+
+<!-- MODALES -->
+<div id="registro-container"></div>
+<div id="login-container"></div>
+
+<!-- FLOTANTES -->
+<div id="flotantes-container"></div>
+
+<!-- SCRIPTS -->
+<script src="/js/cargarComponentes.js"></script>
+
+<script>
+
+setTimeout(()=>{
+
+    const s1=document.createElement("script");
+    s1.src="/js/modales.js";
+    document.body.appendChild(s1);
+
+    const s2=document.createElement("script");
+    s2.src="/js/flotantes.js";
+    document.body.appendChild(s2);
+
+    const s3=document.createElement("script");
+    s3.src="/js/tema.js";
+    document.body.appendChild(s3);
+
+},500);
+
+</script>
+
+<script src="/js/menu.js"></script>
+<div id="footer"></div>
+</body>
+</html>
