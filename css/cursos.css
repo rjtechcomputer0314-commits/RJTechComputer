@@ -260,3 +260,55 @@
         font-size:18px;
     }
 }
+
+/* MENSAJE */
+
+.mensaje-box{
+
+    position:fixed;
+
+    top:120px;
+    right:25px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #021A54,
+        #0B2F87,
+        #FF85BB
+    );
+
+    color:white;
+
+    padding:18px 25px;
+
+    border-radius:18px;
+
+    width:320px;
+
+    line-height:1.6;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.3);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateX(100px);
+
+    transition:.4s ease;
+
+    z-index:999999;
+}
+
+/* ACTIVO */
+
+.mensaje-box.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateX(0);
+}

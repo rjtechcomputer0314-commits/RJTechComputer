@@ -69,3 +69,4 @@ fetch("../componentes/flotantes.html")
     ).innerHTML = data;
 
 });
+
