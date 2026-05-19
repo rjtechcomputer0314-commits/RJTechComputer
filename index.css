@@ -757,7 +757,238 @@ body{
     }
 }
 
+/* =========================================
+   CONTENEDOR GENERAL
+========================================= */
 
+.contenedor-ayuda{
+
+    display:grid;
+
+    grid-template-columns:
+    1.3fr .8fr;
+
+    gap:35px;
+
+    align-items:start;
+}
+
+/* =========================================
+   TARJETA YAPE
+========================================= */
+
+.apoyo-yape{
+
+    background:
+    linear-gradient(
+        135deg,
+        #021A54,
+        #0B2F87,
+        #5f0a87
+    );
+
+    border-radius:25px;
+
+    padding:35px 30px;
+
+    color:white;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.25);
+
+    transition:.4s ease;
+}
+
+/* EFECTO */
+
+.apoyo-yape::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border-radius:50%;
+
+    top:-60px;
+    right:-60px;
+}
+
+/* HOVER */
+
+.apoyo-yape:hover{
+
+    transform:
+    translateY(-8px)
+    scale(1.01);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.35);
+}
+
+/* ETIQUETA */
+
+.etiqueta-ayuda{
+
+    display:inline-block;
+
+    background:#FF85BB;
+
+    color:white;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+}
+
+/* TITULO */
+
+.apoyo-yape h2{
+
+    font-size:30px;
+
+    margin-bottom:15px;
+
+    line-height:1.2;
+}
+
+/* TEXTO */
+
+.apoyo-yape p{
+
+    color:#f1f5f9;
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+}
+
+/* IMAGEN */
+
+.imagen-yape{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:20px;
+}
+
+.imagen-yape img{
+
+    width:220px;
+
+    border-radius:20px;
+
+    border:5px solid white;
+
+    transition:.4s ease;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.3);
+}
+
+/* HOVER IMG */
+
+.imagen-yape img:hover{
+
+    transform:
+    scale(1.05)
+    rotate(2deg);
+}
+
+/* NUMERO */
+
+.numero-yape{
+
+    background:
+    rgba(255,255,255,.12);
+
+    padding:14px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    font-size:17px;
+
+    margin-bottom:20px;
+
+    backdrop-filter:blur(5px);
+}
+
+/* BOTON */
+
+.btn-apoyar{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#FF85BB;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+}
+
+/* HOVER */
+
+.btn-apoyar:hover{
+
+    background:white;
+
+    color:#021A54;
+
+    transform:translateY(-3px);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:950px){
+
+    .contenedor-ayuda{
+
+        grid-template-columns:1fr;
+    }
+
+    .apoyo-yape{
+
+        margin-top:10px;
+    }
+
+    .imagen-yape img{
+
+        width:190px;
+    }
+}
 
 /* ===== FRASE ===== */
 
@@ -1073,52 +1304,13 @@ body.dark-mode .formulario-pregunta textarea{
     border:1px solid #334155;
 }
 
-/* PLACEHOLDER */
 
-body.dark-mode input::placeholder,
-body.dark-mode textarea::placeholder{
 
-    color:#94a3b8;
-}
 
-/* BOTONES */
-
-body.dark-mode .btn-principal{
-
-    background:#FF85BB;
-}
-
-body.dark-mode .btn-secundario{
-
-    border:2px solid #FF85BB;
-
-    color:#FF85BB;
-}
-
-body.dark-mode .btn-secundario:hover{
-
-    background:#FF85BB;
-
-    color:white;
-}
-
-/* FOOTER */
-
-body.dark-mode .footer{
-
-    background:#020617;
-}
 
 /* CARRUSEL */
 
 body.dark-mode .carrusel{
 
     background:#111827;
-}
-
-/* MAPA */
-
-body.dark-mode iframe{
-
-    filter:grayscale(.2) invert(.9);
 }
