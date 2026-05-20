@@ -100,3 +100,42 @@ document.addEventListener("click",(e)=>{
     }
 
 });
+
+
+    /* supabase */
+
+const formRegistro =
+document.getElementById("formRegistro");
+
+formRegistro.addEventListener("submit",
+async(e)=>{
+
+    e.preventDefault();
+
+    const correo =
+    document.getElementById("correo")
+    .value;
+
+    const password =
+    document.getElementById("password")
+    .value;
+
+    const { data, error } =
+    await supabaseClient.auth.signUp({
+
+        email:correo,
+        password:password
+
+    });
+
+    if(error){
+
+        alert(error.message);
+
+    }else{
+
+        alert("Cuenta creada");
+
+    }
+
+});
