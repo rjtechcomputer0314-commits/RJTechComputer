@@ -1,0 +1,252 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#F5F7FB;
+    display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:260px;
+    height:100vh;
+    background:linear-gradient(
+    180deg,
+    #021A54,
+    #0B2F87
+    );
+
+    position:fixed;
+    left:0;
+    top:0;
+
+    padding:30px 20px;
+
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+
+    box-shadow:5px 0 20px rgba(0,0,0,.1);
+}
+
+/* LOGO */
+
+.logo{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.logo h2{
+    font-size:28px;
+    color:#FF85BB;
+}
+
+/* MENU */
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    margin-bottom:15px;
+}
+
+.sidebar ul li a{
+    text-decoration:none;
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:14px 16px;
+
+    border-radius:12px;
+
+    transition:.3s;
+}
+
+/* HOVER */
+
+.sidebar ul li a:hover{
+    background:#FF85BB;
+    transform:translateX(5px);
+}
+
+/* CONTENIDO */
+
+.contenido{
+    margin-left:260px;
+    width:100%;
+    padding:30px;
+}
+
+/* TOPBAR */
+
+.topbar{
+    background:white;
+    padding:20px;
+
+    border-radius:18px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+    margin-bottom:30px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.topbar h1{
+    color:#021A54;
+}
+
+/* TARJETAS */
+
+.cards{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+}
+
+/* CARD */
+
+.card{
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+/* EFECTO */
+
+.card::before{
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    background:#FF85BB20;
+
+    border-radius:50%;
+
+    top:-40px;
+    right:-40px;
+}
+
+/* HOVER */
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+/* ICONO */
+
+.card i{
+    font-size:40px;
+    color:#FF85BB;
+    margin-bottom:15px;
+}
+
+/* NUMERO */
+
+.card h3{
+    font-size:35px;
+    color:#021A54;
+    margin-bottom:10px;
+}
+
+/* TEXTO */
+
+.card p{
+    color:#777;
+    font-size:17px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:90px;
+        padding:20px 10px;
+    }
+
+    .sidebar .logo h2{
+        font-size:18px;
+    }
+
+    .sidebar ul li a{
+        justify-content:center;
+    }
+
+    .sidebar ul li a span{
+        display:none;
+    }
+
+    .contenido{
+        margin-left:90px;
+    }
+}
+
+@media(max-width:600px){
+
+    body{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        height:auto;
+
+        position:relative;
+
+        flex-direction:row;
+
+        justify-content:space-around;
+
+        align-items:center;
+    }
+
+    .sidebar ul{
+        display:flex;
+        gap:10px;
+    }
+
+    .sidebar ul li{
+        margin:0;
+    }
+
+    .sidebar ul li a{
+        padding:12px;
+    }
+
+    .contenido{
+        margin-left:0;
+        padding:20px;
+    }
+
+    .topbar h1{
+        font-size:22px;
+    }
+}

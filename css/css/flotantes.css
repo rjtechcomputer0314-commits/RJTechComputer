@@ -1,0 +1,495 @@
+
+.social-bar{
+    position:fixed;
+    top:50%;
+    left:0;
+    transform:translateY(-50%);
+    z-index:5000;
+}
+
+/* ICONOS */
+
+.social-icon{
+    position:relative;
+    width:35px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    overflow:hidden;
+    transition:.4s ease;
+    background:#021b54e0;
+    color:white;
+}
+
+/* ICONO */
+
+.social-icon i{
+
+    width:25px;
+    height:25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    flex-shrink:0;
+}
+
+/* TEXTO */
+
+.social-icon span{
+    white-space:nowrap;
+    padding:0 20px;
+    font-weight:bold;
+    opacity:0;
+    transition:.4s;
+}
+
+/* EXPANDIR */
+
+.social-icon:hover{
+    width:260px;
+}
+
+/* MOSTRAR TEXTO */
+
+.social-icon:hover span{
+    opacity:1;
+}
+
+/* COLORES HOVER*/
+
+.facebook:hover{
+    background:#1877F2;
+}
+
+.instagram:hover{
+    background:#f868cc;
+}
+
+.twitter:hover{
+    background:#111;
+}
+
+.linkedin:hover{
+    background:#0077B5;
+}
+
+.youtube:hover{
+    background:#FF0000;
+}
+
+.tiktok:hover{
+    background:#000;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .social-icon{
+
+        width:50px;
+        height:50px;
+    }
+
+    .social-icon i{
+
+        width:50px;
+        height:50px;
+
+        font-size:20px;
+    }
+
+    .social-icon:hover{
+
+        width:220px;
+    }
+}
+
+
+
+/* =========================================
+   el flotante del tema 
+========================================= */
+/* =========================================
+   TEMA OSCURO GENERAL
+========================================= */
+
+body.dark-mode{
+    background:#0b1020;
+    color:#ffffff;
+    transition:.4s ease;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+body.dark-mode header{
+
+    background:
+    linear-gradient(
+        135deg,
+        #000814,
+        #001d3d,
+        #35004f,
+        #000814
+    );
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,.5);
+}
+
+/* LINKS */
+
+body.dark-mode .nav a{
+
+    color:#ffffff;
+}
+
+/* HOVER */
+
+body.dark-mode .nav a:hover{
+
+    background:#ffffff;
+    color:#021A54;
+}
+
+/* DROPDOWN */
+
+body.dark-mode .dropdown{
+
+    background:#131c35;
+}
+
+body.dark-mode .dropdown a{
+
+    color:#ffffff;
+}
+
+body.dark-mode .dropdown a:hover{
+
+    background:#ff85bb;
+    color:#021A54;
+}
+
+/* BOTONES */
+
+body.dark-mode .boton1{
+
+    border:2px solid #ff85bb;
+    color:#ff85bb;
+}
+
+body.dark-mode .boton2{
+
+    background:#ff85bb;
+    color:#021A54;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+body.dark-mode .hero{
+
+    background:#0f172a;
+}
+
+body.dark-mode .hero h1{
+
+    color:#ffffff;
+}
+
+body.dark-mode .hero p{
+
+    color:#d1d5db;
+}
+
+body.dark-mode .tag{
+
+    background:#1e293b;
+    color:#ff85bb;
+}
+
+/* =========================================
+   CARDS
+========================================= */
+
+body.dark-mode .card{
+
+    background:#131c35;
+    color:white;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.35);
+}
+
+body.dark-mode .card:hover{
+
+    transform:translateY(-10px);
+}
+
+body.dark-mode .card p{
+
+    color:#d1d5db;
+}
+
+body.dark-mode .card i{
+
+    color:#ff85bb;
+}
+
+/* =========================================
+   CONTENIDO
+========================================= */
+
+body.dark-mode .contenido{
+
+    background:#0f172a;
+}
+
+body.dark-mode .contenido-texto h2{
+
+    color:white;
+}
+
+body.dark-mode .contenido-texto p{
+
+    color:#d1d5db;
+}
+
+body.dark-mode .contenido-texto span{
+
+    color:#ff85bb;
+}
+
+/* =========================================
+   PREGUNTAS
+========================================= */
+
+body.dark-mode .preguntas{
+
+    background:#111827;
+}
+
+body.dark-mode .pregunta-item{
+
+    background:#1e293b;
+    color:white;
+}
+
+body.dark-mode .pregunta-titulo{
+
+    color:white;
+}
+
+body.dark-mode .pregunta-contenido{
+
+    color:#d1d5db;
+}
+
+/* =========================================
+   FORMULARIO
+========================================= */
+
+body.dark-mode .caja-pregunta{
+
+    background:#131c35;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.4);
+}
+
+body.dark-mode .caja-pregunta h2{
+
+    color:white;
+}
+
+body.dark-mode .caja-pregunta p{
+
+    color:#d1d5db;
+}
+
+body.dark-mode input,
+body.dark-mode textarea{
+
+    background:#0f172a;
+    color:white;
+
+    border:1px solid #334155;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder{
+
+    color:#94a3b8;
+}
+
+/* =========================================
+   FRASE
+========================================= */
+
+body.dark-mode .frase{
+
+    background:#020617;
+}
+
+body.dark-mode .frase h2{
+
+    color:#ff85bb;
+}
+
+body.dark-mode .frase p{
+
+    color:#cbd5e1;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+body.dark-mode .footer{
+
+    background:#020617;
+}
+
+body.dark-mode .footer p{
+
+    color:#cbd5e1;
+}
+
+body.dark-mode .footer h3{
+
+    color:#ff85bb;
+}
+
+body.dark-mode .copy{
+
+    border-top:
+    1px solid rgba(255,255,255,.1);
+}
+
+/* REDES */
+
+body.dark-mode .redes span{
+
+    border:1px solid #ff85bb;
+}
+
+body.dark-mode .redes span:hover{
+
+    background:#ff85bb;
+    color:#021A54;
+}
+
+/* =========================================
+   MODALES
+========================================= */
+
+body.dark-mode .modal-contenido{
+
+    background:#131c35;
+    color:white;
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,.5);
+}
+
+body.dark-mode .modal-contenido h2{
+
+    color:#ff85bb;
+}
+
+body.dark-mode .modal-contenido label{
+
+    color:#e2e8f0;
+}
+
+body.dark-mode .modal-contenido input{
+
+    background:#0f172a;
+    color:white;
+
+    border:1px solid #334155;
+}
+
+body.dark-mode .modal-contenido input::placeholder{
+
+    color:#94a3b8;
+}
+
+body.dark-mode .texto-modal{
+
+    color:#d1d5db;
+}
+
+body.dark-mode .texto-modal a{
+
+    color:#ff85bb;
+}
+
+/* BOTONES */
+
+body.dark-mode .modal-contenido button{
+
+    background:#ff85bb;
+    color:#021A54;
+}
+
+/* =========================================
+   BOTÓN TEMA
+========================================= */
+
+.theme-toggle{
+    position:fixed;
+    flex-wrap: wrap;
+    top:110px;
+    right:25px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:#021A54;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    font-size:24px;
+    z-index:9999;
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.25);
+    transition:.4s ease;
+}
+
+/* HOVER */
+
+.theme-toggle:hover{
+
+    transform:scale(1.1);
+
+    background:#ff85bb;
+}
+
+/* DARK */
+
+body.dark-mode .theme-toggle{
+
+    background:#ff85bb;
+    color:#021A54;
+}
+
+/* =========================================
+   MAPA
+========================================= */
+
+body.dark-mode iframe{
+
+    border:none;
+
+    filter:
+    grayscale(.3)
+    invert(.92)
+    contrast(.9);
+}
