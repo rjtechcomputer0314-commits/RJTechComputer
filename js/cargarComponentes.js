@@ -1,6 +1,9 @@
 /* =========================================
    HEADER
 ========================================= */
+/* =========================================
+   HEADER
+========================================= */
 
 fetch("../componentes/header.html")
 
@@ -10,8 +13,29 @@ fetch("../componentes/header.html")
 
     document.getElementById("header").innerHTML = data;
 
-});
+    /* SUBMENU MOBILE */
 
+    const submenu = document.querySelectorAll(".submenu");
+
+    submenu.forEach(item => {
+
+        const link = item.querySelector("a");
+
+        link.addEventListener("click", (e) => {
+
+            if(window.innerWidth <= 900){
+
+                e.preventDefault();
+
+                item.classList.toggle("active");
+
+            }
+
+        });
+
+    });
+
+});
 /* =========================================
    FOOTER
 ========================================= */
