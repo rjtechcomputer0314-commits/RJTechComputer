@@ -721,43 +721,6 @@ body{
 }
 
 /* =========================================
-   RESPONSIVE
-========================================= */
-
-@media(max-width:900px){
-
-    .contenedor-preguntas{
-
-        flex-direction:column;
-    }
-
-    .ubicacion{
-
-        width:100%;
-
-        position:static;
-    }
-}
-
-@media(max-width:768px){
-
-    .titulo-preguntas{
-
-        font-size:35px;
-    }
-
-    .caja-pregunta{
-
-        padding:35px 25px;
-    }
-
-    .caja-pregunta h2{
-
-        font-size:30px;
-    }
-}
-
-/* =========================================
    CONTENEDOR GENERAL
 ========================================= */
 
@@ -968,27 +931,6 @@ body{
     transform:translateY(-3px);
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
-
-@media(max-width:950px){
-
-    .contenedor-ayuda{
-
-        grid-template-columns:1fr;
-    }
-
-    .apoyo-yape{
-
-        margin-top:10px;
-    }
-
-    .imagen-yape img{
-
-        width:190px;
-    }
-}
 
 /* ===== FRASE ===== */
 
@@ -1064,72 +1006,6 @@ body{
         transform:translateX(0);
     }
 }
-
-/* ===== RESPONSIVE ===== */
-
-@media(max-width:1000px){
-
-    .hero,
-    .contenido{
-
-        flex-direction:column;
-        text-align:center;
-    }
-
-    .reverse{
-        flex-direction:column-reverse;
-    }
-
-    .hero-texto h1{
-        font-size:50px;
-    }
-
-    .contenido-texto h2{
-        font-size:38px;
-    }
-
-    .frase h2{
-        font-size:38px;
-    }
-
-    .hero-botones{
-        justify-content:center;
-    }
-}
-
-@media(max-width:700px){
-
-    .hero{
-        padding-top:140px;
-    }
-
-    .hero-texto h1{
-        font-size:40px;
-    }
-
-    .titulo{
-        font-size:34px;
-    }
-
-    .contenido-texto h2{
-        font-size:32px;
-    }
-
-    .frase h2{
-        font-size:30px;
-    }
-
-    .hero-texto p,
-    .contenido-texto p{
-        font-size:16px;
-    }
-}
-
-
-/* =========================================
-   DARK MODE GENERAL
-========================================= */
-
 
 
 /* BODY */
@@ -1313,4 +1189,336 @@ body.dark-mode .formulario-pregunta textarea{
 body.dark-mode .carrusel{
 
     background:#111827;
+}
+
+
+/* =========================================
+   RESPONSIVE GENERAL LIMPIO
+========================================= */
+
+/* ===== TABLETS ===== */
+
+@media(max-width:1000px){
+
+    /* HERO */
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:140px 7% 80px;
+        gap:40px;
+    }
+
+    .hero-texto{
+        width:100%;
+    }
+
+    .hero-texto h1{
+        font-size:50px;
+        line-height:1.2;
+    }
+
+    .hero-texto p{
+        font-size:17px;
+        margin:auto;
+        margin-bottom:30px;
+    }
+
+    .hero-botones{
+        justify-content:center;
+    }
+
+    .hero-imagen img{
+        max-width:420px;
+    }
+
+    /* CONTENIDO */
+
+    .contenido{
+        flex-direction:column;
+        text-align:center;
+        gap:45px;
+        padding:90px 7%;
+    }
+
+    .reverse{
+        flex-direction:column-reverse;
+    }
+
+    .contenido-texto h2{
+        font-size:38px;
+    }
+
+    .contenido-texto p{
+        font-size:17px;
+    }
+
+    /* CARDS */
+
+    .cards{
+        grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+    }
+
+    /* TITULOS */
+
+    .titulo{
+        font-size:36px;
+    }
+
+    .titulo-preguntas{
+        font-size:38px;
+    }
+
+    .frase h2{
+        font-size:38px;
+    }
+
+}
+
+/* ===== CELULARES ===== */
+
+@media(max-width:768px){
+
+    /* HERO */
+
+    .hero{
+        padding:130px 6% 70px;
+        gap:35px;
+    }
+
+    .hero-texto h1{
+        font-size:38px;
+    }
+
+    .hero-texto p{
+        font-size:16px;
+        line-height:1.7;
+    }
+
+    .tag{
+        font-size:12px;
+        padding:8px 16px;
+    }
+
+    /* BOTONES */
+
+    .hero-botones{
+        flex-direction:column;
+        align-items:center;
+        gap:15px;
+    }
+
+    .btn-principal,
+    .btn-secundario{
+        width:100%;
+        max-width:280px;
+        text-align:center;
+        padding:14px;
+    }
+
+    /* IMAGEN */
+
+    .hero-imagen img{
+        max-width:320px;
+    }
+
+    /* CARRUSEL */
+
+    .carruselnn img{
+        height:45px;
+        margin:0 30px;
+    }
+
+    /* INFO */
+
+    .info{
+        padding:80px 6%;
+    }
+
+    .titulo{
+        font-size:30px;
+        margin-bottom:40px;
+    }
+
+    .titulo::after{
+        left:50%;
+    }
+
+    /* CARDS */
+
+    .cards{
+        gap:25px;
+    }
+
+    .card{
+        padding:35px 25px;
+    }
+
+    .card h3{
+        font-size:24px;
+    }
+
+    .card i{
+        font-size:45px;
+    }
+
+    /* CONTENIDO */
+
+    .contenido{
+        padding:80px 6%;
+    }
+
+    .contenido-texto h2{
+        font-size:32px;
+    }
+
+    .contenido-texto p{
+        font-size:16px;
+    }
+
+    /* PREGUNTAS */
+
+    .contenedor-preguntas{
+        flex-direction:column;
+        padding:10px 6%;
+        gap:30px;
+    }
+
+    .titulo-preguntas{
+        font-size:32px;
+    }
+
+    .pregunta-titulo{
+        font-size:16px;
+        padding:18px;
+    }
+
+    /* UBICACION */
+
+    .ubicacion{
+        width:100%;
+        position:static;
+    }
+
+    .ubicacion iframe{
+        height:250px;
+    }
+
+    /* ENVIAR PREGUNTA */
+
+    .enviar-pregunta{
+        padding:70px 6%;
+    }
+
+    .caja-pregunta{
+        padding:35px 20px;
+    }
+
+    .caja-pregunta h2{
+        font-size:30px;
+    }
+
+    /* FORM */
+
+    .formulario-pregunta input,
+    .formulario-pregunta textarea{
+        padding:15px;
+        font-size:15px;
+    }
+
+    .formulario-pregunta button{
+        padding:15px;
+        font-size:15px;
+    }
+
+    /* YAPE */
+
+    .contenedor-ayuda{
+        grid-template-columns:1fr;
+    }
+
+    .apoyo-yape{
+        padding:30px 22px;
+    }
+
+    .apoyo-yape h2{
+        font-size:25px;
+    }
+
+    .imagen-yape img{
+        width:180px;
+    }
+
+    /* FRASE */
+
+    .frase{
+        padding:80px 6%;
+    }
+
+    .frase h2{
+        font-size:30px;
+    }
+
+    .frase p{
+        font-size:17px;
+    }
+
+}
+
+/* ===== CELULARES PEQUEÑOS ===== */
+
+@media(max-width:480px){
+
+    .hero{
+        padding-top:120px;
+    }
+
+    .hero-texto h1{
+        font-size:31px;
+    }
+
+    .hero-texto p{
+        font-size:15px;
+    }
+
+    .hero-imagen img{
+        max-width:260px;
+    }
+
+    .titulo,
+    .titulo-preguntas,
+    .contenido-texto h2,
+    .frase h2{
+        font-size:26px;
+    }
+
+    .card{
+        padding:28px 20px;
+    }
+
+    .card h3{
+        font-size:21px;
+    }
+
+    .card p{
+        font-size:14px;
+    }
+
+    .pregunta-titulo{
+        font-size:15px;
+    }
+
+    .caja-pregunta h2{
+        font-size:25px;
+    }
+
+    .frase p{
+        font-size:5px;
+    }
+
+    .imagen-yape img{
+        width:10px;
+    }
+
 }

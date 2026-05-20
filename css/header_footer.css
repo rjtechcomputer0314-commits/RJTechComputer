@@ -212,14 +212,16 @@ submenu{
 
 .boton2{
     background:#FF85BB;
-    border:none;
+    border:2px solid white;
     color:white;
 }
 
 .boton1:hover,
 .boton2:hover{
-    transform:translateY(-3px);
+    transform:translateY(-6px);
     box-shadow:0 5px 15px rgba(0,0,0,.2);
+    color: #ffffff;
+    background: #021A54;
 }
 
 /* =========================================
@@ -228,9 +230,10 @@ submenu{
 
 .menu-toggle{
     display:none;
-    font-size:30px;
+    font-size:20px;
     color:white;
     cursor:pointer;
+    padding: 10px;
 }
 
 /* =========================================
@@ -339,17 +342,16 @@ submenu{
 
     .botones{
         margin-left:auto;
-        gap:5px;
+        gap:8px;
     }
 
     .boton1,
     .boton2{
         padding:6px 10px;
-        font-size:11px;
-        border-radius:6px;
+        font-size:13px;
+        border-radius:30px;
     }
 }
-
 /* CELULARES */
 
 @media(max-width:480px){
