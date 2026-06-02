@@ -145,12 +145,16 @@ if(errorPerfil){
             .eq("id", data.user.id)
             .single();
 
-            if(errorPerfil){
+if(errorPerfil){
 
-                alert("Perfil no encontrado");
-                return;
+    console.log("ID:", data.user.id);
+    console.log("PERFIL:", perfil);
+    console.log("ERROR:", errorPerfil);
 
-            }
+    alert(errorPerfil.message);
+
+    return;
+}
 
             alert("Bienvenido " + perfil.nombre);
 
