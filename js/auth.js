@@ -166,7 +166,7 @@ if(errorPerfil){
             }else{
 
                 window.location.href =
-                "/paginas/estudiantehtml/dashboard.html";
+                "/paginas/estudiantehtml/dashboarde.html";
 
             }
 
