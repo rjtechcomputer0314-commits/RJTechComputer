@@ -1,5 +1,5 @@
-<!-- MODAL REGISTRO -->
 
+<!-- MODAL REGISTRO -->
 <div class="modal" id="modalRegistro">
 
     <div class="modal-contenido">
@@ -29,6 +29,14 @@
     placeholder="Burgos"
     required>
 
+    <label>Número telefónico</label>
+
+<input 
+type="tel"
+id="telefonoRegistro"
+placeholder="987654321"
+required>
+
     <label>Correo electrónico</label>
 
     <input 
@@ -36,6 +44,24 @@
     id="correoRegistro"
     placeholder="correo@gmail.com"
     required>
+
+    <label>Tipo de cuenta</label>
+
+<select id="rolRegistro" required>
+
+    <option value="">
+        Selecciona una opción
+    </option>
+
+    <option value="estudiante">
+        Estudiante
+    </option>
+
+    <option value="docente">
+        Docente
+    </option>
+
+</select>
 
     <!-- PASSWORD -->
 

@@ -22,6 +22,18 @@ function iniciarAuth(){
 
             e.preventDefault();
 
+            const nombre =
+            document.getElementById("nombreRegistro").value;
+
+            const apellido =
+            document.getElementById("apellidoRegistro").value;
+
+            const telefono =
+            document.getElementById("telefonoRegistro").value;
+
+            const rol =
+            document.getElementById("rolRegistro").value;
+
             const correo =
             document.getElementById("correoRegistro").value;
 
@@ -34,8 +46,8 @@ function iniciarAuth(){
             if(password !== confirmar){
 
                 alert("Las contraseñas no coinciden");
-
                 return;
+
             }
 
             const { data, error } =
@@ -49,9 +61,22 @@ function iniciarAuth(){
             if(error){
 
                 alert(error.message);
-
                 return;
+
             }
+
+            await supabaseClient
+            .from("perfiles")
+            .insert({
+
+                id:data.user.id,
+                nombre:nombre,
+                apellido:apellido,
+                telefono:telefono,
+                correo:correo,
+                rol:rol
+
+            });
 
             alert("Cuenta creada correctamente");
 
@@ -88,14 +113,37 @@ function iniciarAuth(){
             if(error){
 
                 alert("Correo o contraseña incorrectos");
-
                 return;
+
             }
 
-            alert("Bienvenido");
+            const { data: perfil, error: errorPerfil } =
+            await supabaseClient
+            .from("perfiles")
+            .select("*")
+            .eq("id", data.user.id)
+            .single();
 
-            window.location.href =
-            "/paginas/docentehtml/dashboard.html";
+            if(errorPerfil){
+
+                alert("Perfil no encontrado");
+                return;
+
+            }
+
+            alert("Bienvenido " + perfil.nombre);
+
+            if(perfil.rol === "docente"){
+
+                window.location.href =
+                "/paginas/docentehtml/dashboard.html";
+
+            }else{
+
+                window.location.href =
+                "/paginas/estudiantehtml/dashboard.html";
+
+            }
 
         });
 
