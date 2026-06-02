@@ -50,45 +50,55 @@ function iniciarAuth(){
 
             }
 
-            const { data, error } =
-            await supabaseClient.auth.signUp({
+  const { data, error } =
+await supabaseClient.auth.signUp({
 
-                email:correo,
-                password:password
+    email:correo,
+    password:password
 
-            });
+});
 
-            if(error){
+console.log("DATA REGISTRO:", data);
+console.log("ERROR REGISTRO:", error);
 
-                alert(error.message);
-                return;
+if(error){
 
-            }
-
-const { error: errorPerfil } =
-await supabaseClient
-.from("perfiles")
-.insert([{
-
-    id:data.user.id,
-    nombre:nombre,
-    apellido:apellido,
-    telefono:telefono,
-    correo:correo,
-    rol:rol
-
-}]);
-
-if(errorPerfil){
-
-    console.log(errorPerfil);
-
-    alert(errorPerfil.message);
-
+    alert(error.message);
     return;
 
 }
 
+if(!data.user){
+
+    alert("No se pudo obtener el usuario.");
+    return;
+
+}
+
+const { data: perfilData, error: errorPerfil } =
+await supabaseClient
+.from("perfiles")
+.insert([{
+
+    id: data.user.id,
+    nombre: nombre,
+    apellido: apellido,
+    telefono: telefono,
+    correo: correo,
+    rol: rol
+
+}])
+.select();
+
+console.log("PERFIL:", perfilData);
+console.log("ERROR PERFIL:", errorPerfil);
+
+if(errorPerfil){
+
+    alert(errorPerfil.message);
+    return;
+
+}
             alert("Cuenta creada correctamente");
 
         });
