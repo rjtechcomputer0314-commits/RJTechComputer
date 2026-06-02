@@ -65,18 +65,29 @@ function iniciarAuth(){
 
             }
 
-            await supabaseClient
-            .from("perfiles")
-            .insert({
+const { error: errorPerfil } =
+await supabaseClient
+.from("perfiles")
+.insert([{
 
-                id:data.user.id,
-                nombre:nombre,
-                apellido:apellido,
-                telefono:telefono,
-                correo:correo,
-                rol:rol
+    id:data.user.id,
+    nombre:nombre,
+    apellido:apellido,
+    telefono:telefono,
+    correo:correo,
+    rol:rol
 
-            });
+}]);
+
+if(errorPerfil){
+
+    console.log(errorPerfil);
+
+    alert(errorPerfil.message);
+
+    return;
+
+}
 
             alert("Cuenta creada correctamente");
 
