@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Cursos</title>
+
+    <link rel="stylesheet"
+    href="/css/docentecss/cursosdoc.css">
+</head>
+
+<body>
+
+    <h1>📚 Gestión de Cursos</h1>
+
+    <!-- FORMULARIO -->
+
+    <div class="crear-curso">
+
+        <input
+        type="text"
+        id="nombreCurso"
+        placeholder="Nombre del curso">
+
+        <textarea
+        id="descripcionCurso"
+        placeholder="Descripción">
+        </textarea>
+
+        <button id="btnCrearCurso">
+
+            Crear Curso
+
+        </button>
+
+    </div>
+
+    <!-- AQUÍ APARECERÁN LOS CURSOS -->
+
+    <div id="listaCursos"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="/js/supabase.js"></script>
+    <script src="/js/docentejs/cursosdoc.js"></script>
+
+</body>
+
+</html>

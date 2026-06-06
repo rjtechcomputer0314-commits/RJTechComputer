@@ -1,25 +1,190 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Docente</title>
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Docente</title>
+
+    <link rel="stylesheet"    href="/paginas/docentehtml/dashboard.css">
+
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
+
 <body>
 
-    <h1>Bienvenido Docente 👨‍🏫</h1>
+    <!-- SIDEBAR -->
 
-    <a href="cursosdoc.html">
-        Cursos
-    </a>
+    <aside class="sidebar">
 
-    <a href="estudiantes.html">
-        Estudiantes
-    </a>
+        <div class="logo">
 
-    <a href="tareas.html">
-        Tareas
-    </a>
+            <h2>RJEdu<span>Plus</span></h2>
+
+        </div>
+
+        <ul>
+
+            <li class="active">
+                <a href="#"><i class="fas fa-chart-line"></i>Dashboard</a>
+            </li>
+
+            <li>
+                <a href="cursosdoc.html"><i class="fas fa-book"></i> Cursos</a>
+            </li>
+
+            <li>
+                <a href="estudiantes.html"><i class="fas fa-user-graduate"></i>Estudiantes</a>
+            </li>
+
+            <li>
+                <a href="tareas.html"><i class="fas fa-clipboard-list"></i>Actividades</a>
+            </li>
+
+            <li>
+                <a href="#"><i class="fas fa-cog"></i> Configuración</a>
+            </li>
+
+            <li>
+                <a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- CONTENIDO -->
+
+    <main class="contenido">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <h1>Bienvenido Docente 👨‍🏫</h1>
+
+            <div class="perfil">
+
+                <img src="https://i.pravatar.cc/100" alt="Docente">
+
+                <span>Profesor</span>
+
+            </div>
+
+        </header>
+
+        <!-- ESTADÍSTICAS -->
+
+        <section class="estadisticas">
+
+            <div class="card">
+
+                <i class="fas fa-book"></i>
+
+                <h3>8</h3><p>Cursos</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fas fa-user-graduate"></i>
+
+                <h3>24</h3><p>Estudiantes</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fas fa-file-alt"></i>
+
+                <h3>32</h3><p>Actividades</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fas fa-folder-open"></i>
+
+                <h3>5</h3> <p>Materiales</p>
+
+            </div>
+
+        </section>
+
+        <!-- CURSOS -->
+
+        <section class="panel-cursos">
+
+            <div class="titulo-panel">
+
+                <h2>Mis Cursos</h2>
+
+                <button>+ Crear Curso</button>
+
+            </div>
+
+            <div class="grid-cursos">
+
+                <div class="curso">
+
+                    <h3>Programación Web</h3>
+
+                    <p>2 estudiantes</p>
+
+                </div>
+
+                <div class="curso">
+
+                    <h3>Hardware Básico</h3>
+
+                    <p>2 estudiantes</p>
+
+                </div>
+
+                <div class="curso">
+
+                    <h3>Redes</h3>
+
+                    <p>20 estudiantes</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ACTIVIDAD -->
+
+        <section class="actividad">
+
+            <h2>Actividad reciente</h2>
+
+            <div class="actividad-item">
+
+                📄 Se subió un PDF al curso Programación Web
+
+            </div>
+
+            <div class="actividad-item">
+
+                📝 Nueva tarea creada
+
+            </div>
+
+            <div class="actividad-item">
+
+                👨‍🎓 Nuevo estudiante inscrito
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>
