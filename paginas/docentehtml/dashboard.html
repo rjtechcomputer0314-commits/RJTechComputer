@@ -9,9 +9,11 @@
 
     <title>Dashboard Docente</title>
 
-    <link rel="stylesheet"    href="/paginas/docentehtml/dashboard.css">
+    <link rel="stylesheet"
+    href="/paginas/docentehtml/dashboard.css">
 
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -23,14 +25,14 @@
 
         <div class="logo">
 
-            <h2>RJEdu<span>Plus</span></h2>
+            <h2>TechComputer<span>Edu</span></h2>
 
         </div>
 
         <ul>
 
             <li class="active">
-                <a href="#"><i class="fas fa-chart-line"></i>Dashboard</a>
+                <a href="#"><i class="fas fa-chart-line"></i> Dashboard</a>
             </li>
 
             <li>
@@ -38,11 +40,11 @@
             </li>
 
             <li>
-                <a href="estudiantes.html"><i class="fas fa-user-graduate"></i>Estudiantes</a>
+                <a href="estudiantes.html"><i class="fas fa-user-graduate"></i> Estudiantes</a>
             </li>
 
             <li>
-                <a href="tareas.html"><i class="fas fa-clipboard-list"></i>Actividades</a>
+                <a href="tareas.html"><i class="fas fa-clipboard-list"></i> Actividades</a>
             </li>
 
             <li>
@@ -50,7 +52,9 @@
             </li>
 
             <li>
-                <a href="#"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a>
+                <a href="#" id="cerrarSesion">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </a>
             </li>
 
         </ul>
@@ -65,13 +69,22 @@
 
         <header class="topbar">
 
-            <h1>Bienvenido Docente 👨‍🏫</h1>
+            <h1 id="saludoUsuario">
+
+                Cargando usuario...
+
+            </h1>
 
             <div class="perfil">
 
-                <img src="https://i.pravatar.cc/100" alt="Docente">
+                <img src="https://i.pravatar.cc/100"
+                alt="Usuario">
 
-                <span>Profesor</span>
+                <span id="rolUsuario">
+
+                    Cargando...
+
+                </span>
 
             </div>
 
@@ -85,7 +98,9 @@
 
                 <i class="fas fa-book"></i>
 
-                <h3>8</h3><p>Cursos</p>
+                <h3 id="totalCursos">0</h3>
+
+                <p>Cursos</p>
 
             </div>
 
@@ -93,7 +108,9 @@
 
                 <i class="fas fa-user-graduate"></i>
 
-                <h3>24</h3><p>Estudiantes</p>
+                <h3>0</h3>
+
+                <p>Estudiantes</p>
 
             </div>
 
@@ -101,7 +118,9 @@
 
                 <i class="fas fa-file-alt"></i>
 
-                <h3>32</h3><p>Actividades</p>
+                <h3>0</h3>
+
+                <p>Actividades</p>
 
             </div>
 
@@ -109,81 +128,23 @@
 
                 <i class="fas fa-folder-open"></i>
 
-                <h3>5</h3> <p>Materiales</p>
+                <h3>0</h3>
 
-            </div>
-
-        </section>
-
-        <!-- CURSOS -->
-
-        <section class="panel-cursos">
-
-            <div class="titulo-panel">
-
-                <h2>Mis Cursos</h2>
-
-                <button>+ Crear Curso</button>
-
-            </div>
-
-            <div class="grid-cursos">
-
-                <div class="curso">
-
-                    <h3>Programación Web</h3>
-
-                    <p>2 estudiantes</p>
-
-                </div>
-
-                <div class="curso">
-
-                    <h3>Hardware Básico</h3>
-
-                    <p>2 estudiantes</p>
-
-                </div>
-
-                <div class="curso">
-
-                    <h3>Redes</h3>
-
-                    <p>20 estudiantes</p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- ACTIVIDAD -->
-
-        <section class="actividad">
-
-            <h2>Actividad reciente</h2>
-
-            <div class="actividad-item">
-
-                📄 Se subió un PDF al curso Programación Web
-
-            </div>
-
-            <div class="actividad-item">
-
-                📝 Nueva tarea creada
-
-            </div>
-
-            <div class="actividad-item">
-
-                👨‍🎓 Nuevo estudiante inscrito
+                <p>Materiales</p>
 
             </div>
 
         </section>
 
     </main>
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+    <script src="/js/supabase.js"></script>
+
+    <script src="/js/docentejs/dashboard.js"></script>
 
 </body>
 
