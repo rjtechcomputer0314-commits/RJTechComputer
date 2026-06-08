@@ -139,13 +139,13 @@ body{
 /* ESTADISTICAS */
 
 .estadisticas-web{
-    max-width:1200px;
-    margin:-60px auto 50px;
+    width:20%;
+    margin:-60px 0 40px auto;
     padding:0 20px;
     display:grid;
     grid-template-columns:
     repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
+    gap:20px;
     position:relative;
     z-index:5;
 
