@@ -1,20 +1,17 @@
 /* para las  visitas*/
-document.addEventListener(
-    "DOMContentLoaded",
-    contarVisita
-);
+document.addEventListener("DOMContentLoaded", async ()=>{
 
-async function contarVisita(){
-
-    console.log("Entró a contarVisita");
-
-    const resultado =
+    const { data, error } =
     await supabaseClient
     .from("visitas")
-    .select("*");
+    .insert([
+        {
+            total: 1
+        }
+    ])
+    .select();
 
-    console.log(
-        JSON.stringify(resultado)
-    );
+    console.log(data);
+    console.log(error);
 
-}
+});
