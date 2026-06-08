@@ -118,10 +118,10 @@ if(btnNuevoCurso){
 
 
     // para que se abra en la misma ventana el crear curso
-function abrirModalCurso(){
+function abrirmodalCurso(){
     document.getElementById("modalCurso").style.display = "flex";
 }
 
-function cerrarModal(){
+function cerrarmodalCurso(){
     document.getElementById("modalCurso").style.display = "none";
 }
