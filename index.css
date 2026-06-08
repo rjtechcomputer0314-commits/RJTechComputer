@@ -137,12 +137,24 @@ body{
 }
 
 /* ESTADISTICAS */
-/* MODO OSCURO SOLO PARA VISITAS */
+/* VISITAS EN MODO OSCURO */
 
-body.dark-mode .estadisticas-web h3,
-body.dark-mode .estadisticas-web p,
-body.dark-mode .estadisticas-web i{
-    color:#fff;
+body.dark-mode .card-estadistica{
+
+    background:#121212;
+
+    color:white;
+
+    border:1px solid #333;
+
+}
+
+body.dark-mode .card-estadistica h3,
+body.dark-mode .card-estadistica p,
+body.dark-mode .card-estadistica i{
+
+    color:white;
+
 }
 .estadisticas-web{
     width:20%;
