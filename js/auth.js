@@ -81,12 +81,12 @@ await supabaseClient
 .from("perfiles")
 .insert([{
 
-    id: data.user.id,
-    nombre: nombre,
-    apellido: apellido,
-    telefono: telefono,
-    correo: correo,
-    rol: rol
+  user_id: data.user.id,
+  nombre: nombre,
+  apellido: apellido,
+  telefono: telefono,
+  correo: correo,
+  rol: rol
 
 }])
 .select();
@@ -143,7 +143,7 @@ if(errorPerfil){
             await supabaseClient
             .from("perfiles")
             .select("*")
-            .eq("id", data.user.id)
+            .eq("user_id", data.user.id)
             .single();
 
 if(errorPerfil){
