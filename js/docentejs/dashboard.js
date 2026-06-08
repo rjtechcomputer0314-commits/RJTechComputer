@@ -125,3 +125,71 @@ function abrirmodalCurso(){
 function cerrarmodalCurso(){
     document.getElementById("modalCurso").style.display = "none";
 }
+
+
+
+// ==========================
+// CONTAR ESTUDIANTES
+// ==========================
+
+async function cargarCantidadEstudiantes(){
+
+    const {
+        count,
+        error
+    } =
+    await supabaseClient
+    .from("perfiles")
+    .select("*",{
+        count:"exact",
+        head:true
+    })
+    .eq("rol","estudiante");
+
+    if(error){
+
+        console.log(error);
+
+        return;
+
+    }
+
+    document
+    .getElementById("contadorEstudiantes")
+    .textContent =
+    count;
+
+}
+
+// ==========================
+// CONTAR DOCENTES
+// ==========================
+
+async function cargarCantidadDocentes(){
+
+    const {
+        count,
+        error
+    } =
+    await supabaseClient
+    .from("perfiles")
+    .select("*",{
+        count:"exact",
+        head:true
+    })
+    .eq("rol","docente");
+
+    if(error){
+
+        console.log(error);
+
+        return;
+
+    }
+
+    document
+    .getElementById("contadorDocentes")
+    .textContent =
+    count;
+
+}
