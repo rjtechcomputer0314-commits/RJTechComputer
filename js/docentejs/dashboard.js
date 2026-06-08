@@ -96,3 +96,20 @@ async function cerrarSesion(){
     "/index.html";
 
 }
+
+const btnNuevoCurso =
+document.getElementById("btnNuevoCurso");
+
+if(btnNuevoCurso){
+
+    btnNuevoCurso.addEventListener(
+        "click",
+        ()=>{
+
+            window.location.href =
+            "cursosdoc.html";
+
+        }
+    );
+
+}

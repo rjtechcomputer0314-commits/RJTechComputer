@@ -39,11 +39,14 @@ async function crearCurso(){
         docente_id:user.id
     }]);
 
-    if(error){
-        console.log(error);
-        alert("Error al crear curso");
-        return;
-    }
+if(error){
+
+    console.log(error);
+
+    alert(error.message);
+
+    return;
+}
 
     alert("Curso creado");
 
