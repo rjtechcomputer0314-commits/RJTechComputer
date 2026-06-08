@@ -83,11 +83,20 @@ async function cargarCursos(){
 
     data.forEach(curso=>{
 
-        lista.innerHTML += `
-        <div class="curso">
-            <h3>${curso.nombre}</h3>
-            <p>${curso.descripcion || ""}</p>
-        </div>`;
+lista.innerHTML += `
+<div class="curso">
+    <div class="curso-icono">
+        <i class="fas fa-book-open"></i>
+    </div>
+
+    <h3>${curso.nombre}</h3>
+
+    <p>${curso.descripcion || "Sin descripción"}</p>
+
+    <button class="btn-entrar">
+        Entrar al curso
+    </button>
+</div>`;
     });
 
 }

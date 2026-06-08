@@ -1,127 +1,144 @@
+/* =======================
+   CONTENIDO GENERAL
+======================= */
+
+.contenido{
+    margin-left: 260px; /* ajusta si tu sidebar es fijo */
+    padding: 30px;
+    background: #f4f6fb;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* =======================
+   TOPBAR
+======================= */
+
+.topbar{
+    background: white;
+    padding: 18px 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    margin-bottom: 25px;
+}
+
+.topbar h1{
+    color: #021A54;
+    font-size: 22px;
+}
+
+/* =======================
+   NUEVO CURSO
+======================= */
+
 .nuevo-curso{
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+}
 
-    background:white;
-
-    padding:25px;
-
-    border-radius:20px;
-
-    margin-bottom:30px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-
+.nuevo-curso h2{
+    color: #021A54;
+    margin-bottom: 15px;
 }
 
 .nuevo-curso input,
 .nuevo-curso textarea{
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    transition: .3s;
+}
 
-    width:100%;
-
-    padding:12px;
-
-    margin-top:10px;
-
-    margin-bottom:15px;
-
-    border:1px solid #ddd;
-
-    border-radius:10px;
-
+.nuevo-curso input:focus,
+.nuevo-curso textarea:focus{
+    border-color: #FF85BB;
+    box-shadow: 0 0 0 3px rgba(255,133,187,.2);
 }
 
 .nuevo-curso textarea{
-
-    min-height:120px;
-
-    resize:vertical;
-
+    min-height: 120px;
+    resize: vertical;
 }
 
 .nuevo-curso button{
-
-    background:#021A54;
-
-    color:white;
-
-    border:none;
-
-    padding:12px 20px;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
+    background: #021A54;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
 }
 
+.nuevo-curso button:hover{
+    background: #FF85BB;
+}
+
+/* =======================
+   LISTA DE CURSOS
+======================= */
+
 .mis-cursos{
-
-    margin-top:30px;
-
+    margin-top: 30px;
 }
 
 #listaCursos{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(280px,1fr));
-
-    gap:20px;
-
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
 }
 
-.curso{
-
-    background:white;
-
-    padding:20px;
-
-    border-radius:15px;
-
-    border-left:5px solid #FF85BB;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-
-}
+/* =======================
+   CARD CURSO (LIMPIO)
+======================= */
 
 .curso{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-    transition:.3s;
-    border-top:5px solid #FF85BB;
+    background: white;
+    padding: 22px;
+    border-radius: 18px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    border-top: 5px solid #FF85BB;
+    transition: .3s;
 }
 
 .curso:hover{
-    transform:translateY(-5px);
+    transform: translateY(-5px);
 }
 
 .curso-icono{
-    font-size:35px;
-    color:#021A54;
-    margin-bottom:15px;
+    font-size: 35px;
+    color: #021A54;
+    margin-bottom: 12px;
 }
 
 .curso h3{
-    color:#021A54;
-    margin-bottom:10px;
+    color: #021A54;
+    margin-bottom: 8px;
 }
 
 .curso p{
-    color:#666;
-    margin-bottom:20px;
+    color: #666;
+    margin-bottom: 18px;
+    font-size: 14px;
 }
 
 .btn-entrar{
-    background:#021A54;
-    color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:10px;
-    cursor:pointer;
+    background: #021A54;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
 }
 
 .btn-entrar:hover{
-    background:#FF85BB;
+    background: #FF85BB;
 }
