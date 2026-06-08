@@ -1,18 +1,12 @@
-/* =========================================
-   MODALES
-========================================= */
-
+/*  MODALES*/
 document.addEventListener("click",(e)=>{
-
     /* ABRIR REGISTRO */
-
     if(e.target.id === "abrirModal"){
 
         document
         .getElementById("modalRegistro")
         .classList.add("active");
     }
-
     /* ABRIR LOGIN */
 
     if(e.target.id === "abrirLogin"){

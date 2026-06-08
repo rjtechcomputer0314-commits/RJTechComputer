@@ -1,10 +1,4 @@
-/* =========================================
-   HEADER
-========================================= */
-/* =========================================
-   HEADER
-========================================= */
-
+/*  HEADER */
 fetch("../componentes/header.html")
 
 .then(res => res.text())
@@ -36,9 +30,7 @@ fetch("../componentes/header.html")
     });
 
 });
-/* =========================================
-   FOOTER
-========================================= */
+/*   FOOTER */
 
 fetch("../componentes/footer.html")
 
@@ -77,9 +69,7 @@ fetch("/componentes/login.html")
     ).innerHTML = data;
 
 });
-/* =========================================
-   DARK MODE
-========================================= */
+
 /* FLOTANTES */
 
 fetch("../componentes/flotantes.html")
@@ -93,4 +83,3 @@ fetch("../componentes/flotantes.html")
     ).innerHTML = data;
 
 });
-

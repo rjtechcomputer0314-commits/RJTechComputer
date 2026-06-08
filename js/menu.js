@@ -1,3 +1,4 @@
+/*  para el menú de hamburguesa que aparece en pantalla de celular*/
 document.addEventListener("DOMContentLoaded", ()=>{
 
     const esperarHeader = setInterval(()=>{
@@ -24,9 +25,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 });
 
-/* =========================================
-  BOTÓN QUE ESTÁ EL WATSAP Y EL TELÉFONO
-========================================= */
+/*  BOTÓN QUE ESTÁ EL WATSAP Y EL TELÉFONO*/
 
 document.addEventListener("click",(e)=>{
 
@@ -44,9 +43,7 @@ document.addEventListener("click",(e)=>{
 });
 
 
-/* =========================================
-   PARA LAS PREGUNTAS DEL INDEX QUE ESTA
-========================================= */
+/*   PARA LAS PREGUNTAS DEL INDEX QUE ESTA */
 
 const preguntas =
 document.querySelectorAll(".pregunta-item");

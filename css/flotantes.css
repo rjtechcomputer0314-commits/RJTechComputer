@@ -1,4 +1,3 @@
-
 .social-bar{
     position:fixed;
     top:50%;
@@ -6,9 +5,7 @@
     transform:translateY(-50%);
     z-index:5000;
 }
-
 /* ICONOS */
-
 .social-icon{
     position:relative;
     width:35px;
@@ -21,11 +18,8 @@
     background:#021b54e0;
     color:white;
 }
-
 /* ICONO */
-
 .social-icon i{
-
     width:25px;
     height:25px;
     display:flex;
@@ -34,9 +28,7 @@
     font-size:24px;
     flex-shrink:0;
 }
-
 /* TEXTO */
-
 .social-icon span{
     white-space:nowrap;
     padding:0 20px;
@@ -44,21 +36,15 @@
     opacity:0;
     transition:.4s;
 }
-
 /* EXPANDIR */
-
 .social-icon:hover{
     width:260px;
 }
-
 /* MOSTRAR TEXTO */
-
 .social-icon:hover span{
     opacity:1;
 }
-
 /* COLORES HOVER*/
-
 .facebook:hover{
     background:#1877F2;
 }
@@ -109,12 +95,7 @@
 
 
 
-/* =========================================
-   el flotante del tema 
-========================================= */
-/* =========================================
-   TEMA OSCURO GENERAL
-========================================= */
+/*   el flotante del tema */
 
 body.dark-mode{
     background:#0b1020;
@@ -122,42 +103,25 @@ body.dark-mode{
     transition:.4s ease;
 }
 
-/* =========================================
-   HEADER
-========================================= */
+/*   HEADER*/
 
 body.dark-mode header{
 
-    background:
-    linear-gradient(
-        135deg,
-        #000814,
-        #001d3d,
-        #35004f,
-        #000814
-    );
-
-    box-shadow:
-    0 5px 20px rgba(0,0,0,.5);
+    background:linear-gradient(135deg,#000814,#001d3d,#35004f,#000814);
+    box-shadow:0 5px 20px rgba(0,0,0,.5);
 }
-
 /* LINKS */
-
 body.dark-mode .nav a{
 
     color:#ffffff;
 }
-
 /* HOVER */
-
 body.dark-mode .nav a:hover{
 
     background:#ffffff;
     color:#021A54;
 }
-
 /* DROPDOWN */
-
 body.dark-mode .dropdown{
 
     background:#131c35;
@@ -169,13 +133,10 @@ body.dark-mode .dropdown a{
 }
 
 body.dark-mode .dropdown a:hover{
-
     background:#ff85bb;
     color:#021A54;
 }
-
 /* BOTONES */
-
 body.dark-mode .boton1{
 
     border:2px solid #ff85bb;
@@ -188,9 +149,7 @@ body.dark-mode .boton2{
     color:#021A54;
 }
 
-/* =========================================
-   HERO
-========================================= */
+/*  HERO*/
 
 body.dark-mode .hero{
 
@@ -213,15 +172,11 @@ body.dark-mode .tag{
     color:#ff85bb;
 }
 
-/* =========================================
-   CARDS
-========================================= */
+/*  CARDS */
 
 body.dark-mode .card{
-
     background:#131c35;
     color:white;
-
     box-shadow:
     0 10px 25px rgba(0,0,0,.35);
 }
@@ -241,9 +196,7 @@ body.dark-mode .card i{
     color:#ff85bb;
 }
 
-/* =========================================
-   CONTENIDO
-========================================= */
+/* CONTENIDO */
 
 body.dark-mode .contenido{
 
@@ -265,9 +218,7 @@ body.dark-mode .contenido-texto span{
     color:#ff85bb;
 }
 
-/* =========================================
-   PREGUNTAS
-========================================= */
+/* PREGUNTAS*/
 
 body.dark-mode .preguntas{
 
@@ -290,16 +241,12 @@ body.dark-mode .pregunta-contenido{
     color:#d1d5db;
 }
 
-/* =========================================
-   FORMULARIO
-========================================= */
+/* FORMULARIO */
 
 body.dark-mode .caja-pregunta{
 
     background:#131c35;
-
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.4);
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
 }
 
 body.dark-mode .caja-pregunta h2{
@@ -314,10 +261,8 @@ body.dark-mode .caja-pregunta p{
 
 body.dark-mode input,
 body.dark-mode textarea{
-
     background:#0f172a;
     color:white;
-
     border:1px solid #334155;
 }
 
@@ -327,9 +272,7 @@ body.dark-mode textarea::placeholder{
     color:#94a3b8;
 }
 
-/* =========================================
-   FRASE
-========================================= */
+/* FRASE */
 
 body.dark-mode .frase{
 
@@ -346,9 +289,7 @@ body.dark-mode .frase p{
     color:#cbd5e1;
 }
 
-/* =========================================
-   FOOTER
-========================================= */
+/* FOOTER */
 
 body.dark-mode .footer{
 
@@ -367,8 +308,7 @@ body.dark-mode .footer h3{
 
 body.dark-mode .copy{
 
-    border-top:
-    1px solid rgba(255,255,255,.1);
+    border-top:1px solid rgba(255,255,255,.1);
 }
 
 /* REDES */
@@ -384,17 +324,12 @@ body.dark-mode .redes span:hover{
     color:#021A54;
 }
 
-/* =========================================
-   MODALES
-========================================= */
+/* MODALES */
 
 body.dark-mode .modal-contenido{
-
     background:#131c35;
     color:white;
-
-    box-shadow:
-    0 10px 35px rgba(0,0,0,.5);
+    box-shadow:0 10px 35px rgba(0,0,0,.5);
 }
 
 body.dark-mode .modal-contenido h2{
@@ -411,7 +346,6 @@ body.dark-mode .modal-contenido input{
 
     background:#0f172a;
     color:white;
-
     border:1px solid #334155;
 }
 
@@ -429,18 +363,13 @@ body.dark-mode .texto-modal a{
 
     color:#ff85bb;
 }
-
 /* BOTONES */
-
 body.dark-mode .modal-contenido button{
 
     background:#ff85bb;
     color:#021A54;
 }
-
-/* =========================================
-   BOTÓN TEMA
-========================================= */
+/* BOTÓN TEMA*/
 
 .theme-toggle{
     position:fixed;
@@ -458,8 +387,7 @@ body.dark-mode .modal-contenido button{
     cursor:pointer;
     font-size:24px;
     z-index:9999;
-    box-shadow:
-    0 10px 25px rgba(0,0,0,.25);
+    box-shadow: 0 10px 25px rgba(0,0,0,.25);
     transition:.4s ease;
 }
 
@@ -480,9 +408,7 @@ body.dark-mode .theme-toggle{
     color:#021A54;
 }
 
-/* =========================================
-   MAPA
-========================================= */
+/*  MAPA */
 
 body.dark-mode iframe{
 

@@ -1,17 +1,8 @@
-/* =========================================
-   BANNER
-========================================= */
-
+/*  BANNER*/
 .banner-nosotros{
     width:100%;
     min-height:450px;
-    background:
-    linear-gradient(
-        rgba(2,26,84,.8),
-        rgba(0, 39, 129, 0.8)
-    ),
-    url("../imagenes/img1.jpg");
-    background-size:cover;
+    background:linear-gradient(rgba(2,26,84,.8), rgba(0, 39, 129, 0.8)),url("../imagenes/img1.jpg");background-size:cover;
     background-position:center;
     display:flex;
     justify-content:center;
@@ -31,11 +22,7 @@
     font-size:22px;
     max-width:700px;
 }
-
-/* =========================================
-   GENERAL
-========================================= */
-
+/*  GENERAL */
 .titulo{
     text-align:center;
     font-size:42px;
@@ -43,9 +30,7 @@
     margin-bottom:50px;
 }
 
-/* =========================================
-   CREACIÓN
-========================================= */
+/* CREACIÓN*/
 .creacion{
         padding: 40px 60px;
 }
@@ -55,7 +40,6 @@
     justify-content:space-between;
     gap:60px;
     flex-wrap:wrap;
-
 }
 
 .texto-creacion{
@@ -87,11 +71,7 @@
 .imagen-creacion img:hover{
     transform:scale(1.03);
 }
-
-/* =========================================
-   MISIÓN Y VISIÓN
-========================================= */
-
+/* MISIÓN Y VISIÓN */
 .mision-vision{
     display:grid;
     grid-template-columns:
@@ -135,11 +115,7 @@
     color:#555;
     line-height:1.7;
 }
-
-/* =========================================
-   PRESENTACIÓN
-========================================= */
-
+/*PRESENTACIÓN*/
 .presentacion{
     background:#FFCEE3;
     padding: 40px 60px;
@@ -152,9 +128,7 @@
     gap:60px;
     flex-wrap:wrap;
 }
-
 /* FOTO */
-
 .foto1 img{
    width:320px;
     height:320px;
@@ -169,9 +143,7 @@
 .foto1 img:hover{
     transform:scale(1.04);
 }
-
 /* INFO */
-
 .info{
     max-width:600px;
 }
@@ -188,9 +160,7 @@
     line-height:1.8;
     font-size:18px;
 }
-
 /* DATOS */
-
 .datos{
     display:flex;
     flex-wrap:wrap;
@@ -214,11 +184,7 @@
     background:#021A54;
     color:white;
 }
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
+/*RESPONSIVE*/
 @media(max-width:900px){
 
     .contenido-banner h1{

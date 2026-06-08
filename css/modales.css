@@ -1,9 +1,5 @@
-/* =========================================
-   MODAL
-========================================= */
-
+/*   MODAL */
 .modal{
-
     position:fixed;
     top:0;
     left:0;
@@ -16,9 +12,7 @@
     align-items:center;
     z-index:9999999;
 }
-
 /* ACTIVO */
-
 .modal.active{
     display:flex;
 }
@@ -33,9 +27,7 @@
     animation:aparecer .4s ease;
     box-shadow:  0 15px 40px rgba(0,0,0,.2);
 }
-
 /* ANIMACIÓN */
-
 @keyframes aparecer{
 
     from{
@@ -52,9 +44,7 @@
         scale(1);
     }
 }
-
 /* CERRAR */
-
 .cerrar{
     position:absolute;
     top:15px;
@@ -69,17 +59,13 @@
     color:#FF85BB;
     transform:rotate(90deg);
 }
-
 /* TITULO */
-
 .modal-contenido h2{
     text-align:center;
     margin-bottom:30px;
     color:#021A54;
 }
-
 /* FORM */
-
 .modal form{
     display:flex;
     flex-direction:column;
@@ -105,9 +91,7 @@
     border-color:#FF85BB;
     box-shadow: 0 0 10px rgba(255,133,187,.3);
 }
-
 /* PASSWORD */
-
 .input-password{
     position:relative;
 }
@@ -119,9 +103,7 @@
     cursor:pointer;
     color:#777;
 }
-
 /* BOTÓN */
-
 .modal button{
     padding:15px;
     border:none;
@@ -139,7 +121,6 @@
 }
 
 /* TEXTO */
-
 .texto-modal{
     margin-top:20px;
     text-align:center;

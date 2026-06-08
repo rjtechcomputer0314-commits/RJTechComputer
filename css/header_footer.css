@@ -1,7 +1,4 @@
-/* =========================================
-   GENERAL
-========================================= */
-
+/*    GENERAL*/
 *{
     margin:0;
     padding:0;
@@ -12,11 +9,7 @@ body{
     font-family:Arial, Helvetica, sans-serif;
     background:#F5F5F5;
 }
-
-/* =========================================
-   HEADER
-========================================= */
-
+/* HEADER */
 header{
     width:100%;
     min-height:90px;
@@ -28,37 +21,23 @@ header{
     top:0;
     left:0;
     z-index:999999;
-    background:linear-gradient(
-        135deg,
-        #021A54,
-        #0B2F87,
-        #FF85BB,
-        #021A54
-    );
+    background:linear-gradient(135deg, #021A54,#0B2F87, #FF85BB,#021A54);
     background-size:300% 300%;
     animation:fondoAnimado 8s ease infinite;
 }
-
 /* ANIMACIÓN HEADER */
-
 @keyframes fondoAnimado{
-
     0%{
         background-position:0% 50%;
     }
-
     50%{
         background-position:100% 50%;
     }
-
     100%{
         background-position:0% 50%;
     }
 }
-
-/* =========================================
-   LOGO
-========================================= */
+/*  LOGO*/
 
 .logo{
     display:flex;
@@ -75,9 +54,7 @@ header{
 .logo img:hover{
     transform:rotate(10deg) scale(1.08);
 }
-
 /* TEXTO LOGO */
-
 .logo-texto{
     display:flex;
     gap:2px;
@@ -97,11 +74,7 @@ header{
     color:#FFCEE3;
     transform:translateY(-5px);
 }
-
-/* =========================================
-   NAV
-========================================= */
-
+/*  NAV */
 .nav ul{
     display:flex;
     align-items:center;
@@ -128,15 +101,12 @@ header{
     color:#021A54;
 }
 
-/* =========================================
-   SUBMENU
-========================================= */
+/* SUBMENU */
 submenu{
     position:relative;
 }
 
 /* DROPDOWN */
-
 .dropdown{
     position:absolute;
     top:100%;
@@ -146,14 +116,11 @@ submenu{
     border-radius:12px;
     overflow:hidden;
     box-shadow:0 10px 25px rgba(0,0,0,.15);
-
     opacity:0;
     visibility:hidden;
     transform:translateY(15px);
-
     transition:.3s ease;
     z-index:1000;
-
     display:flex;
     flex-direction:column;
 }
@@ -184,9 +151,7 @@ submenu{
     transform:translateY(0);
 }
 
-/* =========================================
-   BOTONES
-========================================= */
+/*  BOTONES */
 
 .botones{
     display:flex;
@@ -223,11 +188,7 @@ submenu{
     color: #ffffff;
     background: #021A54;
 }
-
-/* =========================================
-   HAMBURGUESA
-========================================= */
-
+/* menu  HAMBURGUESA */
 .menu-toggle{
     display:none;
     font-size:20px;
@@ -235,20 +196,14 @@ submenu{
     cursor:pointer;
     padding: 10px;
 }
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
+/*   RESPONSIVE */
 @media(max-width:900px){
 
     header{
         padding:12px 20px;
         min-height:80px;
     }
-
     /* LOGO */
-
     .logo{
         gap:8px;
     }
@@ -260,15 +215,11 @@ submenu{
     .logo-texto span{
         font-size:13px;
     }
-
     /* HAMBURGUESA */
-
     .menu-toggle{
         display:block;
     }
-
     /* NAV */
-
     .nav{
         position:absolute;
         top:80px;
@@ -297,24 +248,17 @@ submenu{
     .nav a{
         padding:15px;
     }
-
     /* SUBMENU */
-
    .dropdown{
         position:static;
         width:100%;
         max-height:0;
         overflow:hidden;
-
         opacity:1;
         visibility:visible;
-
         transform:none;
-
         background:#0B2F87;
-
         box-shadow:none;
-
         transition:max-height .4s ease;
     }
 
@@ -336,8 +280,6 @@ submenu{
         visibility:visible;
         transform:translateY(8px);
     }
-
-
     /* BOTONES */
 
     .botones{
@@ -379,9 +321,7 @@ submenu{
     }
 }
 
-/* =========================================
-   ANIMACIÓN MENÚ
-========================================= */
+/* ANIMACIÓN MENÚ */
 
 @keyframes menuMobile{
 
@@ -396,9 +336,7 @@ submenu{
     }
 }
 
-/* =========================================
-   FOOTER
-========================================= */
+/*FOOTER */
 
 .footer{
     background:#021A54;
@@ -428,16 +366,13 @@ submenu{
     color:#FF85BB;
     transform:translateX(3px);
 }
-
 /* LOGO FOOTER */
-
 .logo-footer{
     width:120px;
     margin-bottom:15px;
 }
 
 /* TEXTO FOOTER */
-
 .unoporuno{
     display:flex;
     gap:2px;
@@ -479,9 +414,7 @@ submenu{
     color:#021A54;
     transform:translateY(-5px);
 }
-
 /* COPY */
-
 .copy{
     border-top:1px solid rgba(255,255,255,.2);
     padding-top:20px;
@@ -509,9 +442,7 @@ submenu{
     }
 }
 
-/* =========================================
-   BOTÓN FLOTANTE
-========================================= */
+/* BOTÓN FLOTANTE*/
 
 .float-container{
     position:fixed;
@@ -544,11 +475,9 @@ submenu{
     display:flex;
     flex-direction:column;
     gap:12px;
-
     opacity:0;
     visibility:hidden;
     transform:translateY(20px);
-
     transition:.4s;
 }
 

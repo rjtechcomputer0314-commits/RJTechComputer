@@ -1,7 +1,4 @@
-/* =========================================
-ESTE ES DEL TEMA OSCURO Y CLARO
-========================================= */
-
+/* ESTE ES DEL TEMA OSCURO Y CLARO */
 document.addEventListener("click",(e)=>{
 
     const boton =
@@ -44,10 +41,7 @@ document.addEventListener("click",(e)=>{
         }
     }
 });
-
-/* =========================================
-   RECUPERAR TEMA
-========================================= */
+/*   RECUPERAR TEMA */
 
 window.addEventListener("load",()=>{
 

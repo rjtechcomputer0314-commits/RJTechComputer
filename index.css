@@ -1,4 +1,4 @@
-/* ===== GENERAL ===== */
+/*  GENERAL */
 *{
     margin:0;
     padding:0;
@@ -10,21 +10,16 @@ body{
     background:#F5F5F5;
     overflow-x:hidden;
 }
-/* ===== HERO ===== */
+/*HERO */
 
 .hero{
-
     width:100%;
     min-height:100vh;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     padding:120px 8% 80px;
-
     gap:60px;
-
     background:
     linear-gradient(
         135deg,
@@ -40,7 +35,6 @@ body{
 }
 
 .tag{
-
     background:#021A54;
     color:white;
     padding:10px 20px;
@@ -141,18 +135,18 @@ body{
     position: relative;
     white-space: nowrap;
 }
-/* ===== CARRUSELn ===== */
+/*CARRUSELn*/
 .carruseln {
     display: flex;
     width: max-content;
     animation: scroll 25s linear infinite;
 }
-/* ===== carruselnn===== */
+/*carruselnn*/
 .carruselnn{
     display: flex;
     align-items: center;
 }
-/* ===== carruselnn===== */
+/*carruselnn*/
 .carruselnn img{
     height: 60px;
     margin: 0 60px;
@@ -160,30 +154,30 @@ body{
     opacity: .7;
     transition: .4s;
 }
-/* ===== carruselnn===== */
+/* carruselnn */
 .carruselnn img:hover{
-    filter: grayscale(0%);
+    filter: grayscale(7%);
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.3);
 }
-/* PAUSA AL PASAR EL MOUSE */
-/* ===== carrusel: hover  .carruseln===== */
+/* esto es para que se pause cuando paso el mause */
+/* carrusel: hover  .carruseln */
 .carrusel:hover .carruseln{
     animation-play-state: paused;
 }
-/* ANIMACIÓN */
+/* esto es para que este tipo carrusel*/
 @keyframes scroll{
 
     from{
-        transform: translateX(0);
+        transform: translateX(3);
     }
 
     to{
-        transform: translateX(-50%);
+        transform: translateX(-60%);
     }
 
 }
-/* ===== TARJETAS ===== */
+/*TARJETAS */
 .info{
     padding:100px 8%;
     background:white;
@@ -218,8 +212,7 @@ body{
 }
 .cards{
     display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
     gap:35px;
 }
 /* CARD */
@@ -258,7 +251,7 @@ body{
 .card:hover p{
     color:white;
 }
-/* ===== CONTENIDO ===== */
+/*CONTENIDO*/
 .contenedor-preguntas{
     display:flex;
     gap:50px;
@@ -353,9 +346,7 @@ body{
     margin-bottom:35px;
     font-size:18px;
 }
-/* =========================================
-   PREGUNTAS
-========================================= */
+/*    PREGUNTAS */
 .preguntas{
     background:#F5F5F5;
 }
@@ -389,142 +380,88 @@ body{
 .texto-preguntas{
     color:#555;
     line-height:1.8;
-
     margin-bottom:40px;
 }
 
-/* =========================================
-   ACORDEON
-========================================= */
+/*    ACORDEON */
 
 .acordeon{
-
     display:flex;
-
     flex-direction:column;
-
     gap:18px;
 }
 
 .pregunta-item{
-
     background:white;
-
     border-radius:18px;
-
     overflow:hidden;
-
-    box-shadow:
-    0 5px 15px rgba(0,0,0,.08);
-
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
     transition:.3s;
 }
 
 .pregunta-item:hover{
-
     transform:translateY(-3px);
 }
 
 .pregunta-titulo{
-
     padding:22px;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     cursor:pointer;
-
     font-weight:bold;
-
     color:#021A54;
-
     font-size:18px;
 }
 
 .pregunta-titulo span{
-
     color:#FF85BB;
-
     font-size:25px;
 }
 
 .pregunta-contenido{
-
     max-height:0;
-
     overflow:hidden;
-
     padding:0 22px;
-
     line-height:1.8;
-
     color:#555;
-
     transition:.4s ease;
 }
 
 .pregunta-item.active .pregunta-contenido{
-
     max-height:300px;
-
     padding:0 22px 22px;
 }
-
-/* =========================================
-   UBICACION
-========================================= */
-
+/*   UBICACION */
 .ubicacion{
-
     width:320px;
-
     background:white;
-
     padding:20px;
-
     border-radius:20px;
-
-    box-shadow:
-    0 5px 15px rgba(0,0,0,.08);
-
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
     position:sticky;
-
     top:110px;
 }
 
 .ubicacion h3{
-
     color:#021A54;
-
     margin-bottom:10px;
 }
 
 .ubicacion p{
-
     color:#555;
-
     font-size:14px;
-
     margin-bottom:15px;
 }
 
 .ubicacion iframe{
-
     width:100%;
-
     height:200px;
-
     border:none;
-
     border-radius:15px;
 }
 
-/* =========================================
-   ENVIAR PREGUNTA
-========================================= */
+/*   ENVIAR PREGUNTA */
 
 .enviar-pregunta{
 
@@ -536,45 +473,30 @@ body{
 .caja-pregunta{
 
     max-width:750px;
-
     margin:auto;
-
     background:white;
-
     padding:50px;
-
     border-radius:30px;
-
     text-align:center;
-
-    box-shadow:
-    0 10px 25px rgba(0,0,0,.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,.1);
 }
 
 .caja-pregunta h2{
-
     color:#021A54;
-
     font-size:40px;
-
     margin-bottom:15px;
 }
 
 .caja-pregunta p{
-
     color:#555;
-
     margin-bottom:35px;
 }
 
 /* FORM */
 
 .formulario-pregunta{
-
     display:flex;
-
     flex-direction:column;
-
     gap:20px;
 }
 
@@ -582,303 +504,174 @@ body{
 .formulario-pregunta textarea{
 
     width:100%;
-
     padding:18px;
-
     border:none;
-
     border-radius:15px;
-
     background:#F5F5F5;
-
     font-size:16px;
-
     outline:none;
 }
 
 .formulario-pregunta textarea{
-
     height:160px;
-
     resize:none;
 }
 
 .formulario-pregunta button{
-
     background:#021A54;
-
     color:white;
-
     padding:18px;
-
     border:none;
-
     border-radius:40px;
-
     font-size:17px;
-
     font-weight:bold;
-
     cursor:pointer;
-
     transition:.3s;
 }
 
 .formulario-pregunta button:hover{
-
     background:#FF85BB;
-
     transform:translateY(-4px);
 }
 
-/* =========================================
-   CONTENEDOR GENERAL
-========================================= */
+/*    CONTENEDOR GENERAL*/
 
 .contenedor-ayuda{
-
     display:grid;
-
-    grid-template-columns:
-    1.3fr .8fr;
-
+    grid-template-columns:1.3fr .8fr;
     gap:35px;
-
     align-items:start;
 }
 
-/* =========================================
-   TARJETA YAPE
-========================================= */
+/*   TARJETA YAPE */
 
 .apoyo-yape{
-
-    background:
-    linear-gradient(
-        135deg,
-        #021A54,
-        #0B2F87,
-        #5f0a87
-    );
-
+    background: linear-gradient( 135deg, #021A54, #0B2F87, #5f0a87);
     border-radius:25px;
-
     padding:35px 30px;
-
     color:white;
-
     position:relative;
-
     overflow:hidden;
-
-    box-shadow:
-    0 15px 35px rgba(0,0,0,.25);
-
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
     transition:.4s ease;
 }
 
 /* EFECTO */
 
 .apoyo-yape::before{
-
     content:"";
-
     position:absolute;
-
     width:180px;
     height:180px;
-
-    background:
-    rgba(255,255,255,.08);
-
+    background: rgba(255,255,255,.08);
     border-radius:50%;
-
     top:-60px;
     right:-60px;
 }
 
 /* HOVER */
-
 .apoyo-yape:hover{
-
-    transform:
-    translateY(-8px)
-    scale(1.01);
-
-    box-shadow:
-    0 20px 40px rgba(0,0,0,.35);
+    transform:translateY(-8px)scale(1.01);
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
 }
-
 /* ETIQUETA */
-
 .etiqueta-ayuda{
-
     display:inline-block;
-
     background:#FF85BB;
-
     color:white;
-
     padding:8px 18px;
-
     border-radius:50px;
-
     font-size:13px;
-
     font-weight:bold;
-
     margin-bottom:20px;
 }
 
 /* TITULO */
 
 .apoyo-yape h2{
-
     font-size:30px;
-
     margin-bottom:15px;
-
     line-height:1.2;
 }
 
 /* TEXTO */
-
 .apoyo-yape p{
-
     color:#f1f5f9;
-
     line-height:1.7;
-
     margin-bottom:25px;
 }
 
 /* IMAGEN */
-
 .imagen-yape{
-
     display:flex;
-
     justify-content:center;
-
     margin-bottom:20px;
 }
 
 .imagen-yape img{
-
     width:220px;
-
     border-radius:20px;
-
     border:5px solid white;
-
     transition:.4s ease;
-
-    box-shadow:
-    0 10px 25px rgba(0,0,0,.3);
+    box-shadow: 0 10px 25px rgba(0,0,0,.3);
 }
 
 /* HOVER IMG */
-
 .imagen-yape img:hover{
-
-    transform:
-    scale(1.05)
-    rotate(2deg);
+    transform:scale(4.05)rotate(4deg);
 }
-
 /* NUMERO */
-
 .numero-yape{
-
-    background:
-    rgba(255,255,255,.12);
-
+    background: rgba(255,255,255,.12);
     padding:14px;
-
     border-radius:15px;
-
     text-align:center;
-
     font-size:17px;
-
     margin-bottom:20px;
-
     backdrop-filter:blur(5px);
 }
 
 /* BOTON */
-
 .btn-apoyar{
-
     width:100%;
-
     padding:15px;
-
     border:none;
-
     border-radius:15px;
-
     background:#FF85BB;
-
     color:white;
-
     font-size:16px;
-
     font-weight:bold;
-
     cursor:pointer;
-
     transition:.3s ease;
 }
 
 /* HOVER */
-
 .btn-apoyar:hover{
-
     background:white;
-
     color:#021A54;
-
     transform:translateY(-3px);
 }
-
-
-/* ===== FRASE ===== */
-
+/* FRASE  */
 .frase{
-
-    background:
-    linear-gradient(
-        135deg,
-        #021A54,
-        #0d2f84
-    );
-
+    background:linear-gradient( 135deg, #021A54,#0d2f84 );
     color:white;
-
     text-align:center;
-
     padding:100px 8%;
 }
 
 .frase h2{
-
     font-size:50px;
-
     margin-bottom:25px;
 }
 
 .frase p{
-
-    font-size:20px;
-
+   font-size:20px;
     color:#FFCEE3;
 }
 
-/* ===== ANIMACIONES ===== */
+/*  ANIMACIONES  */
 
 @keyframes flotar{
-
     0%{
         transform:translateY(0px);
     }
@@ -917,202 +710,119 @@ body{
         transform:translateX(0);
     }
 }
-
-
 /* BODY */
-
 body.dark-mode{
-
     background:#0f172a;
     color:#F5F5F5;
 }
-
 /* HERO */
-
 body.dark-mode .hero{
-
-    background:
-    linear-gradient(
-        135deg,
-        #020617,
-        #0f172a,
-        #1e293b
-    );
+    background:linear-gradient( 135deg, #020617, #0f172a,#1e293b);
 }
-
 /* TEXTOS */
-
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
 body.dark-mode p,
 body.dark-mode span{
-
     color:#F5F5F5;
 }
-
 /* HERO TEXTO */
-
 body.dark-mode .hero-texto p{
-
     color:#cbd5e1;
 }
-
 /* TITULOS */
-
 body.dark-mode .titulo,
 body.dark-mode .titulo-preguntas{
-
     color:white;
 }
-
 /* INFO */
-
 body.dark-mode .info{
-
     background:#111827;
 }
-
 /* TARJETAS */
-
 body.dark-mode .card{
-
     background:#1e293b;
-
-    box-shadow:
-    0 5px 20px rgba(0,0,0,.35);
+    box-shadow:0 5px 20px rgba(0,0,0,.35);
 }
 
 body.dark-mode .card h3{
-
     color:white;
 }
 
 body.dark-mode .card p{
-
     color:#cbd5e1;
 }
 
 body.dark-mode .card:hover{
-
     background:#021A54;
 }
 
 /* CONTENIDOS */
-
 body.dark-mode .contenido{
-
     background:#0f172a;
 }
 
 body.dark-mode .reverse{
-
     background:#111827;
 }
-
 /* TEXTO CONTENIDO */
-
 body.dark-mode .contenido-texto p{
-
     color:#cbd5e1;
 }
 
 /* FRASE */
-
 body.dark-mode .frase{
-
-    background:
-    linear-gradient(
-        135deg,
-        #020617,
-        #021A54
-    );
+    background:linear-gradient( 135deg, #020617, #021A54 );
 }
-
 /* PREGUNTAS */
-
 body.dark-mode .preguntas{
-
     background:#0f172a;
 }
-
 /* ITEMS */
-
 body.dark-mode .pregunta-item{
-
     background:#1e293b;
 }
 
 body.dark-mode .pregunta-titulo{
-
     color:white;
 }
 
 body.dark-mode .pregunta-contenido{
-
     color:#cbd5e1;
 }
-
 /* UBICACION */
-
 body.dark-mode .ubicacion{
-
     background:#1e293b;
 }
 
 body.dark-mode .ubicacion p{
-
     color:#cbd5e1;
 }
-
 /* ENVIAR PREGUNTA */
-
 body.dark-mode .enviar-pregunta{
-
     background:#111827;
 }
-
 /* CAJA */
-
 body.dark-mode .caja-pregunta{
-
     background:#1e293b;
 }
-
 /* INPUTS */
-
 body.dark-mode .formulario-pregunta input,
 body.dark-mode .formulario-pregunta textarea{
-
     background:#0f172a;
-
     color:white;
-
     border:1px solid #334155;
 }
-
-
-
-
-
 /* CARRUSEL */
-
 body.dark-mode .carrusel{
-
     background:#111827;
 }
-
-
-/* =========================================
-   RESPONSIVE GENERAL LIMPIO
-========================================= */
-
-/* ===== TABLETS ===== */
+/*    RESPONSIVE GENERAL LIMPIO */
+/*TABLETS*/
 
 @media(max-width:1000px){
-
     /* HERO */
-
     .hero{
         flex-direction:column;
         text-align:center;
@@ -1184,10 +894,9 @@ body.dark-mode .carrusel{
     .frase h2{
         font-size:38px;
     }
-
 }
 
-/* ===== CELULARES ===== */
+/*  CELULARES  */
 
 @media(max-width:768px){
 
@@ -1377,7 +1086,7 @@ body.dark-mode .carrusel{
 
 }
 
-/* ===== CELULARES PEQUEÑOS ===== */
+/*  CELULARES PEQUEÑOS  */
 
 @media(max-width:480px){
 

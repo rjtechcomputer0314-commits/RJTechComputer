@@ -1,3 +1,5 @@
+
+/*  mensaje que aparece en el areas de aprendizaje que dice en proceso de eleaboración*/
 const mensaje =
 document.querySelectorAll(".mensaje");
 
