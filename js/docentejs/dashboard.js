@@ -1,10 +1,14 @@
-
-
 document.addEventListener("DOMContentLoaded", ()=>{
 
     cargarUsuario();
 
     cargarCantidadCursos();
+
+    
+    cargarCantidadEstudiantes();
+
+    cargarCantidadDocentes();
+
 
     document
     .getElementById("cerrarSesion")
