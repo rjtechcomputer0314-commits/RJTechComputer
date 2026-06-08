@@ -1,74 +1,90 @@
-document.addEventListener("DOMContentLoaded", ()=>{
+/* inicio*/
+
+document.addEventListener("DOMContentLoaded",()=>{
 
     cargarCursos();
 
-    document
-    .getElementById("btnCrearCurso")
-    .addEventListener("click", crearCurso);
+    document.getElementById("guardarCurso")
+    .addEventListener("click",crearCurso);
 
 });
-
+/* para crear curso*/
 async function crearCurso(){
 
-    const nombre =
-    document.getElementById("nombreCurso").value;
-
-    const descripcion =
-    document.getElementById("descripcionCurso").value;
-
-    const {
-        data:{user}
-    } =
+    const {data:{user}} =
     await supabaseClient.auth.getUser();
 
-    const { error } =
+    if(!user){
+        alert("Debe iniciar sesión");
+        return;
+    }
+
+    const nombre =
+    document.getElementById("nombreCurso").value.trim();
+
+    const descripcion =
+    document.getElementById("descripcionCurso").value.trim();
+
+    if(!nombre){
+        alert("Ingrese un nombre");
+        return;
+    }
+
+    const {error} =
     await supabaseClient
     .from("cursos")
     .insert([{
-
-        docente_id:user.id,
-        nombre:nombre,
-        descripcion:descripcion
-
+        nombre,
+        descripcion,
+        docente_id:user.id
     }]);
 
     if(error){
-
-        alert(error.message);
+        console.log(error);
+        alert("Error al crear curso");
         return;
-
     }
 
     alert("Curso creado");
 
+    document.getElementById("nombreCurso").value="";
+    document.getElementById("descripcionCurso").value="";
+
     cargarCursos();
 
 }
-
+/* para cargar curso*/
 async function cargarCursos(){
 
-    const contenedor =
-    document.getElementById("listaCursos");
+    const {data:{user}} =
+    await supabaseClient.auth.getUser();
 
-    const { data } =
+    if(!user) return;
+
+    const {data,error} =
     await supabaseClient
     .from("cursos")
-    .select("*");
+    .select("*")
+    .eq("docente_id",user.id)
+    .order("fecha_creacion",{ascending:false});
 
-    contenedor.innerHTML = "";
+    if(error){
+        console.log(error);
+        return;
+    }
+
+    const lista =
+    document.getElementById("listaCursos");
+
+    lista.innerHTML="";
 
     data.forEach(curso=>{
 
-        contenedor.innerHTML += `
-            <div class="card-curso">
-
-                <h3>${curso.nombre}</h3>
-
-                <p>${curso.descripcion}</p>
-
-            </div>
-        `;
-
+        lista.innerHTML += `
+        <div class="curso">
+            <h3>${curso.nombre}</h3>
+            <p>${curso.descripcion || ""}</p>
+        </div>`;
     });
 
 }

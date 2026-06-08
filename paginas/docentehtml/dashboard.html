@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Docente</title>
-
+        <link rel="stylesheet" href="/css/header_footer.css">
+    <link rel="stylesheet" href="/css/modales.css">
+    <link rel="stylesheet" href="/css/flotantes.css">
     <link rel="stylesheet" href="/paginas/docentehtml/dashboard.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
@@ -59,78 +57,220 @@
 
     <!-- CONTENIDO -->
 
-    <main class="contenido">
+<main class="contenido">
 
-        <!-- TOPBAR -->
+    <!-- TOPBAR -->
 
-        <header class="topbar">
+    <header class="topbar">
 
+        <div>
             <h1 id="saludoUsuario">
-
                 Cargando usuario...
-
             </h1>
 
-            <div class="perfil">
+            <p class="subtitulo">
+                Gestiona tus cursos, actividades y materiales educativos.
+            </p>
+        </div>
 
-                <img src="https://i.pravatar.cc/100" alt="Usuario"> <span id="rolUsuario">Cargando... </span>
+        <div class="perfil">
+
+            <img src="https://i.pravatar.cc/100" alt="Usuario">
+
+            <span id="rolUsuario">
+                Cargando...
+            </span>
+
+        </div>
+
+    </header>
+
+    <!-- BANNER -->
+
+    <section class="banner-docente">
+
+        <div class="banner-texto">
+
+            <h2>📚 Panel Docente</h2>
+
+            <p>
+                Organiza cursos, publica actividades,
+                comparte materiales y realiza el seguimiento
+                de tus estudiantes desde un solo lugar.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ESTADÍSTICAS -->
+
+    <section class="estadisticas">
+
+        <div class="card">
+
+            <i class="fas fa-book"></i>
+
+            <h3 id="totalCursos">0</h3>
+
+            <p>Cursos</p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fas fa-user-graduate"></i>
+
+            <h3 id="totalEstudiantes">0</h3>
+
+            <p>Estudiantes</p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fas fa-file-alt"></i>
+
+            <h3 id="totalActividades">0</h3>
+
+            <p>Actividades</p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fas fa-folder-open"></i>
+
+            <h3 id="totalMateriales">0</h3>
+
+            <p>Materiales</p>
+
+        </div>
+
+    </section>
+
+    <!-- ACCIONES -->
+
+    <section class="acciones-rapidas">
+
+        <div class="accion">
+
+            <i class="fas fa-plus-circle"></i>
+
+            <h3>Crear Curso</h3>
+
+            <p>
+                Registra un nuevo curso para tus estudiantes.
+            </p>
+
+        </div>
+
+        <div class="accion">
+
+            <i class="fas fa-file-alt"></i>
+
+            <h3>Crear Actividad</h3>
+
+            <p>
+                Publica tareas, cuestionarios o evaluaciones.
+            </p>
+
+        </div>
+
+        <div class="accion">
+
+            <i class="fas fa-upload"></i>
+
+            <h3>Subir Material</h3>
+
+            <p>
+                Comparte documentos, imágenes y recursos.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- CURSOS -->
+
+    <section class="panel-cursos">
+
+        <div class="titulo-panel">
+
+            <h2>📖 Mis Cursos</h2>
+
+            <button id="btnNuevoCurso">
+
+                + Nuevo Curso
+
+            </button>
+
+        </div>
+
+        <div
+            class="grid-cursos"
+            id="listaCursos">
+
+        </div>
+
+    </section>
+
+    <!-- RESUMEN -->
+
+    <section class="resumen">
+
+        <h2>📊 Resumen Académico</h2>
+
+        <div class="resumen-grid">
+
+            <div class="resumen-card">
+
+                <h3>Cursos Activos</h3>
+
+                <span id="resCursos">0</span>
 
             </div>
 
-        </header>
+            <div class="resumen-card">
 
-        <!-- ESTADÍSTICAS -->
+                <h3>Actividades Publicadas</h3>
 
-        <section class="estadisticas">
-
-            <div class="card">
-                <i class="fas fa-book"></i>
-
-                <h3 id="totalCursos">0</h3>
-
-                <p>Cursos</p>
+                <span id="resActividades">0</span>
 
             </div>
 
-            <div class="card">
-                <i class="fas fa-user-graduate"></i>
+            <div class="resumen-card">
 
-                <h3>0</h3><p>Estudiantes</p>
+                <h3>Materiales Compartidos</h3>
 
-            </div>
-
-            <div class="card">
-
-                <i class="fas fa-file-alt"></i>
-
-                <h3>0</h3>
-
-                <p>Actividades</p>
+                <span id="resMateriales">0</span>
 
             </div>
 
-            <div class="card">
+        </div>
 
-                <i class="fas fa-folder-open"></i>
+    </section>
 
-                <h3>0</h3>
+    <footer class="footer-dashboard">
 
-                <p>Materiales</p>
+        <p>
+            TechComputerEdu © 2026
+        </p>
 
-            </div>
+        <small>
+            Plataforma educativa para la gestión de cursos y actividades.
+        </small>
 
-        </section>
+    </footer>
 
-    </main>
-
-    <!-- SUPABASE -->
-
+</main>
+    <!-- SCRIPTS -->
+    <script src="/js/cargarComponentes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
     <script src="/js/supabase.js"></script>
-
     <script src="/js/docentejs/dashboard.js"></script>
 
+    
 </body>
 
 </html>

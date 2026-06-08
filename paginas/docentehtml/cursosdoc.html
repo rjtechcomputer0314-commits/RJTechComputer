@@ -1,47 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Cursos</title>
 
-    <link rel="stylesheet"
-    href="/css/docentecss/cursosdoc.css">
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cursos</title>
+
+    <link rel="stylesheet"  href="/paginas/docentehtml/cursosdoc.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
 
-    <h1>📚 Gestión de Cursos</h1>
+    <!-- SIDEBAR -->
 
-    <!-- FORMULARIO -->
+    <aside class="sidebar">
 
-    <div class="crear-curso">
+        <div class="logo">
 
-        <input type="text"  id="nombreCurso"
+            <h2>TechComputer<span>Edu</span></h2>
+
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="dashboard.html">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="cursosdoc.html">
+                    <i class="fas fa-book"></i>
+                    Cursos
+                </a>
+            </li>
+
+            <li>
+                <a href="estudiantes.html">
+                    <i class="fas fa-user-graduate"></i>
+                    Estudiantes
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- CONTENIDO -->
+
+    <main class="contenido">
+
+        <header class="topbar">
+
+            <h1>📚 Gestión de Cursos</h1>
+
+        </header>
+<section class="nuevo-curso">
+
+    <h2>📚 Nuevo Curso</h2>
+
+    <input
+        type="text"
+        id="nombreCurso"
         placeholder="Nombre del curso">
 
-        <textarea
+    <textarea
         id="descripcionCurso"
-        placeholder="Descripción">
-        </textarea>
+        placeholder="Descripción del curso">
+    </textarea>
 
-        <button id="btnCrearCurso">
+    <button id="guardarCurso">
 
-            Crear Curso
+        Crear Curso
 
-        </button>
+    </button>
+
+</section>
+
+<section class="mis-cursos">
+
+    <h2>📖 Mis Cursos</h2>
+
+    <div id="listaCursos">
 
     </div>
 
-    <!-- AQUÍ APARECERÁN LOS CURSOS -->
-
-    <div id="listaCursos"></div>
+</section>
+</main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
     <script src="/js/supabase.js"></script>
+
     <script src="/js/docentejs/cursosdoc.js"></script>
 
 </body>
-
 </html>

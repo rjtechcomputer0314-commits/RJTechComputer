@@ -32,7 +32,7 @@ fetch("../componentes/header.html")
 });
 /*   FOOTER */
 
-fetch("../componentes/footer.html")
+fetch("/componentes/footer.html")
 
 .then(res => res.text())
 
@@ -72,7 +72,7 @@ fetch("/componentes/login.html")
 
 /* FLOTANTES */
 
-fetch("../componentes/flotantes.html")
+fetch("/componentes/flotantes.html")
 
 .then(res => res.text())
 

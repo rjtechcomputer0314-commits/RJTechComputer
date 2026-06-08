@@ -1,0 +1,85 @@
+.nuevo-curso{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.nuevo-curso input,
+.nuevo-curso textarea{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-top:10px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+}
+
+.nuevo-curso textarea{
+
+    min-height:120px;
+
+    resize:vertical;
+
+}
+
+.nuevo-curso button{
+
+    background:#021A54;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.mis-cursos{
+
+    margin-top:30px;
+
+}
+
+#listaCursos{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:20px;
+
+}
+
+.curso{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    border-left:5px solid #FF85BB;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}

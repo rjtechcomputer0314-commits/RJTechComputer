@@ -19,8 +19,7 @@ async function cargarUsuario(){
 
     if(!user){
 
-        window.location.href =
-        "/index.html";
+        window.location.href = "/index.html";
 
         return;
 

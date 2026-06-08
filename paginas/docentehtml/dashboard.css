@@ -11,25 +11,18 @@ body{
     background:#F5F5F5;
 }
 
-/* SIDEBAR */
+/* =========================
+   SIDEBAR
+========================= */
 
 .sidebar{
-
     width:260px;
-
-    background:linear-gradient(
-        180deg,
-        #021A54,
-        #0B2F87
-    );
-
-    color:white;
-
-    position:fixed;
-
     height:100vh;
-
-    padding:25px;
+    position:fixed;
+    padding: 40px 25px;
+    color:white;
+    background:linear-gradient( 180deg, #021A54,  #0B2F87 );
+    margin-top:70px;
 }
 
 .logo{
@@ -56,17 +49,17 @@ body{
 
 .sidebar a{
 
-    color:white;
-
-    text-decoration:none;
-
     display:flex;
-
-    gap:12px;
 
     align-items:center;
 
+    gap:12px;
+
     padding:12px;
+
+    color:white;
+
+    text-decoration:none;
 
     border-radius:12px;
 
@@ -79,18 +72,23 @@ body{
     background:#FF85BB;
 }
 
-/* CONTENIDO */
+/* =========================
+   CONTENIDO
+========================= */
 
 .contenido{
 
-    margin-left:260px;
-
     width:100%;
 
+    margin-left:260px;
+
     padding:30px;
+    padding-top:120px; 
 }
 
-/* TOPBAR */
+/* =========================
+   TOPBAR
+========================= */
 
 .topbar{
 
@@ -101,6 +99,13 @@ body{
     align-items:center;
 
     margin-bottom:30px;
+}
+
+.subtitulo{
+
+    margin-top:5px;
+
+    color:#666;
 }
 
 .perfil{
@@ -121,7 +126,35 @@ body{
     border-radius:50%;
 }
 
-/* TARJETAS */
+/* =========================
+   BANNER
+========================= */
+
+.banner-docente{
+
+    margin-bottom:30px;
+
+    padding:30px;
+
+    color:white;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        135deg,
+        #021A54,
+        #0B2F87
+    );
+}
+
+.banner-docente h2{
+
+    margin-bottom:10px;
+}
+
+/* =========================
+   ESTADÍSTICAS
+========================= */
 
 .estadisticas{
 
@@ -137,13 +170,16 @@ body{
 
     background:white;
 
-    border-radius:20px;
-
     padding:25px;
 
     text-align:center;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    border-radius:20px;
+
+    border-top:5px solid #FF85BB;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.08);
 
     transition:.3s;
 }
@@ -169,11 +205,80 @@ body{
     color:#021A54;
 }
 
-/* CURSOS */
+/* =========================
+   ACCIONES RÁPIDAS
+========================= */
+
+.acciones-rapidas{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:20px;
+
+    margin-top:35px;
+}
+
+.accion{
+
+    background:white;
+
+    min-height:180px;
+
+    padding:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.accion:hover{
+
+    transform:translateY(-5px);
+}
+
+.accion i{
+
+    font-size:40px;
+
+    color:#021A54;
+
+    margin-bottom:15px;
+}
+
+.accion p{
+
+    margin-top:10px;
+
+    color:#666;
+
+    font-size:14px;
+}
+
+/* =========================
+   CURSOS
+========================= */
 
 .panel-cursos{
 
-    margin-top:40px;
+    margin-top:50px;
 }
 
 .titulo-panel{
@@ -182,22 +287,38 @@ body{
 
     justify-content:space-between;
 
+    align-items:center;
+
     margin-bottom:20px;
 }
 
+.titulo-panel h2{
+
+    color:#021A54;
+}
+
 .titulo-panel button{
-
-    background:#FF85BB;
-
-    color:white;
 
     border:none;
 
     padding:12px 20px;
 
-    border-radius:50px;
+    color:white;
 
     cursor:pointer;
+
+    font-weight:bold;
+
+    border-radius:50px;
+
+    background:#FF85BB;
+
+    transition:.3s;
+}
+
+.titulo-panel button:hover{
+
+    opacity:.9;
 }
 
 .grid-cursos{
@@ -218,37 +339,117 @@ body{
 
     border-radius:20px;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-
     border-left:6px solid #FF85BB;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.08);
 }
 
-/* ACTIVIDAD */
+.curso h3{
 
-.actividad{
+    margin-bottom:10px;
 
-    margin-top:40px;
+    color:#021A54;
 }
 
-.actividad h2{
+.curso p{
 
     margin-bottom:15px;
+
+    color:#666;
 }
 
-.actividad-item{
+.curso button{
+
+    border:none;
+
+    padding:10px 18px;
+
+    cursor:pointer;
+
+    color:white;
+
+    border-radius:10px;
+
+    background:#021A54;
+}
+
+/* =========================
+   RESUMEN
+========================= */
+
+.resumen{
+
+    margin-top:50px;
+}
+
+.resumen h2{
+
+    margin-bottom:20px;
+
+    color:#021A54;
+}
+
+.resumen-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+}
+
+.resumen-card{
 
     background:white;
 
-    padding:18px;
+    padding:25px;
 
-    border-radius:15px;
+    text-align:center;
 
-    margin-bottom:12px;
+    border-radius:20px;
 
-    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.08);
 }
 
-/* RESPONSIVE */
+.resumen-card h3{
+
+    margin-bottom:10px;
+
+    color:#666;
+}
+
+.resumen-card span{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    color:#021A54;
+}
+
+/* =========================
+   FOOTER DASHBOARD
+========================= */
+
+.footer-dashboard{
+
+    margin-top:60px;
+
+    padding:25px;
+
+    text-align:center;
+
+    color:#666;
+
+    border-top:1px solid #ddd;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:900px){
 
@@ -262,11 +463,6 @@ body{
         justify-content:center;
     }
 
-    .sidebar a span{
-
-        display:none;
-    }
-
     .contenido{
 
         margin-left:80px;
@@ -276,6 +472,13 @@ body{
 @media(max-width:700px){
 
     .topbar{
+
+        flex-direction:column;
+
+        gap:15px;
+    }
+
+    .titulo-panel{
 
         flex-direction:column;
 

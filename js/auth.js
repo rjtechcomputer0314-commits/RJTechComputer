@@ -1,6 +1,4 @@
 /*  para que me dirija cuando ingresa el registro y el inicio de sesion*/
-
-
 document.addEventListener("DOMContentLoaded", ()=>{
 
     setTimeout(()=>{
@@ -103,7 +101,7 @@ if(errorPerfil){
 
 }
             alert("Cuenta creada correctamente");
-
+             formRegistro.reset();
         });
 
     }
