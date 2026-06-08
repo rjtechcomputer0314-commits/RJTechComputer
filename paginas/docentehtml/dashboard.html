@@ -61,29 +61,54 @@
 
     <!-- TOPBAR -->
 
-    <header class="topbar">
+<header class="topbar">
 
-        <div>
-            <h1 id="saludoUsuario">
-                Cargando usuario...
-            </h1>
+    <div class="topbar-info">
 
-            <p class="subtitulo">
-                Gestiona tus cursos, actividades y materiales educativos.
-            </p>
+        <h1 id="saludoUsuario">
+            👋 Cargando usuario...
+        </h1>
+
+        <p class="subtitulo">
+            Gestiona tus cursos, actividades y materiales educativos
+        </p>
+
+    </div>
+
+    <div class="topbar-actions">
+
+        <!-- Notificaciones (opcional futuro) -->
+        <button class="icon-btn" title="Notificaciones">
+            <i class="fas fa-bell"></i>
+        </button>
+
+        <!-- Perfil -->
+        <div class="perfil-card">
+
+            <div class="avatar">
+                <i class="fas fa-user"></i>
+            </div>
+
+            <div class="perfil-texto">
+
+                <span class="rol" id="rolUsuario">
+                    Cargando...
+                </span>
+
+                <small>Docente</small>
+
+            </div>
+
         </div>
 
-        <div class="perfil">
+        <!-- logout -->
+        <a href="#" id="cerrarSesion" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
 
-            <img src="https://i.pravatar.cc/100" alt="Usuario">
+    </div>
 
-            <span id="rolUsuario">
-                Cargando...
-            </span>
-
-        </div>
-
-    </header>
+</header>
 
     <!-- BANNER -->
 
@@ -153,7 +178,7 @@
 
     <section class="acciones-rapidas">
 
- <div class="accion" onclick="window.location.href='cursosdoc.html'">
+<div class="accion" onclick="abrirModalCurso()">
 
     <i class="fas fa-plus-circle"></i>
 
@@ -263,6 +288,22 @@
     </footer>
 
 </main>
+    <!-- MODAL CREAR CURSO -->
+    <div id="modalCurso" class="modal-curso">
+        <div class="modal-contenido">
+
+            <h2>📚 Crear nuevo curso</h2>
+
+            <input type="text" id="nombreCurso" placeholder="Nombre del curso">
+
+            <textarea id="descripcionCurso" placeholder="Descripción del curso"></textarea>
+
+            <button id="guardarCurso">Crear Curso</button>
+
+            <button class="cerrar-modal" onclick="cerrarModal()">Cerrar</button>
+
+        </div>
+    </div>
     <!-- SCRIPTS -->
     <script src="/js/cargarComponentes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>

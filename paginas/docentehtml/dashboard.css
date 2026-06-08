@@ -89,43 +89,109 @@ body{
 /* =========================
    TOPBAR
 ========================= */
-
 .topbar{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
-    margin-bottom:30px;
+    padding:20px 30px;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    margin-bottom:25px;
 }
 
-.subtitulo{
-
-    margin-top:5px;
-
-    color:#666;
+/* TEXTO IZQUIERDA */
+.topbar-info h1{
+    font-size:22px;
+    color:#021A54;
+    margin-bottom:5px;
 }
 
-.perfil{
+.topbar-info .subtitulo{
+    font-size:14px;
+    color:#777;
+}
 
+/* DERECHA */
+.topbar-actions{
     display:flex;
-
     align-items:center;
-
-    gap:10px;
+    gap:15px;
 }
 
-.perfil img{
-
-    width:45px;
-
-    height:45px;
-
+/* BOTÓN ICONO */
+.icon-btn{
+    width:40px;
+    height:40px;
     border-radius:50%;
+    border:none;
+    background:#f3f4f6;
+    cursor:pointer;
+    transition:.3s;
 }
 
+.icon-btn:hover{
+    background:#e6e8ee;
+}
+
+/* PERFIL */
+.perfil-card{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#f8f9fb;
+    padding:8px 12px;
+    border-radius:12px;
+}
+
+/* AVATAR */
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#021A54;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:16px;
+}
+
+/* TEXTO PERFIL */
+.perfil-texto{
+    display:flex;
+    flex-direction:column;
+    line-height:1.1;
+}
+
+.perfil-texto .rol{
+    font-weight:600;
+    color:#021A54;
+    font-size:13px;
+}
+
+.perfil-texto small{
+    font-size:11px;
+    color:#888;
+}
+
+/* LOGOUT */
+.logout-btn{
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#ffeded;
+    color:#d33;
+    transition:.3s;
+    text-decoration:none;
+}
+
+.logout-btn:hover{
+    background:#ffd6d6;
+}
 /* =========================
    BANNER
 ========================= */
@@ -484,4 +550,68 @@ body{
 
         gap:15px;
     }
+}
+
+
+/* =======================
+   MODAL CURSO
+======================= */
+
+.modal-curso{
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-contenido{
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    animation: aparecer .3s ease;
+}
+
+.modal-contenido h2{
+    color:#021A54;
+    margin-bottom:15px;
+}
+
+.modal-contenido input,
+.modal-contenido textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.modal-contenido textarea{
+    min-height:100px;
+}
+
+.modal-contenido button{
+    background:#021A54;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-right:10px;
+}
+
+.cerrar-modal{
+    background:#FF85BB;
+}
+
+@keyframes aparecer{
+    from{ transform: scale(.8); opacity:0; }
+    to{ transform: scale(1); opacity:1; }
 }

@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", ()=>{
 
     cargarUsuario();
@@ -112,4 +114,14 @@ if(btnNuevoCurso){
         }
     );
 
+}
+
+
+    // para que se abra en la misma ventana el crear curso
+function abrirModalCurso(){
+    document.getElementById("modalCurso").style.display = "flex";
+}
+
+function cerrarModal(){
+    document.getElementById("modalCurso").style.display = "none";
 }
