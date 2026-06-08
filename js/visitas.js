@@ -1,5 +1,4 @@
 /* para las  visitas*/
-
 document.addEventListener(
     "DOMContentLoaded",
     contarVisita
@@ -14,6 +13,8 @@ async function contarVisita(){
     .from("visitas")
     .select("*");
 
-    console.log(resultado);
+    console.log(
+        JSON.stringify(resultado)
+    );
 
 }
