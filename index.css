@@ -1,4 +1,14 @@
 /*  GENERAL */
+
+:root{
+
+    --azul:#021A54;
+    --azul2:#0B2F87;
+    --rosa:#FF85BB;
+    --blanco:#ffffff;
+    --gris:#f5f7fc;
+
+}
 *{
     margin:0;
     padding:0;
@@ -7,25 +17,29 @@
 
 body{
     font-family:Arial, Helvetica, sans-serif;
-    background:#F5F5F5;
+    background:var(--gris);
     overflow-x:hidden;
 }
 /*HERO */
 
 .hero{
     width:100%;
-    min-height:100vh;
+    min-height:85vh;
     display:flex;
     justify-content:space-between;
     align-items:center;
     padding:120px 8% 80px;
-    gap:60px;
-    background:
-    linear-gradient(
-        135deg,
-        #F5F5F5 50%,
-        #FFCEE3 100%
+    gap:50px;
+    background: linear-gradient(
+        1deg,
+        var(--azul2),
+        var(--blanco)
     );
+
+    position:relative;
+
+    overflow:hidden;
+
 }
 /* TEXTO */
 
@@ -75,35 +89,30 @@ body{
 /* BOTONES */
 
 .hero-botones{
+    margin-top:30px;
     display:flex;
-    gap:20px;
+    gap:15px;
     flex-wrap:wrap;
 }
 
 .btn-principal,
 .btn-secundario{
-    text-decoration:none;
-    padding:15px 28px;
-    border-radius:40px;
-    font-weight:bold;
-    transition:.4s;
-}
-
-.btn-principal{
-    background:#021A54;
     color:white;
-}
-
-.btn-secundario{
-    border:2px solid #021A54;
+    padding:14px 28px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:700;
+    transition:.3s;
+    border:2px solid var(--rosa);
     color:#021A54;
 }
 
 .btn-principal:hover{
-    background:#FF85BB;
+    background:#021A54;
     transform:translateY(-5px);
     box-shadow:0 10px 20px rgba(0,0,0,.15);
     cursor: cell;
+    color:white;
 }
 
 .btn-secundario:hover{
@@ -125,6 +134,56 @@ body{
     width:100%;
     max-width:520px;
     animation:flotar 4s ease-in-out infinite;
+}
+
+/* ESTADISTICAS */
+
+.estadisticas-web{
+    max-width:1200px;
+    margin:-60px auto 50px;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+    position:relative;
+    z-index:5;
+
+}
+
+.card-estadistica{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.08);
+}
+
+.icono-estadistica{
+   width:70px;
+    height:70px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    linear-gradient(
+        135deg,
+        var(--azul),
+        var(--azul2)
+    );
+    color:white;
+    font-size:28px;
+
+}
+
+.info-estadistica h3{
+    color:var(--azul);
+    font-size:2rem;
+
 }
 /*CARRUSEL*/
 .carrusel{
@@ -269,8 +328,7 @@ body{
     background:white;
     padding:30px;
     border-radius:25px;
-    box-shadow:
-    0 10px 25px rgba(0,0,0,.08);
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
 .ubicacion h2{
@@ -432,35 +490,6 @@ body{
     max-height:300px;
     padding:0 22px 22px;
 }
-/*   UBICACION */
-.ubicacion{
-    width:320px;
-    background:white;
-    padding:20px;
-    border-radius:20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
-    position:sticky;
-    top:110px;
-}
-
-.ubicacion h3{
-    color:#021A54;
-    margin-bottom:10px;
-}
-
-.ubicacion p{
-    color:#555;
-    font-size:14px;
-    margin-bottom:15px;
-}
-
-.ubicacion iframe{
-    width:100%;
-    height:200px;
-    border:none;
-    border-radius:15px;
-}
-
 /*   ENVIAR PREGUNTA */
 
 .enviar-pregunta{
@@ -546,14 +575,22 @@ body{
 /*   TARJETA YAPE */
 
 .apoyo-yape{
-    background: linear-gradient( 135deg, #021A54, #0B2F87, #5f0a87);
-    border-radius:25px;
-    padding:35px 30px;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--azul),
+        var(--azul2)
+    );
+
     color:white;
-    position:relative;
-    overflow:hidden;
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
-    transition:.4s ease;
+
+    border-radius:25px;
+
+    padding:35px;
+
+    text-align:center;
+
 }
 
 /* EFECTO */
@@ -571,7 +608,7 @@ body{
 
 /* HOVER */
 .apoyo-yape:hover{
-    transform:translateY(-8px)scale(1.01);
+    transform:translateY(-1px)scale(1.01);
     box-shadow:0 20px 40px rgba(0,0,0,.35);
 }
 /* ETIQUETA */
@@ -609,16 +646,17 @@ body{
 }
 
 .imagen-yape img{
-    width:220px;
-    border-radius:20px;
-    border:5px solid white;
-    transition:.4s ease;
-    box-shadow: 0 10px 25px rgba(0,0,0,.3);
+     width:220px;
+
+    border-radius:15px;
+
+    margin:20px 0;
+
 }
 
 /* HOVER IMG */
 .imagen-yape img:hover{
-    transform:scale(4.05)rotate(4deg);
+    transform:scale(2.05);
 }
 /* NUMERO */
 .numero-yape{
@@ -712,7 +750,6 @@ body{
 }
 /* BODY */
 body.dark-mode{
-    background:#0f172a;
     color:#F5F5F5;
 }
 /* HERO */
