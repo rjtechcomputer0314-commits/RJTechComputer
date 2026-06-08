@@ -32,7 +32,7 @@ async function cargarUsuario(){
     await supabaseClient
     .from("perfiles")
     .select("*")
-    .eq("id", user.id)
+    .eq("user_id", user.id)
     .single();
 
     if(error){
