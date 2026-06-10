@@ -1,59 +1,39 @@
-/* para las  visitas*/
-document.addEventListener(
-    "DOMContentLoaded",
-    contarVisita
-);
+document.addEventListener("DOMContentLoaded", async () => {
 
-async function contarVisita(){
+    const span = document.getElementById("contadorVisitas");
+    if (!span) return;
 
-    if(localStorage.getItem("visitaContada")){
+    try {
 
-        mostrarVisitas();
+        const { data, error } = await supabaseClient
+            .from("visitas")
+            .select("total")
+            .eq("id", 1)
+            .single();
 
-        return;
+        if (error) throw error;
+
+        let total = data.total || 0;
+
+        // Cuenta solo una vez por pestaña
+        if (!sessionStorage.getItem("visita_contada")) {
+
+            sessionStorage.setItem("visita_contada", "1");
+
+            total++;
+
+            await supabaseClient
+                .from("visitas")
+                .update({ total })
+                .eq("id", 1);
+        }
+
+        span.textContent = total.toLocaleString("es-PE");
+
+    } catch (e) {
+
+        console.error("Error contador:", e);
+
     }
 
-    const { data } =
-    await supabaseClient
-    .from("visitas")
-    .select("*")
-    .eq("id",1)
-    .single();
-
-    const nuevoTotal =
-    Number(data.total) + 1;
-
-    await supabaseClient
-    .from("visitas")
-    .update({
-        total:nuevoTotal
-    })
-    .eq("id",1);
-
-    localStorage.setItem(
-        "visitaContada",
-        "si"
-    );
-
-    document
-    .getElementById("contadorVisitas")
-    .textContent =
-    nuevoTotal;
-
-}
-
-async function mostrarVisitas(){
-
-    const { data } =
-    await supabaseClient
-    .from("visitas")
-    .select("*")
-    .eq("id",1)
-    .single();
-
-    document
-    .getElementById("contadorVisitas")
-    .textContent =
-    data.total;
-
-}
+});
