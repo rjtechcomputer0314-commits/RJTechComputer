@@ -1,0 +1,82 @@
+<!-- MODAL REGISTRO -->
+<div class="modal" id="modalRegistro">
+
+    <div class="modal-contenido">
+
+        <span class="cerrar" id="cerrarRegistro">&times;</span>
+
+        <div class="modal-icono">
+            <i class="fas fa-user-plus"></i>
+        </div>
+
+        <h2>Crear cuenta</h2>
+        <p class="modal-subtitulo">Únete a la plataforma educativa</p>
+
+        <form id="formRegistro">
+
+            <label>Nombres</label>
+            <input type="text" id="nombreRegistro" placeholder="Carmela" required>
+
+            <label>Apellidos</label>
+            <input type="text" id="apellidoRegistro" placeholder="Burgos" required>
+
+            <label>Número telefónico</label>
+            <input type="tel" id="telefonoRegistro" placeholder="987654321" required>
+
+            <label>Correo electrónico</label>
+            <input type="email" id="correoRegistro" placeholder="correo@gmail.com" required>
+
+            <label>Tipo de cuenta</label>
+            <div class="select-wrapper">
+                <select id="rolRegistro" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="estudiante">Estudiante</option>
+                    <option value="docente">Docente</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+
+            <label>Contraseña</label>
+            <div class="input-password">
+                <input type="password" id="passwordRegistro" placeholder="••••••••" required>
+                <i class="fas fa-eye toggle-password" data-target="passwordRegistro"></i>
+            </div>
+
+            <label>Confirmar contraseña</label>
+            <div class="input-password">
+                <input type="password" id="confirmPassword" placeholder="••••••••" required>
+                <i class="fas fa-eye toggle-password" data-target="confirmPassword"></i>
+            </div>
+
+            <button type="submit">
+                <i class="fas fa-user-plus" style="margin-right:8px"></i>
+                REGISTRARME
+            </button>
+
+            <p class="texto-modal">
+                ¿Ya tienes cuenta?
+                <a href="#" id="irLogin">Inicia sesión</a>
+            </p>
+
+            <!-- OTP -->
+            <div id="seccionOTP" style="display:none; margin-top:20px;">
+                <p class="otp-aviso">📩 Ingresa el código que llegó a tu correo</p>
+                <div class="otp-boxes">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-input" inputmode="numeric">
+                </div>
+                <button type="button" id="verificarOTP">
+                    <i class="fas fa-check-circle" style="margin-right:8px"></i>
+                    VERIFICAR CÓDIGO
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

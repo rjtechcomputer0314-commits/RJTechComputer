@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros | TechComputer</title>
+    <link rel="stylesheet" href="../css/header_footer.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../css/modales.css">
+    <link rel="stylesheet" href="../css/flotantes.css">
+    <link rel="stylesheet" href="../css/nosotros.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+    <!-- HEADER -->
+    <div id="header"></div>
+    <!-- MODALES -->
+    <div id="modales"></div>
+    <!-- carga los flotantes -->
+    <div id="flotantes"></div>
+   <!-- primera parte-->
+    <section class="banner-nosotros">
+
+        <div class="contenido-banner">
+
+            <h1> Sobre Nosotros </h1>
+            <p> Aprender tecnología nunca fue tan dinámico, moderno e interactivo. </p>
+        </div>
+
+    </section>
+    <!-- La parte del porque la página-->
+
+    <section class="creacion">
+        <div class="contenedor">
+            <div class="texto-creacion">
+                <h2 class="titulo"> ¿Por qué nació TechComputer? </h2>
+                <p>TechComputer fue creado con el propósito de brindar una plataforma educativa moderna e interactiva enfocada en el aprendizaje de hardware y software.</p>
+                <p> Muchas veces la tecnología puede parecer complicada, por eso buscamos enseñar de  manera visual, dinámica y sencilla para que cualquier estudiante pueda comprenderla fácilmente.</p>
+                <p> Nuestro objetivo es motivar a más jóvenes a  interesarse por el mundo de la computación, desarrollando habilidades tecnológicas para el futuro. </p>
+            </div>
+            <div class="imagen-creacion">
+                <img src="/imagenes/tecnologia.jpg"alt="Tecnología">
+            </div>
+        </div>
+    </section>
+
+    <!-- parte de la vision y mision-->
+
+    <section class="mision-vision">
+        <div class="card"><i class="fas fa-bullseye"></i>
+            <h3>Misión</h3>
+            <p>Brindar educación tecnológica accesible, moderna y dinámica para mejorar el aprendizaje sobre hardware y software. </p>
+        </div>
+
+        <div class="card"> <i class="fas fa-eye"></i>
+            
+            <h3>Visión</h3>
+
+           <p> Convertirnos en una plataforma educativa innovadora que motive el aprendizaje digital y tecnológico en estudiantes.</p>
+       
+        </div>
+    </section>
+
+    <!--  PRESENTACIÓN -->
+
+    <section class="presentacion">
+
+        <h2 class="titulo"> Creadora del Proyecto</h2>
+
+        <div class="contenedor-presentacion">
+            <!-- FOTO -->
+            <div class="foto1">
+                <img src="imagenes/carmela.jpg"alt="Carmela">
+
+            </div>
+
+            <!-- INFO -->
+
+            <div class="info">
+                <h3> Carmela Burgos Perez </h3>
+                <p> Estudiante de la Universidad Nacional Federico Villarreal (UNFV) en la carrera de Computación e Informática.</p>
+                <p> Apasionada por la tecnología, el diseño web y el aprendizaje interactivo. </p>
+
+                <p> Este proyecto fue desarrollado con el fin de ayudar a estudiantes a comprender el mundo del hardware y software de manera visual y dinámica. </p>
+
+                <div class="datos">
+
+                    <span> <i class="fas fa-laptop-code"></i> Desarrollo Web </span>
+
+                    <span> <i class="fas fa-graduation-cap"></i> UNFV </span>
+
+                    <span> <i class="fas fa-microchip"></i> Tecnología </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- MODALES -->
+<div id="registro-container"></div>
+<div id="login-container"></div>
+
+<!-- FLOTANTES -->
+<div id="flotantes-container"></div>
+
+<!-- SCRIPTS -->
+<script src="/js/cargarComponentes.js"></script>
+
+<script>
+
+setTimeout(()=>{
+    const s1=document.createElement("script");
+    s1.src="/js/modales.js";
+    document.body.appendChild(s1);
+
+    const s2=document.createElement("script");
+    s2.src="/js/flotantes.js";
+    document.body.appendChild(s2);
+
+    const s3=document.createElement("script");
+    s3.src="/js/tema.js";
+    document.body.appendChild(s3);
+
+},500);
+</script>
+<script src="/js/menu.js"></script>
+<div id="footer"></div>
+</body>
+</html>
