@@ -1,5 +1,5 @@
 /*  HEADER */
-fetch("../componentes/header.html")
+fetch("/componentes/header.html")
 
 .then(res => res.text())
 
@@ -36,11 +36,7 @@ fetch("/componentes/footer.html")
 
 .then(res => res.text())
 
-.then(data => {
-
-    document.getElementById("footer").innerHTML = data;
-
-});
+.then(data => { document.getElementById("footer").innerHTML = data;});
 
 /* REGISTRO */
 
@@ -48,13 +44,7 @@ fetch("/componentes/registro.html")
 
 .then(res => res.text())
 
-.then(data => {
-
-    document.getElementById(
-        "registro-container"
-    ).innerHTML = data;
-
-});
+.then(data => {document.getElementById( "registro-container" ).innerHTML = data;});
 
 /* LOGIN */
 
@@ -62,13 +52,7 @@ fetch("/componentes/login.html")
 
 .then(res => res.text())
 
-.then(data => {
-
-    document.getElementById(
-        "login-container"
-    ).innerHTML = data;
-
-});
+.then(data => {document.getElementById("login-container" ).innerHTML = data;});
 
 /* FLOTANTES */
 
@@ -76,10 +60,4 @@ fetch("/componentes/flotantes.html")
 
 .then(res => res.text())
 
-.then(data => {
-
-    document.getElementById(
-        "flotantes-container"
-    ).innerHTML = data;
-
-});
+.then(data => { document.getElementById("flotantes-container").innerHTML = data;});
