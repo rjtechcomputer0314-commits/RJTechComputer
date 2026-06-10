@@ -23,41 +23,25 @@ function iniciarAuth(){
 
             e.preventDefault();
 
-            const nombre =
-            document.getElementById("nombreRegistro").value;
+            const nombre = document.getElementById("nombreRegistro").value;
 
-            const apellido =
-            document.getElementById("apellidoRegistro").value;
+            const apellido = document.getElementById("apellidoRegistro").value;
 
-            const telefono =
-            document.getElementById("telefonoRegistro").value;
+            const telefono = document.getElementById("telefonoRegistro").value;
 
-            const rol =
-            document.getElementById("rolRegistro").value;
+            const rol = document.getElementById("rolRegistro").value;
 
-            const correo =
-            document.getElementById("correoRegistro").value;
+            const correo = document.getElementById("correoRegistro").value;
 
-            const password =
-            document.getElementById("passwordRegistro").value;
+            const password = document.getElementById("passwordRegistro").value;
 
-            const confirmar =
-            document.getElementById("confirmPassword").value;
+            const confirmar = document.getElementById("confirmPassword").value;
 
-            if(password !== confirmar){
-
-                alert("Las contraseñas no coinciden");
-                return;
+            if(password !== confirmar){ alert("Las contraseñas no coinciden");return;
 
             }
 
-  const { data, error } =
-await supabaseClient.auth.signUp({
-
-    email:correo,
-    password:password
-
-});
+  const { data, error } =await supabaseClient.auth.signUp({email:correo, password:password});
 
 console.log("DATA REGISTRO:", data);
 console.log("ERROR REGISTRO:", error);
@@ -176,3 +160,24 @@ if(errorPerfil){
     }
 
 }
+
+   // REcuperar contraseña
+document.getElementById("olvidePassword")?.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("correoLogin").value.trim();
+
+    if (!email) {
+        alert("Ingresa tu correo electrónico.");
+        return;
+    }
+
+const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: "http://localhost:5500/reset-password.html"
+});
+    if (error) {
+        alert("Error: " + error.message);
+    } else {
+        alert("Te enviamos un correo para recuperar tu contraseña.");
+    }
+});
