@@ -1,1 +1,0 @@
-console.log("Panel docente cargado correctamente");
