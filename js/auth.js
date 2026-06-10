@@ -158,9 +158,6 @@ if(errorPerfil){
         });
 
     }
-
-}
-
    // REcuperar contraseña
 document.getElementById("olvidePassword")?.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -172,12 +169,16 @@ document.getElementById("olvidePassword")?.addEventListener("click", async (e) =
         return;
     }
 
-const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-    redirectTo: "http://localhost:5500/reset-password.html"
-});
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: "http://localhost:5500/reset-password.html"
+    });
+
     if (error) {
         alert("Error: " + error.message);
     } else {
-        alert("Te enviamos un correo para recuperar tu contraseña.");
+        alert("Revisa tu correo para restablecer tu contraseña.");
     }
 });
+}
+
+
