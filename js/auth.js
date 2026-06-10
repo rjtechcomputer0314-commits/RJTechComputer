@@ -36,17 +36,14 @@ function iniciarAuth() {
                 nombre, apellido, telefono, correo, rol
             }));
 
-            // Mostrar sección OTP
             const seccionOTP = document.getElementById("seccionOTP");
             if (seccionOTP) {
                 seccionOTP.style.display = "block";
                 seccionOTP.scrollIntoView({ behavior: "smooth" });
-                // Enfocar la primera cajita
                 const primerInput = seccionOTP.querySelector(".otp-input");
                 if (primerInput) primerInput.focus();
             }
 
-            // Desactivar el formulario para que no se reenvíe
             formRegistro.querySelector("button[type='submit']").disabled = true;
         });
     }
@@ -73,15 +70,18 @@ function iniciarAuth() {
         const email = sessionStorage.getItem("correoRegistro");
         const token = [...document.querySelectorAll(".otp-input")].map(i => i.value).join("");
 
-        if (token.length < 8) { alert("Ingresa los 6 dígitos del código."); return; }
+        if (token.length < 8) { alert("Ingresa los 8 dígitos del código."); return; }
 
         const { error } = await supabaseClient.auth.verifyOtp({
             email, token, type: "signup"
         });
 
-        if (error) { alert("Código incorrecto o expirado."); return; }
+        if (error) { alert("Código incorrecto o expirado: " + error.message); return; }
 
         const perfil = JSON.parse(sessionStorage.getItem("perfilTemp"));
+
+        // Eliminar perfil duplicado antes de insertar
+        await supabaseClient.from("perfiles").delete().eq("user_id", perfil.user_id);
 
         const { error: errorPerfil } = await supabaseClient
             .from("perfiles")
@@ -94,7 +94,6 @@ function iniciarAuth() {
 
         alert("¡Correo verificado! Ya puedes iniciar sesión.");
 
-        // Cerrar modal y abrir login
         document.getElementById("modalRegistro").classList.remove("active");
         document.getElementById("modalLogin").classList.add("active");
     });
@@ -116,20 +115,29 @@ function iniciarAuth() {
 
             if (error) {
                 if (error.message.includes("Email not confirmed")) {
-                    alert("Debes confirmar tu correo antes de iniciar sesión. Revisa tu Gmail.");
+                    alert("Debes confirmar tu correo antes de iniciar sesión.");
                 } else {
-                    alert("Correo o contraseña incorrectos.");
+                    alert("Correo o contraseña incorrectos: " + error.message);
                 }
                 return;
             }
 
-            const { data: perfil, error: errorPerfil } = await supabaseClient
+            const { data: perfiles, error: errorPerfil } = await supabaseClient
                 .from("perfiles")
                 .select("*")
-                .eq("user_id", data.user.id)
-                .single();
+                .eq("user_id", data.user.id);
 
-            if (errorPerfil) { alert(errorPerfil.message); return; }
+            if (errorPerfil) {
+                alert("Error al obtener perfil: " + errorPerfil.message);
+                return;
+            }
+
+            if (!perfiles || perfiles.length === 0) {
+                alert("No se encontró tu perfil. Contacta al administrador.\nID: " + data.user.id);
+                return;
+            }
+
+            const perfil = perfiles[0];
 
             alert("Bienvenido " + perfil.nombre);
 
@@ -159,3 +167,6 @@ function iniciarAuth() {
         }
     });
 }
+
+
+
