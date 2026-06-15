@@ -4,26 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RJTechComputer | Panel Estudiante</title>
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/supabase.js"></script>
+  <script src="/js/sesion.js"></script>
+  <script defer src="/js/panel_estudiante.js"></script>
   <link rel="stylesheet" href="/css/header_footer.css">
-  <link rel="stylesheet" href="/css/panel_docente.css">
   <link rel="stylesheet" href="/css/panel_estudiante.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- OVERLAY SIDEBAR MOBILE -->
+  <div id="header"></div>
+
   <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
   <div class="panel-layout">
 
-    <!-- ══════════ SIDEBAR ══════════ -->
+    <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-brand">
-        <span class="brand-icon"><i class="fas fa-microchip"></i></span>
-        <span class="brand-nombre">RJTech<em>Edu</em></span>
       </div>
 
       <div class="sidebar-perfil">
@@ -37,10 +37,7 @@
       </div>
 
       <nav class="sidebar-nav">
-        <button class="nav-item activo" data-vista="inicio">
-          <i class="fas fa-house"></i><span>Inicio</span>
-        </button>
-        <button class="nav-item" data-vista="cursos">
+        <button class="nav-item activo" data-vista="cursos">
           <i class="fas fa-layer-group"></i><span>Mis cursos</span>
         </button>
         <button class="nav-item" data-vista="anuncios">
@@ -65,10 +62,10 @@
       </button>
     </aside>
 
-    <!-- ══════════ CUERPO ══════════ -->
+    <!-- CUERPO -->
     <main class="panel-cuerpo">
 
-      <!-- Barra mobile -->
+      <!-- Topbar mobile -->
       <div class="topbar-mobile">
         <button id="btnAbrirSidebar" class="btn-hamburguesa">
           <span></span><span></span><span></span>
@@ -92,51 +89,12 @@
         </div>
       </div>
 
-      <!-- ════ VISTA: INICIO ════ -->
-      <section id="vista-inicio" class="vista">
-        <div class="inicio-layout">
-
-          <!-- Columna principal: cursos con pestañas -->
-          <div class="inicio-main">
-            <div class="vista-header">
-              <h2 class="vista-titulo"><i class="fas fa-layer-group"></i> Mis cursos</h2>
-              <button class="btn-primario btn-sm" onclick="mostrarVista('unirse')">
-                <i class="fas fa-plus"></i> Unirse
-              </button>
-            </div>
-            <div id="listaCursosInicio">
-              <p class="sin-datos" id="msgSinCursosInicio">
-                <i class="fas fa-book-open"></i><br>
-                Aún no estás inscrito en ningún curso.
-              </p>
-            </div>
-          </div>
-
-          <!-- Aside: resumen rápido -->
-          <aside class="inicio-aside">
-            <div class="aside-bloque">
-              <h4 class="aside-titulo"><i class="fas fa-bullhorn"></i> Últimos anuncios</h4>
-              <div id="asideAnuncios"><p class="aside-vacio">Sin anuncios</p></div>
-            </div>
-            <div class="aside-bloque">
-              <h4 class="aside-titulo"><i class="fas fa-clipboard-list"></i> Tareas próximas</h4>
-              <div id="asideTareas"><p class="aside-vacio">Sin tareas</p></div>
-            </div>
-            <div class="aside-bloque">
-              <h4 class="aside-titulo"><i class="fas fa-folder-open"></i> Archivos recientes</h4>
-              <div id="asideArchivos"><p class="aside-vacio">Sin archivos</p></div>
-            </div>
-          </aside>
-
-        </div>
-      </section>
-
-      <!-- ════ VISTA: MIS CURSOS ════ -->
-      <section id="vista-cursos" class="vista oculto">
+      <!-- VISTA: MIS CURSOS -->
+      <section id="vista-cursos" class="vista">
         <div class="vista-header">
           <h2 class="vista-titulo"><i class="fas fa-layer-group"></i> Mis cursos</h2>
           <button class="btn-primario btn-sm" onclick="mostrarVista('unirse')">
-            <i class="fas fa-plus"></i> Unirse
+            <i class="fas fa-plus"></i> Unirse a curso
           </button>
         </div>
         <div id="gridCursos" class="grid-cursos">
@@ -147,7 +105,38 @@
         </div>
       </section>
 
-      <!-- ════ VISTA: ANUNCIOS ════ -->
+      <!-- VISTA: DETALLE CURSO -->
+      <section id="vista-detalle" class="vista oculto">
+        <button class="btn-volver" id="btnVolverCursos">
+          <i class="fas fa-arrow-left"></i> Volver a cursos
+        </button>
+
+        <div class="detalle-header">
+          <div class="detalle-info">
+            <span id="detNivel" class="etiqueta-nivel"></span>
+            <h2 id="detNombre" class="detalle-nombre"></h2>
+            <p id="detDesc" class="detalle-desc"></p>
+          </div>
+          <div class="detalle-codigo-box">
+            <p class="codigo-label">Código del curso</p>
+            <div class="codigo-row">
+              <strong id="detCodigo" class="codigo-valor"></strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs-detalle">
+          <button class="tab-btn activa" data-tab="anuncios-det"><i class="fas fa-bullhorn"></i> Anuncios</button>
+          <button class="tab-btn" data-tab="archivos-det"><i class="fas fa-folder-open"></i> Archivos</button>
+          <button class="tab-btn" data-tab="tareas-det"><i class="fas fa-clipboard-list"></i> Tareas</button>
+        </div>
+
+        <div id="tab-anuncios-det" class="tab-panel lista-items"></div>
+        <div id="tab-archivos-det" class="tab-panel lista-items oculto"></div>
+        <div id="tab-tareas-det" class="tab-panel lista-items oculto"></div>
+      </section>
+
+      <!-- VISTA: ANUNCIOS -->
       <section id="vista-anuncios" class="vista oculto">
         <div class="vista-header">
           <h2 class="vista-titulo"><i class="fas fa-bullhorn"></i> Anuncios</h2>
@@ -158,7 +147,7 @@
         <div id="listaAnuncios" class="lista-items"></div>
       </section>
 
-      <!-- ════ VISTA: ARCHIVOS ════ -->
+      <!-- VISTA: ARCHIVOS -->
       <section id="vista-archivos" class="vista oculto">
         <div class="vista-header">
           <h2 class="vista-titulo"><i class="fas fa-folder-open"></i> Archivos</h2>
@@ -169,7 +158,7 @@
         <div id="listaArchivos" class="lista-items"></div>
       </section>
 
-      <!-- ════ VISTA: TAREAS ════ -->
+      <!-- VISTA: TAREAS -->
       <section id="vista-tareas" class="vista oculto">
         <div class="vista-header">
           <h2 class="vista-titulo"><i class="fas fa-clipboard-list"></i> Tareas</h2>
@@ -180,19 +169,18 @@
         <div id="listaTareas" class="lista-items"></div>
       </section>
 
-      <!-- ════ VISTA: UNIRSE ════ -->
+      <!-- VISTA: UNIRSE -->
       <section id="vista-unirse" class="vista oculto">
         <div class="vista-header">
           <h2 class="vista-titulo"><i class="fas fa-key"></i> Unirse a un curso</h2>
         </div>
         <p class="texto-sub">Ingresa el código de 8 caracteres que te dio tu docente.</p>
-
         <form id="formCodigo" class="formulario formulario-angosto" novalidate>
           <div class="campo-grupo">
             <label for="inputCodigo">Código del curso</label>
             <div class="input-icono">
               <i class="fas fa-key icono-input"></i>
-              <input type="text" id="inputCodigo" placeholder="Ej: AB3X9QZK" autocomplete="off" maxlength="8">
+              <input type="text" id="inputCodigo" placeholder="Ej: AB3X9QZK" maxlength="8">
             </div>
             <small class="campo-error" id="errCodigo"></small>
           </div>
@@ -203,7 +191,7 @@
         </form>
       </section>
 
-      <!-- ════ VISTA: PERFIL ════ -->
+      <!-- VISTA: PERFIL -->
       <section id="vista-perfil" class="vista oculto">
         <div class="vista-header">
           <h2 class="vista-titulo"><i class="fas fa-user-gear"></i> Mi perfil</h2>
@@ -264,12 +252,14 @@
       </section>
 
     </main>
-  </div><!-- /panel-layout -->
+  </div>
 
-  <script src="/js/supabase.js"></script>
-  <script src="/js/panel_estudiante.js"></script>
+  <div id="registro-container"></div>
+  <div id="login-container"></div>
 
-  <!-- Reloj + saludo (sin módulo) -->
+  <script src="/js/cargarComponentes.js"></script>
+  <script src="/js/menu.js"></script>
+
   <script>
     const DIAS  = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
     const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
@@ -288,20 +278,7 @@
     }
     tickReloj();
     setInterval(tickReloj, 1000);
-
-    function aplicarSaludo() {
-      const nombre = (document.getElementById("sideNombre")?.textContent || "").split(" ")[0];
-      if (!nombre || nombre === "Cargando...") { setTimeout(aplicarSaludo, 300); return; }
-      const h = new Date().getHours();
-      const greet = h < 12 ? "¡Buenos días" : h < 19 ? "¡Buenas tardes" : "¡Buenas noches";
-      const emoji = h < 12 ? "☀️" : h < 19 ? "🌤️" : "🌙";
-      const frases = ["El mejor momento para estudiar es ahora.", "Revisa las tareas pendientes.", "Sigue avanzando, cada lección cuenta.", "Dedicar tiempo al estudio dice mucho de ti. 💪"];
-      const h2 = document.getElementById("saludoH1");
-      const p  = document.getElementById("saludoFrase");
-      if (h2) h2.innerHTML = `${greet}, <span>${nombre}</span>! ${emoji}`;
-      if (p)  p.textContent = frases[Math.floor(h / 6)];
-    }
-    document.addEventListener("DOMContentLoaded", () => setTimeout(aplicarSaludo, 600));
   </script>
+
 </body>
 </html>
