@@ -1,0 +1,224 @@
+/* ══════════════════════════════
+   BARRA SOCIAL FLOTANTE (izquierda)
+══════════════════════════════ */
+.social-bar {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+}
+
+.social-icon {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    overflow: hidden;
+    transition: width .4s ease, background .3s;
+    background: rgba(2, 27, 84, .88);
+    color: white;
+}
+
+.social-icon i {
+    min-width: 46px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.social-icon span {
+    white-space: nowrap;
+    padding: 0 16px 0 4px;
+    font-weight: bold;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.social-icon:hover       { width: 200px; }
+.social-icon:hover span  { opacity: 1; }
+
+.facebook:hover  { background: #1877F2; }
+.instagram:hover { background: #f868cc; }
+.twitter:hover   { background: #111; }
+.linkedin:hover  { background: #0077B5; }
+.youtube:hover   { background: #FF0000; }
+.tiktok:hover    { background: #000; }
+
+/* ══════════════════════════════
+   BOTÓN FLOTANTE (derecha, abajo)
+══════════════════════════════ */
+.float-container {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 5000;
+}
+
+.main-float-btn {
+    width: 62px; height: 62px;
+    border: none;
+    border-radius: 50%;
+    background: #021A54;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 8px 20px rgba(0,0,0,.25);
+}
+
+.main-float-btn:hover { background: #FF85BB; transform: scale(1.1); }
+
+.float-items {
+    position: absolute;
+    bottom: 76px; right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: .4s;
+}
+
+.float-items.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.float-item {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    transition: .3s;
+    box-shadow: 0 6px 16px rgba(0,0,0,.2);
+}
+
+.wsp   { background: #25D366; }
+.phone { background: #85A2FF; }
+.float-item:hover { transform: scale(1.12); }
+
+/* ══════════════════════════════
+   BOTÓN TEMA (luna/sol)
+══════════════════════════════ */
+.theme-toggle {
+    position: fixed;
+    top: 110px; right: 25px;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: #021A54;
+    color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 22px;
+    z-index: 9999;
+    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+    transition: .4s ease;
+}
+
+.theme-toggle:hover        { transform: scale(1.1); background: #FF85BB; }
+body.dark-mode .theme-toggle { background: #FF85BB; color: #021A54; }
+
+/* ══════════════════════════════
+   DARK MODE GLOBAL
+══════════════════════════════ */
+body.dark-mode { background: #0b1020; color: #f1f5f9; transition: .4s ease; }
+
+/* Header */
+body.dark-mode header {
+    background: linear-gradient(135deg, #000814, #001d3d, #35004f, #000814);
+    box-shadow: 0 5px 20px rgba(0,0,0,.5);
+}
+body.dark-mode .nav a          { color: white; }
+body.dark-mode .nav a:hover    { background: white; color: #021A54; }
+body.dark-mode .dropdown       { background: #131c35; }
+body.dark-mode .dropdown a     { color: white; }
+body.dark-mode .dropdown a:hover { background: #FF85BB; color: #021A54; }
+body.dark-mode .boton1         { border-color: #FF85BB; color: #FF85BB; }
+body.dark-mode .boton2         { background: #FF85BB; color: #021A54; }
+
+/* Secciones */
+body.dark-mode .hero           { background: linear-gradient(135deg, #020617, #0f172a, #1e293b); }
+body.dark-mode .tag            { background: #1e293b; color: #FF85BB; }
+body.dark-mode .info           { background: #111827; }
+body.dark-mode .contenido      { background: #0f172a; }
+body.dark-mode .reverse        { background: #111827; }
+body.dark-mode .preguntas      { background: #111827; }
+body.dark-mode .enviar-pregunta { background: #111827; }
+body.dark-mode .carrusel       { background: #111827; }
+body.dark-mode .frase          { background: #020617; }
+body.dark-mode .footer         { background: #020617; }
+
+/* Cards */
+body.dark-mode .card           { background: #131c35; box-shadow: 0 10px 25px rgba(0,0,0,.35); }
+body.dark-mode .card:hover     { background: #021A54; }
+body.dark-mode .card i         { color: #FF85BB; }
+
+/* Textos */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3              { color: #f1f5f9; }
+body.dark-mode p               { color: #d1d5db; }
+body.dark-mode .contenido-texto span { color: #FF85BB; }
+body.dark-mode .pregunta-titulo { color: white; }
+body.dark-mode .pregunta-item  { background: #1e293b; }
+body.dark-mode .ubicacion      { background: #1e293b; }
+
+/* Formulario */
+body.dark-mode .caja-pregunta  { background: #131c35; }
+body.dark-mode input,
+body.dark-mode textarea        { background: #0f172a; color: white; border: 1px solid #334155; }
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder { color: #94a3b8; }
+
+/* Footer */
+body.dark-mode .footer p       { color: #cbd5e1; }
+body.dark-mode .footer h3      { color: #FF85BB; }
+body.dark-mode .frase h2       { color: #FF85BB; }
+body.dark-mode .frase p        { color: #cbd5e1; }
+body.dark-mode .copy           { border-top: 1px solid rgba(255,255,255,.1); }
+body.dark-mode .redes span     { border-color: #FF85BB; }
+body.dark-mode .redes span:hover { background: #FF85BB; color: #021A54; }
+
+/* Modal */
+body.dark-mode .modal-contenido        { background: #131c35; }
+body.dark-mode .modal-contenido h2     { color: #FF85BB; }
+body.dark-mode .modal-contenido label  { color: #e2e8f0; }
+body.dark-mode .modal-contenido input  { background: #0f172a; color: white; border: 1px solid #334155; }
+body.dark-mode .modal-contenido input::placeholder { color: #94a3b8; }
+body.dark-mode .texto-modal            { color: #d1d5db; }
+body.dark-mode .texto-modal a          { color: #FF85BB; }
+body.dark-mode .modal-contenido button[type="submit"] { background: #FF85BB; color: #021A54; }
+
+/* Mapa */
+body.dark-mode iframe { filter: grayscale(.3) invert(.92) contrast(.9); border: none; }
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 768px) {
+    .social-icon       { width: 42px; height: 42px; }
+    .social-icon i     { min-width: 42px; height: 42px; font-size: 18px; }
+    .social-icon:hover { width: 180px; }
+
+    .theme-toggle      { width: 48px; height: 48px; font-size: 19px; top: 100px; right: 16px; }
+    .float-container   { right: 16px; bottom: 16px; }
+    .main-float-btn    { width: 54px; height: 54px; font-size: 22px; }
+}
