@@ -157,7 +157,7 @@ function iniciarAuth() {
         if (!email) { alert("Ingresa tu correo electrónico."); return; }
 
         const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-            redirectTo: "https://rj-tech-computer.vercel.app/reset-password.html"
+            redirectTo: "http://localhost:5501/reset-password.html"
         });
 
         if (error) {
@@ -167,6 +167,3 @@ function iniciarAuth() {
         }
     });
 }
-
-
-
