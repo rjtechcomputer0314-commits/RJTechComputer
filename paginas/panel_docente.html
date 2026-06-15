@@ -4,15 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RJTechComputer | Panel Docente</title>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/js/supabase.js"></script>
+<script src="/js/sesion.js"></script>
+<script defer src="/js/panel_docente.js"></script>
   <link rel="stylesheet" href="/css/header_footer.css">
   <link rel="stylesheet" href="/css/panel_docente.css">
+  <link rel="stylesheet" href="/css/panel_estudiante.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
+<div id="header"></div>
   <!-- OVERLAY SIDEBAR MOBILE -->
   <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
@@ -20,11 +23,6 @@
 
     <!-- ══════════ SIDEBAR ══════════ -->
     <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand">
-        <span class="brand-icon"><i class="fas fa-microchip"></i></span>
-        <span class="brand-nombre">RJTech<em>Edu</em></span>
-      </div>
-
       <div class="sidebar-perfil">
         <div class="avatar-hex">
           <i class="fas fa-chalkboard-teacher"></i>
@@ -72,7 +70,10 @@
       <!-- SALUDO HERO -->
       <div class="saludo-hero">
         <div class="saludo-left">
-          <p class="saludo-tag">PANEL DOCENTE</p>
+          <br>
+          <br>
+          <br>
+          <p class="saludo-tag">PANEL DOCENTE</p><br>
           <h1 id="saludoH1">¡Hola, <span>Docente</span>! 👋</h1>
           <p id="saludoFrase" class="saludo-frase">Bienvenido a tu espacio de gestión.</p>
         </div>
@@ -223,12 +224,13 @@
               <small class="campo-error" id="errCNombre"></small>
             </div>
             <div class="campo-grupo">
-              <label for="cNivel">Nivel <span class="req">*</span></label>
+              <label for="cNivel">Categoría <span class="req">*</span></label>
               <select id="cNivel">
                 <option value="">— Selecciona —</option>
-                <option value="basico">Básico</option>
-                <option value="intermedio">Intermedio</option>
-                <option value="avanzado">Avanzado</option>
+                <option value="basico">Fundamentos</option>
+                <option value="intermedio">Desarrollo</option>
+                <option value="avanzado">Especialización</option>
+                <option value="avanzado">Seguridad Informática</option>
               </select>
               <small class="campo-error" id="errCNivel"></small>
             </div>
@@ -337,9 +339,6 @@
     </main>
   </div><!-- /panel-layout -->
 
-  <script src="/js/supabase.js"></script>
-  <script src="/js/panel_docente.js"></script>
-
   <!-- Reloj + saludo (sin módulo) -->
   <script>
     const DIAS  = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
@@ -384,5 +383,9 @@
       document.getElementById("panel-" + btn.dataset.tabAsignar)?.classList.remove("oculto");
     });
   </script>
+  <div id="registro-container"></div>
+<div id="login-container"></div>
+<script src="/js/cargarComponentes.js"></script>
+<script src="/js/menu.js"></script>
 </body>
 </html>
