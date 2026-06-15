@@ -22,18 +22,24 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { font-size: 15px; }
 body {
-  font-family: 'Inter', Arial, sans-serif;
-  background: var(--gris-bg);
-  color: var(--texto);
-  min-height: 100vh;
-  overflow-x: hidden;
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--gris-bg);
+    color: var(--texto);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 input, textarea, select { font-family: inherit; font-size: 0.9rem; }
 a { text-decoration: none; color: inherit; }
 
-.panel-layout { display: flex; min-height: 100vh; }
-
+.panel-layout {
+    display: flex;
+    flex: 1;
+    padding-top: 90px;
+    min-height: calc(100vh - 90px);
+}
 /* ══ SIDEBAR ══════════════════════════════════════ */
 .sidebar {
   width: var(--sidebar-w);
@@ -41,11 +47,12 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 0; left: 0;
-  height: 100vh;
+  top: 90px; 
+  left: 0;
+  height: calc(90vh - 9px);
   z-index: 200;
-  transition: transform var(--trans);
   overflow-y: auto;
+  transition: transform var(--trans);
   scrollbar-width: none;
 }
 .sidebar::-webkit-scrollbar { display: none; }
@@ -168,7 +175,7 @@ a { text-decoration: none; color: inherit; }
   margin-left: var(--sidebar-w);
   flex: 1;
   padding: 1.8rem 2rem;
-  min-width: 0;
+  min-width: 20px;
 }
 
 /* Topbar mobile */
@@ -672,6 +679,8 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
+
+
 .avatar-perfil {
   width: 72px; height: 72px;
   border-radius: 16px;
