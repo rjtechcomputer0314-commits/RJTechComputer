@@ -1,6 +1,18 @@
-/* ══════════════════════════════
-   BANNER
-══════════════════════════════ */
+
+:root {
+    --azul2: #0B2F87;
+    --rosa:  #FF85BB;
+    --gris:  #f5f7fc;
+}
+/* Scrollbar de marca (Chrome/Edge) */
+::-webkit-scrollbar { width: 8px;}
+::-webkit-scrollbar-track { background: var(--gris); }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--azul2), var(--rosa));
+    border-radius: 20px;
+    border: 2px solid var(--gris);
+}
+/* BANNER */
 .banner-nosotros {
     width: 100%;
     min-height: 450px;
@@ -28,9 +40,7 @@
     line-height: 1.7;
 }
 
-/* ══════════════════════════════
-   TÍTULO GENERAL
-══════════════════════════════ */
+/* TÍTULO GENERAL */
 .titulo {
     text-align: center;
     font-size: 40px;
@@ -38,9 +48,7 @@
     margin-bottom: 48px;
 }
 
-/* ══════════════════════════════
-   CREACIÓN
-══════════════════════════════ */
+/* CREACIÓN */
 .creacion { padding: 80px 8%; }
 
 .contenedor {
@@ -72,9 +80,7 @@
 
 .imagen-creacion img:hover { transform: scale(1.03); }
 
-/* ══════════════════════════════
-   MISIÓN Y VISIÓN
-══════════════════════════════ */
+/* MISIÓN Y VISIÓN */
 .mision-vision {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -99,9 +105,7 @@
 .card h3                { font-size: 26px; color: #021A54; margin-bottom: 16px; }
 .card p                 { color: #555; line-height: 1.75; }
 
-/* ══════════════════════════════
-   PRESENTACIÓN
-══════════════════════════════ */
+/* PRESENTACIÓN */
 .presentacion {
     background: #FFCEE3;
     padding: 80px 8%;
@@ -155,9 +159,7 @@
     color: white;
 }
 
-/* ══════════════════════════════
-   RESPONSIVE
-══════════════════════════════ */
+/* RESPONSIVE */
 @media (max-width: 900px) {
     .contenido-banner h1        { font-size: 42px; }
     .titulo                     { font-size: 32px; }
