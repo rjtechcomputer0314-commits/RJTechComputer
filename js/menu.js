@@ -60,3 +60,20 @@ preguntas.forEach((item)=>{
     });
 
 });
+/* SUBMENU EN MÓVIL */
+document.addEventListener("DOMContentLoaded", () => {
+    const esperarSubmenu = setInterval(() => {
+        const sublinks = document.querySelectorAll(".submenu > a");
+        if (sublinks.length > 0) {
+            clearInterval(esperarSubmenu);
+            sublinks.forEach(link => {
+                link.addEventListener("click", function(e) {
+                    if (window.innerWidth <= 900) {
+                        e.preventDefault();
+                        this.closest(".submenu").classList.toggle("active");
+                    }
+                });
+            });
+        }
+    }, 100);
+});
