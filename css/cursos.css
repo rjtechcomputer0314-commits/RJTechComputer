@@ -1,6 +1,17 @@
-/* ══════════════════════════════
-   BANNER
-══════════════════════════════ */
+:root {
+    --azul2: #0B2F87;
+    --rosa:  #FF85BB;
+    --gris:  #f5f7fc;
+}
+/* Scrollbar de marca (Chrome/Edge) */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--gris); }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--azul2), var(--rosa));
+    border-radius: 20px;
+    border: 2px solid var(--gris);
+}
+/*  BANNER */
 .banner-cursos {
     width: 100%;
     min-height: 420px;
@@ -28,9 +39,7 @@
     line-height: 1.7;
 }
 
-/* ══════════════════════════════
-   GRID DE CURSOS
-══════════════════════════════ */
+/* GRID DE CURSOS */
 .contenedor-cursos {
     padding: 90px 8%;
     display: grid;
@@ -38,7 +47,7 @@
     gap: 38px;
 }
 
-/* ── TARJETA ── */
+/* TARJETA */
 .curso {
     background: white;
     border-radius: 28px;
@@ -62,7 +71,7 @@
 .curso:hover::before { transform: scale(1.4); }
 .curso:hover         { transform: translateY(-10px); }
 
-/* ── ICONO ── */
+/* ICONO */
 .icono {
     width: 80px; height: 80px;
     background: #021A54;
@@ -94,7 +103,7 @@
     font-size: 15px;
 }
 
-/* ── TEMAS ── */
+/* TEMAS */
 .temas {
     display: flex;
     flex-wrap: wrap;
@@ -123,7 +132,7 @@
     transform: translateY(-3px);
 }
 
-/* ── BOTÓN ── */
+/* BOTÓN */
 .btn-curso {
     display: inline-block;
     padding: 13px 24px;
@@ -140,7 +149,7 @@
 
 .btn-curso:hover { background: #FF85BB; transform: scale(1.04); }
 
-/* ── MENSAJE NOTIFICACIÓN ── */
+/* MENSAJE NOTIFICACIÓN */
 .mensaje-box {
     position: fixed;
     top: 110px; right: 25px;
@@ -165,9 +174,7 @@
     transform: translateX(0);
 }
 
-/* ══════════════════════════════
-   RESPONSIVE
-══════════════════════════════ */
+/* RESPONSIVE */
 @media (max-width: 900px) {
     .contenido-banner h1 { font-size: 42px; }
     .contenido-banner p  { font-size: 17px; }
