@@ -50,4 +50,16 @@ rel="stylesheet">
     <button class="boton1" id="abrirModal">Registrarme</button>
     <button class="boton2" id="abrirLogin">Iniciar sesión</button>
 </div>
+    <script>
+document.querySelectorAll('.submenu > a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    // En móvil abre/cierra el dropdown en vez de navegar
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      const submenu = this.closest('.submenu');
+      submenu.classList.toggle('abierto');
+    }
+  });
+});
+</script>
 </header>
