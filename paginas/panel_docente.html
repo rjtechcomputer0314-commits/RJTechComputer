@@ -4,35 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RJTechComputer | Panel Docente</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/js/supabase.js"></script>
-<script src="/js/sesion.js"></script>
-<script defer src="/js/panel_docente.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/supabase.js"></script>
+  <script src="/js/sesion.js"></script>
+  <script defer src="/js/panel_docente.js"></script>
   <link rel="stylesheet" href="/css/header_footer.css">
+    <link rel="stylesheet" href="/css/panel_estudiante.css">
+    <link rel="stylesheet" href="/css/panel_preview.css">
   <link rel="stylesheet" href="/css/panel_docente.css">
-  <link rel="stylesheet" href="/css/panel_estudiante.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div id="header"></div>
-  <!-- OVERLAY SIDEBAR MOBILE -->
+
+  <div id="header"></div>
   <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
   <div class="panel-layout">
 
-    <!-- ══════════ SIDEBAR ══════════ -->
+    <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+      </div>
       <div class="sidebar-perfil">
-        <div class="avatar-hex">
-          <i class="fas fa-chalkboard-teacher"></i>
-        </div>
+        <div class="avatar-hex"><i class="fas fa-chalkboard-teacher"></i></div>
         <div class="perfil-info">
           <p id="sideNombre" class="perfil-nombre">Cargando...</p>
           <span class="perfil-rol"><i class="fas fa-circle-dot"></i> Docente</span>
         </div>
       </div>
-
       <nav class="sidebar-nav">
         <button class="nav-item activo" data-vista="cursos">
           <i class="fas fa-layer-group"></i><span>Mis cursos</span>
@@ -46,34 +46,34 @@
         <button class="nav-item" data-vista="perfil">
           <i class="fas fa-user-gear"></i><span>Mi perfil</span>
         </button>
+             </button>
+      <button class="nav-item" data-vista="preview">
+  <i class="fas fa-eye"></i><span>Vista previa como estudiante</span>
+</button>
       </nav>
-
+      
       <button class="btn-salir" id="btnCerrarSesion">
         <i class="fas fa-arrow-right-from-bracket"></i><span>Cerrar sesión</span>
-      </button>
+ 
     </aside>
+    
 
-    <!-- ══════════ CUERPO ══════════ -->
+    <!-- CUERPO -->
     <main class="panel-cuerpo">
 
-      <!-- Barra mobile -->
+      <!-- Topbar mobile -->
       <div class="topbar-mobile">
         <button id="btnAbrirSidebar" class="btn-hamburguesa">
           <span></span><span></span><span></span>
         </button>
-        <div class="topbar-titulo">
-          <i class="fas fa-chalkboard-teacher"></i> Panel Docente
-        </div>
+        <div class="topbar-titulo"><i class="fas fa-chalkboard-teacher"></i> Panel Docente</div>
         <div class="topbar-reloj" id="topReloj">00:00</div>
       </div>
 
-      <!-- SALUDO HERO -->
+      <!-- SALUDO -->
       <div class="saludo-hero">
         <div class="saludo-left">
-          <br>
-          <br>
-          <br>
-          <p class="saludo-tag">PANEL DOCENTE</p><br>
+          <p class="saludo-tag">PANEL DOCENTE</p>
           <h1 id="saludoH1">¡Hola, <span>Docente</span>! 👋</h1>
           <p id="saludoFrase" class="saludo-frase">Bienvenido a tu espacio de gestión.</p>
         </div>
@@ -83,7 +83,7 @@
         </div>
       </div>
 
-      <!-- ════ VISTA: CURSOS ════ -->
+      <!-- VISTA: MIS CURSOS -->
       <section id="vista-cursos" class="vista">
         <div class="vista-header">
           <h2 class="vista-titulo"><i class="fas fa-layer-group"></i> Mis cursos</h2>
@@ -99,7 +99,7 @@
         </div>
       </section>
 
-      <!-- ════ VISTA: DETALLE CURSO ════ -->
+      <!-- VISTA: DETALLE CURSO -->
       <section id="vista-detalle" class="vista oculto">
         <button class="btn-volver" id="btnVolver">
           <i class="fas fa-arrow-left"></i> Volver a cursos
@@ -126,9 +126,10 @@
           <i class="fas fa-trash"></i> Eliminar curso
         </button>
 
-        <!-- Pestañas detalle -->
+        <!-- Pestañas -->
         <div class="tabs-detalle">
           <button class="tab-btn activa" data-tab="alumnos"><i class="fas fa-users"></i> Alumnos</button>
+          <button class="tab-btn" data-tab="modulos"><i class="fas fa-book-open"></i> Módulos</button>
           <button class="tab-btn" data-tab="anuncios"><i class="fas fa-bullhorn"></i> Anuncios</button>
           <button class="tab-btn" data-tab="archivos"><i class="fas fa-folder-open"></i> Archivos</button>
           <button class="tab-btn" data-tab="tareas"><i class="fas fa-clipboard-list"></i> Tareas</button>
@@ -137,6 +138,22 @@
         <!-- Panel: alumnos -->
         <div id="tab-alumnos" class="tab-panel">
           <div id="listaAlumnos"></div>
+        </div>
+
+        <!-- Panel: módulos -->
+        <div id="tab-modulos" class="tab-panel oculto">
+          <div class="form-inline">
+            <h3 class="form-inline-titulo"><i class="fas fa-plus"></i> Nuevo módulo</h3>
+            <div class="campo-grupo">
+              <label>Título del módulo</label>
+              <input type="text" id="moduloTitulo" placeholder="Ej: Unidad 1 - Introducción al Hardware">
+            </div>
+            <div id="alertaModulo" class="alerta"></div>
+            <button id="btnCrearModulo" class="btn-primario">
+              <i class="fas fa-plus"></i> Crear módulo
+            </button>
+          </div>
+          <div id="listaModulos" class="lista-items"></div>
         </div>
 
         <!-- Panel: anuncios -->
@@ -149,7 +166,7 @@
             </div>
             <div class="campo-grupo">
               <label>Contenido</label>
-              <textarea id="anuncioContenido" rows="3" placeholder="Escribe el mensaje para tus estudiantes..."></textarea>
+              <textarea id="anuncioContenido" rows="3" placeholder="Escribe el mensaje..."></textarea>
             </div>
             <div id="alertaAnuncio" class="alerta"></div>
             <button id="btnPublicarAnuncio" class="btn-primario">
@@ -168,8 +185,12 @@
               <input type="text" id="archivoNombre" placeholder="Ej: Presentación Unidad 1">
             </div>
             <div class="campo-grupo">
-              <label>Enlace (URL)</label>
-              <input type="url" id="archivoUrl" placeholder="https://drive.google.com/...">
+              <label>Subir archivo</label>
+              <input type="file" id="archivoFileCurso" accept="image/*,application/pdf,video/*,.doc,.docx,.ppt,.pptx,.xls,.xlsx">
+            </div>
+            <div class="campo-grupo">
+              <label>O pegar enlace (Google Drive, YouTube, etc.)</label>
+              <input type="url" id="archivoUrl" placeholder="https://...">
             </div>
             <div id="alertaArchivo" class="alerta"></div>
             <button id="btnSubirArchivo" class="btn-primario">
@@ -195,7 +216,7 @@
             </div>
             <div class="campo-grupo">
               <label>Descripción</label>
-              <textarea id="tareaDesc" rows="2" placeholder="Instrucciones para los estudiantes..."></textarea>
+              <textarea id="tareaDesc" rows="2" placeholder="Instrucciones..."></textarea>
             </div>
             <div class="campo-grupo campo-angosto">
               <label>Puntos</label>
@@ -210,17 +231,138 @@
         </div>
       </section>
 
-      <!-- ════ VISTA: CREAR CURSO ════ -->
+      <!-- VISTA: MÓDULO (contenido) -->
+      <section id="vista-modulo" class="vista oculto">
+        <button class="btn-volver" onclick="mostrarVista('detalle')">
+          <i class="fas fa-arrow-left"></i> Volver al curso
+        </button>
+
+        <div class="vista-header">
+          <h2 class="vista-titulo"><i class="fas fa-book-open"></i> <span id="moduloNombre"></span></h2>
+        </div>
+
+        <!-- Tabs contenido módulo -->
+        <div class="tabs-detalle">
+          <button class="tab-contenido-btn activa" data-panel="contenido"><i class="fas fa-file-alt"></i> Contenido</button>
+          <button class="tab-contenido-btn" data-panel="actividades"><i class="fas fa-clipboard-list"></i> Actividades</button>
+        </div>
+
+        <!-- Panel: contenido -->
+        <div id="panel-contenido" class="tab-contenido-panel">
+
+          <!-- Agregar texto -->
+          <div class="form-inline">
+            <h3 class="form-inline-titulo"><i class="fas fa-align-left"></i> Agregar texto / teoría</h3>
+            <div class="campo-grupo">
+              <label>Título (opcional)</label>
+              <input type="text" id="textoTitulo" placeholder="Ej: ¿Qué es el Hardware?">
+            </div>
+            <div class="campo-grupo">
+              <label>Contenido</label>
+              <textarea id="textoCuerpo" rows="5" placeholder="Escribe la teoría aquí..."></textarea>
+            </div>
+            <button id="btnAgregarTexto" class="btn-primario btn-sm">
+              <i class="fas fa-plus"></i> Agregar texto
+            </button>
+          </div>
+
+          <!-- Agregar video -->
+          <div class="form-inline">
+            <h3 class="form-inline-titulo"><i class="fas fa-video"></i> Agregar video de YouTube</h3>
+            <div class="campo-grupo">
+              <label>Título (opcional)</label>
+              <input type="text" id="videoTitulo" placeholder="Ej: Video explicativo del CPU">
+            </div>
+            <div class="campo-grupo">
+              <label>URL de YouTube</label>
+              <input type="url" id="videoUrl" placeholder="https://www.youtube.com/watch?v=...">
+            </div>
+            <button id="btnAgregarVideo" class="btn-primario btn-sm">
+              <i class="fas fa-plus"></i> Agregar video
+            </button>
+          </div>
+
+          <!-- Agregar archivo -->
+          <div class="form-inline">
+            <h3 class="form-inline-titulo"><i class="fas fa-file-upload"></i> Subir archivo</h3>
+            <div class="campo-grupo">
+              <label>Título</label>
+              <input type="text" id="archivoTitulo" placeholder="Ej: Presentación de clase">
+            </div>
+            <div class="campo-grupo">
+              <label>Archivo (imagen, PDF, video, Word, etc.)</label>
+              <input type="file" id="archivoFile" accept="image/*,application/pdf,video/*,.doc,.docx,.ppt,.pptx,.xls,.xlsx">
+            </div>
+            <button id="btnAgregarArchivo" class="btn-primario btn-sm">
+              <i class="fas fa-cloud-arrow-up"></i> Subir archivo
+            </button>
+          </div>
+
+          <!-- Agregar enlace -->
+          <div class="form-inline">
+            <h3 class="form-inline-titulo"><i class="fas fa-link"></i> Agregar enlace</h3>
+            <div class="campo-grupo">
+              <label>Título</label>
+              <input type="text" id="enlaceTitulo" placeholder="Ej: Recurso externo">
+            </div>
+            <div class="campo-grupo">
+              <label>URL</label>
+              <input type="url" id="enlaceUrl" placeholder="https://...">
+            </div>
+            <button id="btnAgregarEnlace" class="btn-primario btn-sm">
+              <i class="fas fa-plus"></i> Agregar enlace
+            </button>
+          </div>
+
+          <div id="alertaContenido" class="alerta"></div>
+
+          <h3 style="margin:1.5rem 0 .8rem;font-size:.9rem;color:var(--azul);font-weight:700;">
+            <i class="fas fa-list" style="color:var(--rosa2)"></i> Contenido del módulo
+          </h3>
+          <div id="listaContenidos" class="lista-items"></div>
+        </div>
+
+        <!-- Panel: actividades -->
+        <div id="panel-actividades" class="tab-contenido-panel oculto">
+          <div class="form-inline">
+            <h3 class="form-inline-titulo"><i class="fas fa-clipboard-list"></i> Crear actividad</h3>
+            <div class="fila-campos">
+              <div class="campo-grupo">
+                <label>Título</label>
+                <input type="text" id="actTitulo" placeholder="Nombre de la actividad">
+              </div>
+              <div class="campo-grupo">
+                <label>Fecha de entrega</label>
+                <input type="date" id="actFecha">
+              </div>
+            </div>
+            <div class="campo-grupo">
+              <label>Descripción / instrucciones</label>
+              <textarea id="actDesc" rows="3" placeholder="¿Qué debe hacer el estudiante?"></textarea>
+            </div>
+            <div class="campo-grupo campo-angosto">
+              <label>Puntos</label>
+              <input type="number" id="actPuntos" placeholder="Ej: 20" min="0">
+            </div>
+            <div id="alertaActividad" class="alerta"></div>
+            <button id="btnCrearActividad" class="btn-primario">
+              <i class="fas fa-plus"></i> Crear actividad
+            </button>
+          </div>
+          <div id="listaActividadesModulo" class="lista-items"></div>
+        </div>
+      </section>
+
+      <!-- VISTA: CREAR CURSO -->
       <section id="vista-crear" class="vista oculto">
         <div class="vista-header">
           <h2 class="vista-titulo"><i class="fas fa-plus-circle"></i> Crear nuevo curso</h2>
         </div>
-
         <form id="formCrearCurso" class="formulario" novalidate>
           <div class="fila-campos">
             <div class="campo-grupo">
               <label for="cNombre">Nombre del curso <span class="req">*</span></label>
-              <input type="text" id="cNombre" placeholder="Ej: Fundamentos de Redes">
+              <input type="text" id="cNombre" placeholder="Ej: Fundamentos de Hardware">
               <small class="campo-error" id="errCNombre"></small>
             </div>
             <div class="campo-grupo">
@@ -230,14 +372,13 @@
                 <option value="basico">Fundamentos</option>
                 <option value="intermedio">Desarrollo</option>
                 <option value="avanzado">Especialización</option>
-                <option value="avanzado">Seguridad Informática</option>
               </select>
               <small class="campo-error" id="errCNivel"></small>
             </div>
           </div>
           <div class="campo-grupo">
             <label for="cDesc">Descripción</label>
-            <textarea id="cDesc" rows="3" placeholder="¿De qué trata el curso? ¿Qué aprenderán?"></textarea>
+            <textarea id="cDesc" rows="3" placeholder="¿De qué trata el curso?"></textarea>
           </div>
           <div class="campo-grupo">
             <label>Asignar estudiantes (opcional)</label>
@@ -256,7 +397,7 @@
             <div id="panel-codigo" class="panel-asignar oculto">
               <div class="info-codigo-box">
                 <i class="fas fa-circle-info"></i>
-                <p>Al guardar se genera un <strong>código único de 8 caracteres</strong>. Compártelo con tus estudiantes para que se inscriban desde su panel.</p>
+                <p>Al guardar se genera un <strong>código único de 8 caracteres</strong>. Compártelo con tus estudiantes.</p>
               </div>
             </div>
           </div>
@@ -267,21 +408,20 @@
         </form>
       </section>
 
-      <!-- ════ VISTA: ESTUDIANTES ════ -->
+      <!-- VISTA: ESTUDIANTES -->
       <section id="vista-estudiantes" class="vista oculto">
         <div class="vista-header">
           <h2 class="vista-titulo"><i class="fas fa-users"></i> Todos los estudiantes</h2>
         </div>
         <input type="text" id="buscarEstudianteTabla" class="buscador-inline" placeholder="Buscar por nombre...">
-        <div id="tablaEstudiantes" class="tabla-estudiantes"></div>
+        <div id="tablaEstudiantes"></div>
       </section>
 
-      <!-- ════ VISTA: PERFIL ════ -->
+      <!-- VISTA: PERFIL -->
       <section id="vista-perfil" class="vista oculto">
         <div class="vista-header">
           <h2 class="vista-titulo"><i class="fas fa-user-gear"></i> Mi perfil</h2>
         </div>
-
         <div class="perfil-card-grande">
           <div class="avatar-perfil"><i class="fas fa-chalkboard-teacher"></i></div>
           <div>
@@ -291,7 +431,6 @@
             <p id="perfilDesde" class="perfil-desde"></p>
           </div>
         </div>
-
         <form id="formPerfil" class="formulario" novalidate>
           <div class="seccion-form">
             <h3 class="seccion-form-titulo"><i class="fas fa-user"></i> Datos personales</h3>
@@ -313,7 +452,6 @@
               <small class="campo-nota">El correo no se puede cambiar.</small>
             </div>
           </div>
-
           <div class="seccion-form">
             <h3 class="seccion-form-titulo"><i class="fas fa-lock"></i> Seguridad</h3>
             <div class="campo-grupo">
@@ -328,18 +466,28 @@
               <small class="campo-nota">Mínimo 6 caracteres.</small>
             </div>
           </div>
-
           <div id="alertaPerfil" class="alerta"></div>
           <button type="submit" class="btn-primario">
             <i class="fas fa-floppy-disk"></i> Guardar cambios
           </button>
         </form>
       </section>
-
+<!-- VISTA: PREVIEW ESTUDIANTE -->
+<section id="vista-preview" class="vista oculto">
+  <div class="vista-header">
+    <h2 class="vista-titulo"><i class="fas fa-eye"></i> Vista previa como estudiante</h2>
+  </div>
+  <div class="preview-aviso">
+    <i class="fas fa-circle-info"></i>
+    Así ven tus estudiantes tus cursos. Esta es solo una vista previa, no puedes editar desde aquí (Para editar ve a Módulos).
+  </div>
+  <div id="previewCursos" class="preview-lista-cursos"></div>
+</section>
     </main>
-  </div><!-- /panel-layout -->
+  </div>
+  <script src="/js/cargarComponentes.js"></script>
+  <script src="/js/menu.js"></script>
 
-  <!-- Reloj + saludo (sin módulo) -->
   <script>
     const DIAS  = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
     const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
@@ -373,7 +521,6 @@
     }
     document.addEventListener("DOMContentLoaded", () => setTimeout(aplicarSaludo, 600));
 
-    // Tabs asignar
     document.addEventListener("click", e => {
       const btn = e.target.closest(".tab-asignar-btn");
       if (!btn) return;
@@ -383,9 +530,5 @@
       document.getElementById("panel-" + btn.dataset.tabAsignar)?.classList.remove("oculto");
     });
   </script>
-  <div id="registro-container"></div>
-<div id="login-container"></div>
-<script src="/js/cargarComponentes.js"></script>
-<script src="/js/menu.js"></script>
 </body>
 </html>
