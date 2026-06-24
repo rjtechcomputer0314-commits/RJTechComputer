@@ -524,15 +524,3 @@ submenu{
     font-size: 14px;
 }
 
-@media (max-width: 768px) {
-  .submenu .dropdown {
-    display: none;
-    position: static;
-    box-shadow: none;
-    padding-left: 1rem;
-  }
-
-  .submenu.abierto .dropdown {
-    display: block;
-  }
-}
