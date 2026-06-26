@@ -67,10 +67,10 @@ async function cargarDatos() {
 
   const { data: inscripciones } = await supabaseClient
     .from("inscripciones")
-    .select("curso_id, cursos (id, nombre, descripcion, nivel, codigo, docente_id)")
+    .select("curso_id, cursos (id, nombre, descripcion, nivel, codigo, docente_id, publicado)")
     .eq("estudiante_id", user.id);
 
-  cursosInscritos = (inscripciones || []).map(i => i.cursos).filter(Boolean);
+  cursosInscritos = (inscripciones || []).map(i => i.cursos).filter(c => c && c.publicado === true);
 
   // Obtener nombre del docente para cada curso
   const docenteIds = [...new Set(cursosInscritos.map(c => c.docente_id))];
@@ -107,6 +107,11 @@ async function cargarDatos() {
   const anunciosConCurso = (anuncios || []).map(a => ({ ...a, cursoNombre: cursosMap[a.curso_id]?.nombre || "" }));
   const tareasConCurso   = (tareas   || []).map(t => ({ ...t, cursoNombre: cursosMap[t.curso_id]?.nombre || "" }));
   const archivosConCurso = (archivos || []).map(a => ({ ...a, cursoNombre: cursosMap[a.curso_id]?.nombre || "" }));
+
+ // guardar caché para los filtros
+  window._anunciosCache = anunciosConCurso;
+  window._tareasCache   = tareasConCurso;
+  window._archivosCache = archivosConCurso;
 
   renderAsideAnuncios(anunciosConCurso);
   renderAsideTareas(tareasConCurso);
@@ -282,24 +287,36 @@ async function cargarActividadesEstudiante(moduloId, cursoId) {
         <p>${a.descripcion || ""}</p>
         ${a.puntos ? `<span style="font-size:.8rem;color:var(--azul2);font-weight:700;">${a.puntos} pts</span>` : ""}
 
-        ${entrega ? `
-          <div class="entrega-info">
-            <p style="font-size:.82rem;color:var(--texto2);margin-top:.6rem;">
-              <i class="fas fa-paper-plane"></i> Entregado el ${formatFecha(entrega.entregado_at)}
-            </p>
-            ${entrega.calificacion !== null ? `<p style="font-size:.85rem;color:var(--azul2);font-weight:700;margin-top:.3rem;">Calificación: ${entrega.calificacion} pts</p>` : `<p style="font-size:.8rem;color:var(--texto2);margin-top:.3rem;">Pendiente de calificar</p>`}
-            ${entrega.comentario ? `<p style="font-size:.82rem;color:var(--texto2);margin-top:.3rem;"><i class="fas fa-comment"></i> ${entrega.comentario}</p>` : ""}
-          </div>
-        ` : `
-          <div class="form-entrega">
-            <textarea id="texto-${a.id}" rows="2" placeholder="Escribe tu respuesta (opcional)..." style="width:100%;margin-top:.6rem;padding:.6rem;border:1.5px solid var(--gris-borde);border-radius:8px;font-family:inherit;"></textarea>
-            <input type="file" id="archivo-${a.id}" style="margin-top:.5rem;">
-            <button class="btn-primario btn-sm" style="margin-top:.6rem;" onclick="entregarActividad('${a.id}')">
-              <i class="fas fa-paper-plane"></i> Entregar
-            </button>
-          </div>
-        `}
-      </div>`;
+${entrega ? `
+  <div class="entrega-info">
+    <p style="font-size:.82rem;color:var(--texto2);margin-top:.6rem;">
+      <i class="fas fa-paper-plane"></i> Entregado el ${formatFecha(entrega.entregado_at)}
+    </p>
+    ${entrega.calificacion !== null ? `<p style="font-size:.85rem;color:var(--azul2);font-weight:700;margin-top:.3rem;">Calificación: ${entrega.calificacion} pts</p>` : `<p style="font-size:.8rem;color:var(--texto2);margin-top:.3rem;">Pendiente de calificar</p>`}
+    ${entrega.comentario ? `<p style="font-size:.82rem;color:var(--texto2);margin-top:.3rem;"><i class="fas fa-comment"></i> ${entrega.comentario}</p>` : ""}
+    ${!a.fecha_entrega || new Date(a.fecha_entrega) >= new Date() ? `
+      <div style="display:flex;gap:.5rem;margin-top:.8rem;">
+        <button class="btn-icono" onclick="editarEntregaActividad('${entrega.id}','${a.id}')" title="Editar entrega">
+          <i class="fas fa-pen"></i>
+        </button>
+        <button class="btn-peligro btn-mini" onclick="eliminarEntregaActividad('${entrega.id}','${a.id}','${moduloId}','${cursoId}')" title="Eliminar entrega">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>` : `
+      <p style="font-size:.76rem;color:#c62828;margin-top:.6rem;">
+        <i class="fas fa-lock"></i> Plazo vencido, no puedes modificar.
+      </p>`}
+  </div>
+` : `
+  <div class="form-entrega">
+    <textarea id="texto-${a.id}" rows="2" placeholder="Escribe tu respuesta (opcional)..." style="width:100%;margin-top:.6rem;padding:.6rem;border:1.5px solid var(--gris-borde);border-radius:8px;font-family:inherit;"></textarea>
+    <input type="file" id="archivo-${a.id}" style="margin-top:.5rem;">
+    <button class="btn-primario btn-sm" style="margin-top:.6rem;" onclick="entregarActividad('${a.id}')">
+      <i class="fas fa-paper-plane"></i> Entregar
+    </button>
+  </div>
+`}
+</div>`;
   }).join("");
 }
 
@@ -400,21 +417,75 @@ function renderAnuncios(anuncios) {
     : `<p class="sin-datos">Sin anuncios en tus cursos.</p>`;
 }
 
-function renderTareas(tareas) {
+async function renderTareas(tareas) {
   const el = document.getElementById("listaTareas");
   if (!el) return;
-  el.innerHTML = tareas.length
-    ? tareas.map(t => `
-        <div class="item-tarea">
-          <div class="meta-fila">
-            <span class="curso-tag">${t.cursoNombre}</span>
-            ${t.fecha_entrega ? `<span class="vence-tag ${urgencia(t.fecha_entrega)}">Vence: ${formatFecha(t.fecha_entrega)}</span>` : ""}
+
+  if (!tareas || tareas.length === 0) {
+    el.innerHTML = `<p class="sin-datos">Sin tareas.</p>`;
+    return;
+  }
+
+  const { data: { user } } = await supabaseClient.auth.getUser();
+
+  // Traer entregas de tareas del estudiante
+  const tareaIds = tareas.map(t => t.id);
+  const { data: entregas } = await supabaseClient
+    .from("entregas_tareas")
+    .select("*")
+    .in("tarea_id", tareaIds)
+    .eq("estudiante_id", user.id);
+
+  const entregasMap = {};
+  (entregas || []).forEach(e => entregasMap[e.tarea_id] = e);
+
+  el.innerHTML = tareas.map(t => {
+    const entrega = entregasMap[t.id];
+    return `
+      <div class="item-tarea">
+        <div class="meta-fila">
+          <span class="curso-tag">${t.cursoNombre}</span>
+          ${t.fecha_entrega ? `<span class="vence-tag ${urgencia(t.fecha_entrega)}">Vence: ${formatFecha(t.fecha_entrega)}</span>` : ""}
+        </div>
+        <strong>${t.titulo}</strong>
+        <p>${t.descripcion || ""}</p>
+        ${t.puntos ? `<span style="font-size:.8rem;color:var(--azul2);font-weight:700;">${t.puntos} pts</span>` : ""}
+
+  ${entrega ? `
+          <div class="entrega-info" style="margin-top:.8rem;padding:.8rem;background:var(--gris-bg);border-radius:10px;border:1.5px solid var(--gris-borde);">
+            <p style="font-size:.82rem;color:#1b7a3e;font-weight:700;">
+              <i class="fas fa-check-circle"></i> Entregado el ${formatFecha(entrega.entregado_at)}
+            </p>
+            ${entrega.texto ? `<p style="font-size:.83rem;color:var(--texto2);margin-top:.4rem;">${entrega.texto}</p>` : ""}
+            ${entrega.calificacion !== null && entrega.calificacion !== undefined
+              ? `<p style="font-size:.85rem;color:var(--azul2);font-weight:700;margin-top:.4rem;">Calificación: ${entrega.calificacion} pts</p>`
+              : `<p style="font-size:.8rem;color:var(--texto2);margin-top:.4rem;">Pendiente de calificar</p>`}
+            ${entrega.comentario ? `<p style="font-size:.82rem;color:var(--texto2);margin-top:.3rem;"><i class="fas fa-comment"></i> ${entrega.comentario}</p>` : ""}
+            ${!t.fecha_entrega || new Date(t.fecha_entrega) >= new Date() ? `
+              <div style="display:flex;gap:.5rem;margin-top:.8rem;">
+                <button class="btn-icono" onclick="editarEntregaTarea('${entrega.id}','${t.id}')" title="Editar entrega">
+                  <i class="fas fa-pen"></i>
+                </button>
+                <button class="btn-peligro btn-mini" onclick="eliminarEntregaTarea('${entrega.id}','${t.id}')" title="Eliminar entrega">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>` : `
+              <p style="font-size:.76rem;color:#c62828;margin-top:.6rem;">
+                <i class="fas fa-lock"></i> Plazo vencido, no puedes modificar.
+              </p>`}
           </div>
-          <strong>${t.titulo}</strong>
-          <p>${t.descripcion || ""}</p>
-          ${t.puntos ? `<span style="font-size:.8rem;color:var(--azul2);font-weight:700;">${t.puntos} pts</span>` : ""}
-        </div>`).join("")
-    : `<p class="sin-datos">Sin tareas.</p>`;
+        ` : `
+          <div class="form-entrega" style="margin-top:.8rem;display:flex;flex-direction:column;gap:.5rem;">
+            <textarea id="texto-tarea-${t.id}" rows="2" placeholder="Escribe tu respuesta (opcional)..."
+              style="width:100%;padding:.6rem;border:1.5px solid var(--gris-borde);border-radius:8px;font-family:inherit;resize:vertical;"></textarea>
+            <input type="file" id="archivo-tarea-${t.id}">
+            <button class="btn-primario btn-sm" onclick="entregarTarea('${t.id}')">
+              <i class="fas fa-paper-plane"></i> Entregar
+            </button>
+          </div>
+        `}
+      </div>`;
+  }).join("");
 }
 
 function renderArchivos(archivos) {
@@ -566,6 +637,24 @@ function initTabs() {
     btn.classList.add("activa");
     document.getElementById(`panel-${btn.dataset.panel}`)?.classList.remove("oculto");
   });
+
+  document.getElementById("filtroTareas")?.addEventListener("change", function() {
+    const cursoId = this.value;
+    const todas = window._tareasCache || [];
+    renderTareas(cursoId ? todas.filter(t => t.curso_id === cursoId) : todas);
+  });
+
+  document.getElementById("filtroAnuncios")?.addEventListener("change", function() {
+    const cursoId = this.value;
+    const todos = window._anunciosCache || [];
+    renderAnuncios(cursoId ? todos.filter(a => a.curso_id === cursoId) : todos);
+  });
+
+  document.getElementById("filtroArchivos")?.addEventListener("change", function() {
+    const cursoId = this.value;
+    const todos = window._archivosCache || [];
+    renderArchivos(cursoId ? todos.filter(a => a.curso_id === cursoId) : todos);
+  });
 }
 
 window.mostrarVista = function(nombre) {
@@ -623,3 +712,180 @@ function setErr(id, msg) {
   const el = document.getElementById(id);
   if (el) el.textContent = msg;
 }
+
+window.entregarTarea = async function(tareaId) {
+  const { data: { user } } = await supabaseClient.auth.getUser();
+  const texto  = document.getElementById(`texto-tarea-${tareaId}`)?.value.trim();
+  const fileEl = document.getElementById(`archivo-tarea-${tareaId}`);
+  const file   = fileEl?.files?.[0];
+
+  let urlArchivo = null;
+
+  if (file) {
+    const ext      = file.name.split(".").pop();
+    const fileName = `entregas-tareas/${Date.now()}.${ext}`;
+    const { error: uploadError } = await supabaseClient.storage
+      .from("cursos").upload(fileName, file, { upsert: false });
+    if (uploadError) { alert("Error al subir archivo: " + uploadError.message); return; }
+    const { data: { publicUrl } } = supabaseClient.storage.from("cursos").getPublicUrl(fileName);
+    urlArchivo = publicUrl;
+  }
+
+  if (!texto && !urlArchivo) {
+    alert("Escribe algo o sube un archivo antes de entregar.");
+    return;
+  }
+
+  const { error } = await supabaseClient.from("entregas_tareas").insert({
+    tarea_id:     tareaId,
+    estudiante_id: user.id,
+    texto:        texto || null,
+    url_archivo:  urlArchivo
+  });
+
+  if (error) { alert("Error al entregar: " + error.message); return; }
+
+  alert("¡Tarea entregada correctamente!");
+  await cargarDatos();
+  mostrarVista("tareas");
+};
+
+// ══ EDITAR / ELIMINAR ENTREGAS ACTIVIDADES ════════════════════════════════════
+window.editarEntregaActividad = function(entregaId, actividadId) {
+  document.getElementById("modalEditEntrega")?.remove();
+
+  const modal = document.createElement("div");
+  modal.id        = "modalEditEntrega";
+  modal.className = "modal-overlay activo";
+  modal.innerHTML = `
+    <div class="modal-box">
+      <div class="modal-box-header">
+        <h3><i class="fas fa-pen" style="color:var(--rosa2)"></i> Editar entrega</h3>
+        <button class="btn-icono" onclick="this.closest('.modal-overlay').remove()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-edit-body">
+        <div class="campo-grupo">
+          <label>Tu respuesta</label>
+          <textarea id="editTextoEntrega" rows="4" placeholder="Escribe tu respuesta..."></textarea>
+        </div>
+        <div class="campo-grupo">
+          <label>Cambiar archivo (opcional)</label>
+          <input type="file" id="editArchivoEntrega">
+        </div>
+        <div id="alertaEditEntrega" class="alerta"></div>
+        <button class="btn-primario" id="btnGuardarEditEntrega">
+          <i class="fas fa-floppy-disk"></i> Guardar cambios
+        </button>
+      </div>
+    </div>`;
+
+  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+  document.body.appendChild(modal);
+
+  document.getElementById("btnGuardarEditEntrega").addEventListener("click", async () => {
+    const texto  = document.getElementById("editTextoEntrega")?.value.trim();
+    const fileEl = document.getElementById("editArchivoEntrega");
+    const file   = fileEl?.files?.[0];
+    const alerta = document.getElementById("alertaEditEntrega");
+    const updates = {};
+
+    if (texto) updates.texto = texto;
+
+    if (file) {
+      const ext      = file.name.split(".").pop();
+      const fileName = `entregas/${Date.now()}.${ext}`;
+      const { error: uploadError } = await supabaseClient.storage
+        .from("cursos").upload(fileName, file, { upsert: false });
+      if (uploadError) { mostrarAlerta(alerta, "error", "Error al subir archivo."); return; }
+      const { data: { publicUrl } } = supabaseClient.storage.from("cursos").getPublicUrl(fileName);
+      updates.url_archivo = publicUrl;
+    }
+
+    if (!texto && !file) { mostrarAlerta(alerta, "error", "Escribe algo o sube un archivo."); return; }
+
+    const { error } = await supabaseClient.from("entregas").update(updates).eq("id", entregaId);
+    if (error) { mostrarAlerta(alerta, "error", "Error al guardar."); return; }
+
+    mostrarAlerta(alerta, "ok", "¡Entrega actualizada!");
+    setTimeout(() => { modal.remove(); location.reload(); }, 900);
+  });
+};
+
+window.eliminarEntregaActividad = async function(entregaId, actividadId, moduloId, cursoId) {
+  if (!confirm("¿Eliminar tu entrega? Podrás volver a entregar antes del plazo.")) return;
+  const { error } = await supabaseClient.from("entregas").delete().eq("id", entregaId);
+  if (error) { alert("Error al eliminar."); return; }
+  await cargarActividadesEstudiante(moduloId, cursoId);
+};
+
+// ══ EDITAR / ELIMINAR ENTREGAS TAREAS ════════════════════════════════════════
+window.editarEntregaTarea = function(entregaId, tareaId) {
+  document.getElementById("modalEditEntregaTarea")?.remove();
+
+  const modal = document.createElement("div");
+  modal.id        = "modalEditEntregaTarea";
+  modal.className = "modal-overlay activo";
+  modal.innerHTML = `
+    <div class="modal-box">
+      <div class="modal-box-header">
+        <h3><i class="fas fa-pen" style="color:var(--rosa2)"></i> Editar entrega</h3>
+        <button class="btn-icono" onclick="this.closest('.modal-overlay').remove()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-edit-body">
+        <div class="campo-grupo">
+          <label>Tu respuesta</label>
+          <textarea id="editTextoEntregaTarea" rows="4" placeholder="Escribe tu respuesta..."></textarea>
+        </div>
+        <div class="campo-grupo">
+          <label>Cambiar archivo (opcional)</label>
+          <input type="file" id="editArchivoEntregaTarea">
+        </div>
+        <div id="alertaEditEntregaTarea" class="alerta"></div>
+        <button class="btn-primario" id="btnGuardarEditEntregaTarea">
+          <i class="fas fa-floppy-disk"></i> Guardar cambios
+        </button>
+      </div>
+    </div>`;
+
+  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+  document.body.appendChild(modal);
+
+  document.getElementById("btnGuardarEditEntregaTarea").addEventListener("click", async () => {
+    const texto  = document.getElementById("editTextoEntregaTarea")?.value.trim();
+    const fileEl = document.getElementById("editArchivoEntregaTarea");
+    const file   = fileEl?.files?.[0];
+    const alerta = document.getElementById("alertaEditEntregaTarea");
+    const updates = {};
+
+    if (texto) updates.texto = texto;
+
+    if (file) {
+      const ext      = file.name.split(".").pop();
+      const fileName = `entregas-tareas/${Date.now()}.${ext}`;
+      const { error: uploadError } = await supabaseClient.storage
+        .from("cursos").upload(fileName, file, { upsert: false });
+      if (uploadError) { mostrarAlerta(alerta, "error", "Error al subir archivo."); return; }
+      const { data: { publicUrl } } = supabaseClient.storage.from("cursos").getPublicUrl(fileName);
+      updates.url_archivo = publicUrl;
+    }
+
+    if (!texto && !file) { mostrarAlerta(alerta, "error", "Escribe algo o sube un archivo."); return; }
+
+    const { error } = await supabaseClient.from("entregas_tareas").update(updates).eq("id", entregaId);
+    if (error) { mostrarAlerta(alerta, "error", "Error al guardar."); return; }
+
+    mostrarAlerta(alerta, "ok", "¡Entrega actualizada!");
+    setTimeout(() => { modal.remove(); cargarDatos(); }, 900);
+  });
+};
+
+window.eliminarEntregaTarea = async function(entregaId, tareaId) {
+  if (!confirm("¿Eliminar tu entrega? Podrás volver a entregar antes del plazo.")) return;
+  const { error } = await supabaseClient.from("entregas_tareas").delete().eq("id", entregaId);
+  if (error) { alert("Error al eliminar."); return; }
+  await cargarDatos();
+};
