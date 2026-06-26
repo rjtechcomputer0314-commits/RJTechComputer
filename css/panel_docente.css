@@ -96,7 +96,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
   background: var(--blanco);
   border: 1.5px solid var(--gris-borde);
@@ -105,6 +105,29 @@
   margin-bottom: 1rem;
   box-shadow: var(--shadow);
 }
+.btn-icono {
+  width: 40px; height: 30px;
+  border-radius: 8px;
+  background: var(--blanco);
+  border: 1.5px solid var(--gris-borde);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--texto2);
+  font-size: .8rem;
+  transition: var(--trans);
+}
+.btn-editar{
+    padding: 5px 6px;
+    border-radius: 8px;
+    border: 1.5px solid var(--gris-borde);
+    background: var(--blanco);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--texto2);
+}
+.btn-icono:hover { border-color: var(--rosa2); color: var(--rosa2); }
+.btn-editar:hover { border-color: var(--rosa2); color: var(--rosa2); }
 .detalle-nombre {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.15rem;
@@ -131,17 +154,6 @@
   color: var(--azul2);
   letter-spacing: 2px;
 }
-.btn-icono {
-  width: 30px; height: 30px;
-  border-radius: 8px;
-  background: var(--blanco);
-  border: 1.5px solid var(--gris-borde);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--texto2);
-  font-size: .8rem;
-  transition: var(--trans);
-}
-.btn-icono:hover { border-color: var(--rosa2); color: var(--rosa2); }
 
 /* Tabs detalle */
 .tabs-detalle {
@@ -806,3 +818,112 @@ body.dark-mode .info-codigo-box      { background: rgba(11,47,135,.25); border-c
   position: absolute;
   left: 1rem;
 }
+.btn-visibilidad {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  margin-left: auto;
+  padding: .3rem .7rem;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid #f5c6c6;
+  background: #fce4e4;
+  color: #c62828;
+  transition: var(--trans);
+}
+
+.btn-visibilidad.publicado {
+  background: #e0f7e9;
+  border-color: #a8ddb8;
+  color: #1b7a3e;
+}
+
+.btn-visibilidad:hover {
+  transform: scale(1.05);
+}
+
+body.dark-mode .btn-visibilidad        { background: rgba(198,40,40,.2); border-color: rgba(198,40,40,.3); color: #f87171; }
+body.dark-mode .btn-visibilidad.publicado { background: rgba(27,122,62,.2); border-color: rgba(27,122,62,.3); color: #4ade80; }
+/* ══ MODAL ENTREGAS ═══════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.activo {
+  display: flex;
+}
+
+.modal-box {
+  background: white;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+}
+
+.modal-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.4rem;
+  border-bottom: 1.5px solid var(--gris-borde);
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+}
+
+.modal-box-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--azul);
+}
+
+/* Item entrega */
+.item-entrega {
+  background: var(--gris-bg);
+  border: 1.5px solid var(--gris-borde);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.item-entrega strong { color: var(--texto); font-size: .9rem; }
+.item-entrega p      { font-size: .84rem; color: var(--texto2); line-height: 1.6; }
+
+.calificar-row {
+  display: flex;
+  gap: .6rem;
+  align-items: center;
+  margin-top: .5rem;
+  flex-wrap: wrap;
+}
+
+/* Dark mode */
+body.dark-mode .modal-overlay          { background: rgba(0,0,0,.65); }
+body.dark-mode .modal-box              { background: #1a2340; }
+body.dark-mode .modal-box-header       { background: #1a2340; border-color: rgba(255,255,255,.08); }
+body.dark-mode .modal-box-header h3    { color: #c8d0e7; }
+body.dark-mode .item-entrega           { background: #131c30; border-color: rgba(255,255,255,.07); }
+body.dark-mode .item-entrega strong    { color: #c8d0e7; }
+body.dark-mode .item-entrega p         { color: #8a9bc5; }
+
+/* Responsive */
+@media (max-width: 540px) {
+  .modal-box       { max-width: 96vw; max-height: 90vh; }
+  .calificar-row   { flex-direction: column; align-items: stretch; }
+}
+
