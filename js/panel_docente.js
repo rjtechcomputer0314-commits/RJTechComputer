@@ -1,7 +1,3 @@
-/* ════════════════════════════════════════════
-   RJTechEdu — panel_docente.js (v6)
-   ════════════════════════════════════════════ */
-
 let cursosDocente = [];
 let cursoActivo   = null;
 let moduloActivo  = null;
@@ -55,7 +51,7 @@ async function cargarPerfil() {
   if (pEmailDisplay)  pEmailDisplay.textContent  = user.email;
 }
 
-// ══ CARGAR CURSOS ═════════════════════════════════════════════════════════════
+/// ══ CARGAR CURSOS ═════════════════════════════════════════════════════════════
 async function cargarCursos() {
   const { data: { user } } = await supabaseClient.auth.getUser();
   if (!user) return;
@@ -90,11 +86,16 @@ function renderCursos() {
       </div>
       <div class="tarjeta-curso-footer">
         <i class="fas fa-key"></i> ${c.codigo}
+        <button class="btn-visibilidad ${c.publicado ? 'publicado' : ''}"
+          onclick="toggleVisibilidad(event,'${c.id}',${c.publicado})"
+          title="${c.publicado ? 'Visible para estudiantes' : 'Oculto para estudiantes'}">
+          <i class="fas fa-${c.publicado ? 'eye' : 'eye-slash'}"></i>
+          ${c.publicado ? 'Visible' : 'Oculto'}
+        </button>
       </div>
     </div>
   `).join("");
 }
-
 // ══ DETALLE CURSO ═════════════════════════════════════════════════════════════
 window.abrirDetalle = async function(cursoId) {
   cursoActivo = cursosDocente.find(c => c.id === cursoId);
@@ -411,12 +412,23 @@ window.eliminarActividad = async function(id, moduloId, cursoId) {
 
 // ══ VER ENTREGAS ══════════════════════════════════════════════════════════════
 window.verEntregas = async function(actividadId, titulo) {
-  const { data: entregas } = await supabaseClient
-    .from("entregas").select("*, perfiles(nombre, apellido)")
-    .eq("actividad_id", actividadId);
+  const el       = document.getElementById("listaEntregas");
+  const tituloEl = document.getElementById("entregasTitulo");
 
-  // Obtener perfiles por separado
-  const ids = (entregas || []).map(e => e.estudiante_id);
+  if (tituloEl) tituloEl.textContent = `Entregas: ${titulo}`;
+  if (el) el.innerHTML = `<p class="sin-datos"><i class="fas fa-spinner fa-spin"></i> Cargando...</p>`;
+
+  document.getElementById("modalEntregas")?.classList.add("activo");
+
+  const { data: entregas, error } = await supabaseClient
+    .from("entregas").select("*").eq("actividad_id", actividadId);
+
+  if (error || !entregas || entregas.length === 0) {
+    if (el) el.innerHTML = `<p class="sin-datos">Sin entregas aún.</p>`;
+    return;
+  }
+
+  const ids = entregas.map(e => e.estudiante_id);
   let perfilesMap = {};
   if (ids.length > 0) {
     const { data: perfiles } = await supabaseClient
@@ -424,51 +436,74 @@ window.verEntregas = async function(actividadId, titulo) {
     (perfiles || []).forEach(p => perfilesMap[p.user_id] = p);
   }
 
-  const el = document.getElementById("listaEntregas");
-  const titulo_el = document.getElementById("entregasTitulo");
-  if (titulo_el) titulo_el.textContent = `Entregas: ${titulo}`;
-
   if (!el) return;
 
-  if (!entregas || entregas.length === 0) {
-    el.innerHTML = `<p class="sin-datos">Sin entregas aún.</p>`;
-  } else {
-    el.innerHTML = entregas.map(e => {
-      const p = perfilesMap[e.estudiante_id];
-      return `
-        <div class="item-entrega">
-          <div class="meta-fila">
-            <strong>${p?.nombre || ""} ${p?.apellido || ""}</strong>
-            <span class="meta-fecha">${formatFecha(e.entregado_at)}</span>
-          </div>
-          ${e.texto ? `<p>${e.texto}</p>` : ""}
-          ${e.url_archivo ? `<a href="${e.url_archivo}" target="_blank" class="btn-archivo-link"><i class="fas fa-file"></i> Ver archivo</a>` : ""}
-          <div class="calificar-row">
-            <input type="number" placeholder="Puntos" min="0" max="100" value="${e.calificacion || ""}"
+  el.innerHTML = entregas.map(e => {
+    const p = perfilesMap[e.estudiante_id];
+    const yaCalificado = e.calificacion !== null && e.calificacion !== undefined;
+    return `
+      <div class="item-entrega">
+        <div class="meta-fila">
+          <strong>${p?.nombre || "Estudiante"} ${p?.apellido || ""}</strong>
+          <span class="meta-fecha">${formatFecha(e.entregado_at)}</span>
+          ${yaCalificado
+            ? `<span class="curso-tag" style="background:#e0f7e9;color:#1b7a3e;"><i class="fas fa-check-circle"></i> Calificado</span>`
+            : `<span class="curso-tag" style="background:#fff3cd;color:#856404;"><i class="fas fa-clock"></i> Pendiente</span>`}
+        </div>
+        ${e.texto ? `<p style="font-size:.85rem;color:var(--texto2);margin:.4rem 0;">${e.texto}</p>` : ""}
+        ${e.url_archivo ? `<a href="${e.url_archivo}" target="_blank" class="btn-archivo-link"><i class="fas fa-file"></i> Ver archivo</a>` : ""}
+        ${yaCalificado ? `
+          <div style="margin-top:.8rem;padding:.8rem;background:#e0f7e9;border-radius:10px;border:1.5px solid #a8ddb8;">
+            <p style="font-size:.85rem;color:#1b7a3e;font-weight:700;"><i class="fas fa-star"></i> Calificación: ${e.calificacion} pts</p>
+            ${e.comentario ? `<p style="font-size:.82rem;color:#1b7a3e;margin-top:.3rem;"><i class="fas fa-comment"></i> ${e.comentario}</p>` : ""}
+<button class="btn-primario btn-sm" style="margin-top:.8rem;" onclick="recalificarEntrega('${e.id}')">
+  <i class="fas fa-pen"></i> Editar calificación
+</button>
+          </div>` : `
+          <div class="calificar-row" style="display:flex;gap:.6rem;align-items:center;margin-top:.8rem;flex-wrap:wrap;">
+            <input type="number" placeholder="Puntos" min="0" max="100"
               id="cal-${e.id}" style="width:80px;padding:.3rem .5rem;border:1.5px solid var(--gris-borde);border-radius:8px;">
-            <input type="text" placeholder="Comentario" value="${e.comentario || ""}"
+            <input type="text" placeholder="Comentario"
               id="com-${e.id}" style="flex:1;padding:.3rem .6rem;border:1.5px solid var(--gris-borde);border-radius:8px;">
             <button class="btn-primario btn-sm" onclick="calificarEntrega('${e.id}')">
               <i class="fas fa-check"></i> Calificar
             </button>
-          </div>
-        </div>`;
-    }).join("");
-  }
-
-  document.getElementById("modalEntregas")?.classList.add("activo");
+          </div>`}
+      </div>`;
+  }).join("");
 };
 
 window.calificarEntrega = async function(entregaId) {
   const cal = document.getElementById(`cal-${entregaId}`)?.value;
   const com = document.getElementById(`com-${entregaId}`)?.value;
-  await supabaseClient.from("entregas").update({
-    calificacion: cal ? parseInt(cal) : null,
+  if (!cal) { alert("Ingresa una calificación."); return; }
+  const { error } = await supabaseClient.from("entregas").update({
+    calificacion: parseInt(cal),
     comentario: com || null
   }).eq("id", entregaId);
-  alert("Calificación guardada.");
+  if (error) { alert("Error al calificar."); return; }
+  alert("¡Calificación guardada!");
+  // recargar el modal
+  const tituloEl = document.getElementById("entregasTitulo");
+  const titulo = tituloEl?.textContent?.replace("Entregas: ", "") || "";
+  await verEntregas(entregaId, titulo); // esto no funciona bien, mejor recarga
+  location.reload();
 };
 
+window.recalificarEntrega = function(entregaId) {
+  const btnEditar = document.querySelector(`button[onclick="recalificarEntrega('${entregaId}')"]`);
+  const div = document.createElement("div");
+  div.style.cssText = "margin-top:.8rem;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;";
+  div.innerHTML = `
+    <input type="number" placeholder="Puntos" min="0" max="100"
+      id="cal-${entregaId}" style="width:80px;padding:.3rem .5rem;border:1.5px solid var(--gris-borde);border-radius:8px;">
+    <input type="text" placeholder="Comentario"
+      id="com-${entregaId}" style="flex:1;padding:.3rem .6rem;border:1.5px solid var(--gris-borde);border-radius:8px;">
+    <button class="btn-primario btn-sm" onclick="calificarEntrega('${entregaId}')">
+      <i class="fas fa-check"></i> Guardar
+    </button>`;
+  btnEditar?.closest("div")?.replaceWith(div);
+};
 // ══ ACCIONES MÓDULO ═══════════════════════════════════════════════════════════
 function initAccionesModulo(moduloId, cursoId) {
 
@@ -620,7 +655,7 @@ async function cargarArchivosCurso(cursoId) {
     : `<p class="sin-datos">Sin archivos aún.</p>`;
 }
 
-// ══ TAREAS ════════════════════════════════════════════════════════════════════
+// ══ TAREAS de los estudiantes ════════════════════════════════════════════════════════════════════
 async function cargarTareasCurso(cursoId) {
   const { data } = await supabaseClient.from("tareas").select("*")
     .eq("curso_id", cursoId).order("fecha_entrega", { ascending: true });
@@ -631,9 +666,14 @@ async function cargarTareasCurso(cursoId) {
       <div class="item-tarea">
         <div class="meta-fila">
           ${t.fecha_entrega ? `<span class="vence-tag ${urgencia(t.fecha_entrega)}">Vence: ${formatFecha(t.fecha_entrega)}</span>` : ""}
-          <button class="btn-peligro btn-mini" onclick="eliminarTarea('${t.id}','${cursoId}')">
-            <i class="fas fa-trash"></i>
-          </button>
+          <div style="display:flex;gap:.4rem;">
+            <button class="btn-icono" onclick="verEntregasTarea('${t.id}','${t.titulo}')" title="Ver entregas">
+              <i class="fas fa-inbox"></i>
+            </button>
+            <button class="btn-peligro btn-mini" onclick="eliminarTarea('${t.id}','${cursoId}')">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
         </div>
         <strong>${t.titulo}</strong>
         <p>${t.descripcion || ""}</p>
@@ -642,6 +682,96 @@ async function cargarTareasCurso(cursoId) {
     : `<p class="sin-datos">Sin tareas aún.</p>`;
 }
 
+// ══ VER ENTREGAS TAREAS ═══════════════════════════════════════════════════════
+window.verEntregasTarea = async function(tareaId, titulo) {
+  const el       = document.getElementById("listaEntregas");
+  const tituloEl = document.getElementById("entregasTitulo");
+
+  if (tituloEl) tituloEl.textContent = `Entregas: ${titulo}`;
+  if (el) el.innerHTML = `<p class="sin-datos"><i class="fas fa-spinner fa-spin"></i> Cargando...</p>`;
+
+  document.getElementById("modalEntregas")?.classList.add("activo");
+
+  const { data: entregas, error } = await supabaseClient
+    .from("entregas_tareas").select("*").eq("tarea_id", tareaId);
+
+  if (error || !entregas || entregas.length === 0) {
+    if (el) el.innerHTML = `<p class="sin-datos">Sin entregas aún.</p>`;
+    return;
+  }
+
+  const ids = entregas.map(e => e.estudiante_id);
+  let perfilesMap = {};
+  if (ids.length > 0) {
+    const { data: perfiles } = await supabaseClient
+      .from("perfiles").select("user_id, nombre, apellido").in("user_id", ids);
+    (perfiles || []).forEach(p => perfilesMap[p.user_id] = p);
+  }
+
+  if (!el) return;
+
+  el.innerHTML = entregas.map(e => {
+    const p = perfilesMap[e.estudiante_id];
+    const yaCalificado = e.calificacion !== null && e.calificacion !== undefined;
+    return `
+      <div class="item-entrega">
+        <div class="meta-fila">
+          <strong>${p?.nombre || "Estudiante"} ${p?.apellido || ""}</strong>
+          <span class="meta-fecha">${formatFecha(e.entregado_at)}</span>
+          ${yaCalificado
+            ? `<span class="curso-tag" style="background:#e0f7e9;color:#1b7a3e;"><i class="fas fa-check-circle"></i> Calificado</span>`
+            : `<span class="curso-tag" style="background:#fff3cd;color:#856404;"><i class="fas fa-clock"></i> Pendiente</span>`}
+        </div>
+        ${e.texto ? `<p style="font-size:.85rem;color:var(--texto2);margin:.4rem 0;">${e.texto}</p>` : ""}
+        ${e.url_archivo ? `<a href="${e.url_archivo}" target="_blank" class="btn-archivo-link"><i class="fas fa-file"></i> Ver archivo</a>` : ""}
+        ${yaCalificado ? `
+          <div style="margin-top:.8rem;padding:.8rem;background:#e0f7e9;border-radius:10px;border:1.5px solid #a8ddb8;">
+            <p style="font-size:.85rem;color:#1b7a3e;font-weight:700;"><i class="fas fa-star"></i> Calificación: ${e.calificacion} pts</p>
+            ${e.comentario ? `<p style="font-size:.82rem;color:#1b7a3e;margin-top:.3rem;"><i class="fas fa-comment"></i> ${e.comentario}</p>` : ""}
+            <button class="btn-primario btn-sm" style="margin-top:.8rem;" onclick="recalificarEntregaTarea('${e.id}')">
+              <i class="fas fa-pen"></i> Editar calificación
+            </button>
+          </div>` : `
+          <div class="calificar-row" style="display:flex;gap:.6rem;align-items:center;margin-top:.8rem;flex-wrap:wrap;">
+            <input type="number" placeholder="Puntos" min="0" max="100"
+              id="calt-${e.id}" style="width:80px;padding:.3rem .5rem;border:1.5px solid var(--gris-borde);border-radius:8px;">
+            <input type="text" placeholder="Comentario"
+              id="comt-${e.id}" style="flex:1;padding:.3rem .6rem;border:1.5px solid var(--gris-borde);border-radius:8px;">
+            <button class="btn-primario btn-sm" onclick="calificarEntregaTarea('${e.id}','${tareaId}','${titulo}')">
+              <i class="fas fa-check"></i> Calificar
+            </button>
+          </div>`}
+      </div>`;
+  }).join("");
+};
+
+window.calificarEntregaTarea = async function(entregaId, tareaId, titulo) {
+  const cal = document.getElementById(`calt-${entregaId}`)?.value;
+  const com = document.getElementById(`comt-${entregaId}`)?.value;
+  if (!cal) { alert("Ingresa una calificación."); return; }
+  const { error } = await supabaseClient.from("entregas_tareas").update({
+    calificacion: parseInt(cal),
+    comentario: com || null
+  }).eq("id", entregaId);
+  if (error) { alert("Error al calificar."); return; }
+  alert("¡Calificación guardada!");
+  await verEntregasTarea(tareaId, titulo);
+};
+
+window.recalificarEntregaTarea = function(entregaId) {
+  const btn = document.querySelector(`button[onclick="recalificarEntregaTarea('${entregaId}')"]`);
+  const div = document.createElement("div");
+  div.style.cssText = "margin-top:.8rem;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;";
+  div.innerHTML = `
+    <input type="number" placeholder="Puntos" min="0" max="100"
+      id="calt-${entregaId}" style="width:80px;padding:.3rem .5rem;border:1.5px solid var(--gris-borde);border-radius:8px;">
+    <input type="text" placeholder="Comentario"
+      id="comt-${entregaId}" style="flex:1;padding:.3rem .6rem;border:1.5px solid var(--gris-borde);border-radius:8px;">
+    <button class="btn-primario btn-sm" onclick="calificarEntregaTarea('${entregaId}','','')">
+      <i class="fas fa-check"></i> Guardar
+    </button>`;
+  btn?.closest("div")?.replaceWith(div);
+};
 // ══ ACCIONES DETALLE CURSO ════════════════════════════════════════════════════
 function initAccionesCurso(cursoId) {
 
@@ -1171,3 +1301,98 @@ async function abrirPreviewCurso(cursoId) {
 
   document.getElementById("btnVolverPreview")?.addEventListener("click", cargarPreviewEstudiante);
 }
+
+window.toggleVisibilidad = async function(e, cursoId, publicadoActual) {
+  e.stopPropagation(); // evita que abra el detalle del curso
+
+  const nuevo = !publicadoActual;
+  const { error } = await supabaseClient
+    .from("cursos")
+    .update({ publicado: nuevo })
+    .eq("id", cursoId);
+
+  if (error) { alert("Error al cambiar visibilidad."); return; }
+
+  // Actualiza en el array local
+  const curso = cursosDocente.find(c => c.id === cursoId);
+  if (curso) curso.publicado = nuevo;
+
+  renderCursos(); // re-renderiza las tarjetas
+};
+
+// ══ EDITAR INFO CURSO ══════════════════════════════════════════════════════════
+document.addEventListener("click", function(e) {
+  if (!e.target.closest("#btnEditarCurso")) return;
+
+  document.getElementById("modalEditCurso")?.remove();
+
+  const modal = document.createElement("div");
+  modal.id        = "modalEditCurso";
+  modal.className = "modal-overlay activo";
+  modal.innerHTML = `
+    <div class="modal-box">
+      <div class="modal-box-header">
+        <h3><i class="fas fa-pen" style="color:var(--rosa2)"></i> Editar curso</h3>
+        <button class="btn-icono" onclick="this.closest('.modal-overlay').remove()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-edit-body">
+        <div class="campo-grupo">
+          <label>Nombre del curso</label>
+          <input type="text" id="editCursoNombre" value="${cursoActivo.nombre}">
+        </div>
+        <div class="campo-grupo">
+          <label>Descripción</label>
+          <textarea id="editCursoDesc" rows="3">${cursoActivo.descripcion || ""}</textarea>
+        </div>
+        <div class="campo-grupo">
+          <label>Categoría</label>
+          <select id="editCursoNivel">
+            <option value="basico"     ${cursoActivo.nivel === "basico"     ? "selected" : ""}>Básico</option>
+            <option value="intermedio" ${cursoActivo.nivel === "intermedio" ? "selected" : ""}>Intermedio</option>
+            <option value="avanzado"   ${cursoActivo.nivel === "avanzado"   ? "selected" : ""}>Avanzado</option>
+          </select>
+        </div>
+        <div id="alertaEditCurso" class="alerta"></div>
+        <button class="btn-primario" id="btnGuardarEditCurso">
+          <i class="fas fa-floppy-disk"></i> Guardar cambios
+        </button>
+      </div>
+    </div>`;
+
+  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+  document.body.appendChild(modal);
+
+  document.getElementById("btnGuardarEditCurso").addEventListener("click", async () => {
+    const nombre = document.getElementById("editCursoNombre")?.value.trim();
+    const desc   = document.getElementById("editCursoDesc")?.value.trim();
+    const nivel  = document.getElementById("editCursoNivel")?.value;
+    const alerta = document.getElementById("alertaEditCurso");
+
+    if (!nombre) { mostrarAlerta(alerta, "error", "El nombre es obligatorio."); return; }
+
+    const { error } = await supabaseClient.from("cursos")
+      .update({ nombre, descripcion: desc || null, nivel })
+      .eq("id", cursoActivo.id);
+
+    if (error) { mostrarAlerta(alerta, "error", "Error al guardar."); return; }
+
+    // Actualizar en local
+    cursoActivo.nombre      = nombre;
+    cursoActivo.descripcion = desc;
+    cursoActivo.nivel       = nivel;
+
+    const idx = cursosDocente.findIndex(c => c.id === cursoActivo.id);
+    if (idx !== -1) cursosDocente[idx] = { ...cursosDocente[idx], nombre, descripcion: desc, nivel };
+
+    // Actualizar vista sin recargar
+    document.getElementById("detNombre").textContent = nombre;
+    document.getElementById("detDesc").textContent   = desc || "";
+    const nivelEl = document.getElementById("detNivel");
+    if (nivelEl) { nivelEl.textContent = nivel; nivelEl.className = `etiqueta-nivel ${nivel}`; }
+
+    mostrarAlerta(alerta, "ok", "¡Curso actualizado!");
+    setTimeout(() => modal.remove(), 900);
+  });
+});
