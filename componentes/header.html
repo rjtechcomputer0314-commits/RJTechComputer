@@ -45,15 +45,9 @@ rel="stylesheet">
     </nav>
 
 <!-- BOTONES -->
-<script>
-document.querySelectorAll('.submenu > a').forEach(link => {
-  link.addEventListener('click', function(e) {
-    if (window.innerWidth <= 900) {
-      e.preventDefault();
-      const submenu = this.closest('.submenu');
-      submenu.classList.toggle('active'); // usa 'active' no 'abierto'
-    }
-  });
-});
-</script>
+<!-- BOTONES -->
+<div class="botones" id="botonesHeader">
+    <button class="boton1" id="abrirModal">Registrarme</button>
+    <button class="boton2" id="abrirLogin">Iniciar sesión</button>
+</div>
 </header>
