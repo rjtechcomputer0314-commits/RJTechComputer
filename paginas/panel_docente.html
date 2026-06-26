@@ -9,8 +9,8 @@
   <script src="/js/sesion.js"></script>
   <script defer src="/js/panel_docente.js"></script>
   <link rel="stylesheet" href="/css/header_footer.css">
-    <link rel="stylesheet" href="/css/panel_estudiante.css">
-    <link rel="stylesheet" href="/css/panel_preview.css">
+  <link rel="stylesheet" href="/css/panel_estudiante.css">
+  <link rel="stylesheet" href="/css/panel_preview.css">
   <link rel="stylesheet" href="/css/panel_docente.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -106,11 +106,14 @@
         </button>
 
         <div class="detalle-header">
-          <div class="detalle-info">
-            <span id="detNivel" class="etiqueta-nivel"></span>
-            <h2 id="detNombre" class="detalle-nombre"></h2>
-            <p id="detDesc" class="detalle-desc"></p>
-          </div>
+<div class="detalle-info" style="position:relative;">
+  <span id="detNivel" class="etiqueta-nivel"></span>
+  <h2 id="detNombre" class="detalle-nombre"></h2>
+  <p id="detDesc" class="detalle-desc"></p>
+<button class="btn-editar" id="btnEditarCurso" title="Editar curso">
+    <i class="fas fa-pen">  </i>Editar nombre y descripción del curso
+</button>
+</div>
           <div class="detalle-codigo-box">
             <p class="codigo-label">Código del curso</p>
             <div class="codigo-row">
@@ -369,8 +372,8 @@
               <label for="cNivel">Categoría <span class="req">*</span></label>
               <select id="cNivel">
                 <option value="">— Selecciona —</option>
-                <option value="basico">Fundamentos</option>
-                <option value="intermedio">Desarrollo</option>
+                <option value="basico">Introducción</option>
+                <option value="intermedio">Desarrollo Digital</option>
                 <option value="avanzado">Especialización</option>
               </select>
               <small class="campo-error" id="errCNivel"></small>
@@ -387,8 +390,7 @@
                 <i class="fas fa-list-check"></i> Seleccionar
               </button>
               <button type="button" class="tab-asignar-btn" data-tab-asignar="codigo">
-                <i class="fas fa-key"></i> Por código
-              </button>
+                <i class="fas fa-key"></i> Por código </button>
             </div>
             <div id="panel-lista" class="panel-asignar">
               <input type="text" id="buscarEstudiante" placeholder="Buscar estudiante..." class="buscador-inline">
@@ -512,7 +514,7 @@
       if (!nombre || nombre === "Cargando...") { setTimeout(aplicarSaludo, 300); return; }
       const h = new Date().getHours();
       const greet = h < 12 ? "¡Buenos días" : h < 19 ? "¡Buenas tardes" : "¡Buenas noches";
-      const emoji = h < 12 ? "☀️" : h < 19 ? "🌤️" : "🌙";
+      const emoji = h < 12 ? "🌞" : h < 19 ? "🌥️" : "🌛";
       const frases = ["Revisa tus cursos y planifica el día.", "Recuerda publicar los materiales pendientes.", "Buen momento para crear una nueva tarea.", "Gracias por enseñar. Tu trabajo importa. 💪"];
       const h2 = document.getElementById("saludoH1");
       const p  = document.getElementById("saludoFrase");
@@ -530,5 +532,17 @@
       document.getElementById("panel-" + btn.dataset.tabAsignar)?.classList.remove("oculto");
     });
   </script>
+  <!-- MODAL ENTREGAS -->
+<div id="modalEntregas" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('activo')">
+  <div class="modal-box">
+    <div class="modal-box-header">
+      <h3 id="entregasTitulo">Entregas</h3>
+      <button onclick="document.getElementById('modalEntregas').classList.remove('activo')" class="btn-icono">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div id="listaEntregas" class="lista-items"></div>
+  </div>
+</div>
 </body>
 </html>
