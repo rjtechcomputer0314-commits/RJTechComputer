@@ -466,38 +466,6 @@ a { text-decoration: none; color: inherit; }
 .etiqueta-nivel.avanzado   { background: #fce4e4; color: #c62828; }
 
 /* Detalle curso */
-.btn-volver {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  color: var(--azul2);
-  font-size: .85rem;
-  font-weight: 600;
-  margin-bottom: 1.2rem;
-  padding: .4rem 0;
-  transition: color var(--trans);
-}
-.btn-volver:hover { color: var(--rosa2); }
-.detalle-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  background: var(--blanco);
-  border: 1.5px solid var(--gris-borde);
-  border-radius: var(--radius);
-  padding: 1.4rem 1.6rem;
-  margin-bottom: 1rem;
-  box-shadow: var(--shadow);
-}
-.detalle-nombre {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--azul);
-  margin: .5rem 0 .3rem;
-}
 .detalle-desc { font-size: .86rem; color: var(--texto2); max-width: 500px; }
 .detalle-codigo-box {
   background: var(--gris-bg);
