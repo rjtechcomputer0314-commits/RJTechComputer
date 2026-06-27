@@ -9,6 +9,7 @@
     <script src="/js/sesion.js"></script>
     <!-- ESTILOS -->
     <link rel="stylesheet" href="css/header_footer.css">
+    <link rel="stylesheet" href="/css/tema.css">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="css/modales.css">
     <!-- para las letras -->
@@ -299,60 +300,45 @@
                         ¿Hay nuevos contenidos?
 
                             <span>+</span>
-
                         </div>
-
                         <div class="pregunta-contenido">
 
                         Sí, constantemente agregamos juegos, retos y actividades nuevas.
 
                         </div>
-
                     </div>
                 </div>
-
             </div>
 
             <!-- DERECHA -->
             <div class="ubicacion">
-
                 <h2>
                     Nuestra ubicación 📍
                 </h2>
-
                 <p>
                     Universidad Nacional Federico Villarreal
                 </p>
-
                 <iframe
                 src="https://www.google.com/maps?q=Universidad+Nacional+Federico+Villarreal+Av+Nicolas+de+Pierola&output=embed"
                 allowfullscreen="" loading="lazy">
                 </iframe>
-
             </div>
-
         </div>
-
     </section>
-
    <!-- FORMULARIO + APOYO -->
 
 <section class="enviar-pregunta">
-
     <div class="contenedor-ayuda">
 
         <!-- FORMULARIO -->
 
         <div class="caja-pregunta">
-
             <h2>
                 ¿Tienes otra pregunta?
             </h2>
-
             <p>
                 Envíanos tu duda y te  responderemos pronto.
             </p>
-
             <form class="formulario-pregunta">
 
                 <input type="text" placeholder="Tu nombre">
@@ -364,73 +350,45 @@
                 <button type="submit">
 
                     Enviar pregunta
-
                 </button>
-
             </form>
-
         </div>
 
         <!-- ASIDE YAPE -->
-
         <aside class="apoyo-yape">
-
             <span class="etiqueta-ayuda">
-
                 💜 APOYA ESTE PROYECTO
 
             </span>
-
             <h2> Ayúdanos a seguir creciendo 🚀 </h2>
-
             <p>Tu apoyo nos ayuda a seguir creando contenido educativo, herramientas tecnológicas y recursos gratuitos para todos. </p>
 
             <!-- IMAGEN YAPE -->
-
             <div class="imagen-yape">
-
                 <img src="imagenes/yape.jpeg" alt="Yape QR">
-
             </div>
-
             <div class="numero-yape">
 
-                📱N° : <strong>927 864 386</strong>
-
+               📱N° : <strong>927 864 386</strong>
             </div>
-
             <button class="btn-apoyar">
-
                 Gracias por apoyar 💖
-
-            </button>
-
+           </button>
         </aside>
-
     </div>
-
 </section>
-
     <!-- FRASE -->
     <section class="frase">
-
         <h2> “La tecnología mueve el mundo.” </h2>
-
         <p> Aprende, explora y domina el mundo digital. </p>
-
     </section>
-
     <!-- MODALES -->
     <div id="registro-container"></div>
-
     <div id="login-container"></div>
-
     <!-- BOTONES FLOTANTES -->
     <div id="flotantes-container"></div>
-
     <!-- FOOTER -->
     <div id="footer"></div>
-
     <!-- SCRIPTS -->
     <script src="/js/cargarComponentes.js"></script>
     <script src="/js/modales.js"></script>
@@ -439,13 +397,11 @@
     <script src="/js/visitas.js"></script>
     <script src="/js/auth.js"></script>
     <script>
-
         setTimeout(()=>{
             const s2=document.createElement("script");
             s2.src="/js/tema.js";
             document.body.appendChild(s2);
         },500);
-
     </script>
 <script>
 supabaseClient.auth.onAuthStateChange(async (event, session) => {
