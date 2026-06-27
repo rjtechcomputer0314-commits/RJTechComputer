@@ -1,7 +1,3 @@
-/* ════════════════════════════════════════════
-   Mis Cursos en cursos.html — según rol
-   ════════════════════════════════════════════ */
-
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => { cargarMisCursosPagina(); }, 900);
 });
