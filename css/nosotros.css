@@ -1,17 +1,3 @@
-
-:root {
-    --azul2: #0B2F87;
-    --rosa:  #FF85BB;
-    --gris:  #f5f7fc;
-}
-/* Scrollbar de marca (Chrome/Edge) */
-::-webkit-scrollbar { width: 8px;}
-::-webkit-scrollbar-track { background: var(--gris); }
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--azul2), var(--rosa));
-    border-radius: 20px;
-    border: 2px solid var(--gris);
-}
 /* BANNER */
 .banner-nosotros {
     width: 100%;
@@ -44,7 +30,7 @@
 .titulo {
     text-align: center;
     font-size: 40px;
-    color: #021A54;
+    color: var(--azul2);
     margin-bottom: 48px;
 }
 
@@ -86,7 +72,7 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 36px;
     padding: 80px 8%;
-    background: #f5f7fc;
+    background: var(--gris);
 }
 
 .card {
@@ -98,11 +84,11 @@
     transition: .4s;
 }
 
-.card:hover             { transform: translateY(-10px); background: #021A54; }
+.card:hover             { transform: translateY(-10px); background: var(--azul2); }
 .card:hover h3,
 .card:hover p           { color: white; }
-.card i                 { font-size: 50px; color: #FF85BB; margin-bottom: 18px; }
-.card h3                { font-size: 26px; color: #021A54; margin-bottom: 16px; }
+.card i                 { font-size: 50px; color: var(--rosa); margin-bottom: 18px; }
+.card h3                { font-size: 26px; color: var(--azul2); margin-bottom: 16px; }
 .card p                 { color: #555; line-height: 1.75; }
 
 /* PRESENTACIÓN */
@@ -132,7 +118,7 @@
 .foto1 img:hover { transform: scale(1.04); }
 
 .info { max-width: 580px; }
-.info h3 { font-size: 36px; color: #021A54; margin-bottom: 18px; }
+.info h3 { font-size: 36px; color: var(--azul2); margin-bottom: 18px; }
 .info p  { margin-bottom: 16px; color: #333; line-height: 1.85; font-size: 17px; }
 
 .datos {
@@ -147,15 +133,14 @@
     padding: 12px 18px;
     border-radius: 30px;
     font-weight: bold;
-    color: #021A54;
+    color: var(--azul2);
     font-size: 14px;
     box-shadow: 0 5px 14px rgba(0,0,0,.1);
     transition: .3s;
 }
-
 .datos span:hover {
     transform: translateY(-4px);
-    background: #021A54;
+    background: var(--azul2);
     color: white;
 }
 
