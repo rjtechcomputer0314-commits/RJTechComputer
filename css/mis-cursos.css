@@ -1,15 +1,13 @@
-/* ══════════════════════════════
+/* ══════════════════════════════════════════════════
    MIS CURSOS — sección dinámica en cursos.html
-══════════════════════════════ */
+══════════════════════════════════════════════════ */
 
 .mis-cursos-seccion {
     padding: 60px 8% 30px;
     background: #fff;
 }
 
-.mis-cursos-seccion.oculto {
-    display: none;
-}
+.mis-cursos-seccion.oculto { display: none; }
 
 .mis-cursos-header {
     text-align: center;
@@ -26,14 +24,8 @@
     margin-bottom: 8px;
 }
 
-.mis-cursos-header h2 i {
-    color: #FF85BB;
-}
-
-.mis-cursos-header p {
-    color: #666;
-    font-size: 15px;
-}
+.mis-cursos-header h2 i { color: #FF85BB; }
+.mis-cursos-header p { color: #666; font-size: 15px; }
 
 .mis-cursos-grid {
     display: grid;
@@ -69,22 +61,9 @@
     box-shadow: 0 12px 28px rgba(2,26,84,.12);
 }
 
-.mini-curso-top {
-    padding: 20px 22px;
-    flex: 1;
-}
-
-.mini-curso-top h3 {
-    font-size: 18px;
-    color: #021A54;
-    margin: 8px 0 6px;
-}
-
-.mini-curso-top p {
-    font-size: 13.5px;
-    color: #666;
-    line-height: 1.5;
-}
+.mini-curso-top { padding: 20px 22px; flex: 1; }
+.mini-curso-top h3 { font-size: 18px; color: #021A54; margin: 8px 0 6px; }
+.mini-curso-top p  { font-size: 13.5px; color: #666; line-height: 1.5; }
 
 .mini-curso-nivel {
     display: inline-block;
@@ -94,7 +73,6 @@
     border-radius: 30px;
     text-transform: capitalize;
 }
-
 .mini-curso-nivel.basico     { background: #e0f7e9; color: #1b7a3e; }
 .mini-curso-nivel.intermedio { background: #fff3cd; color: #856404; }
 .mini-curso-nivel.avanzado   { background: #fce4e4; color: #c62828; }
@@ -109,10 +87,7 @@
     align-items: center;
     gap: 8px;
 }
-
-.mini-curso-footer i {
-    color: #FF85BB;
-}
+.mini-curso-footer i { color: #FF85BB; }
 
 .mis-cursos-vacio {
     grid-column: 1 / -1;
@@ -120,92 +95,28 @@
     padding: 40px 20px;
     color: #888;
 }
+.mis-cursos-vacio i { font-size: 42px; color: #FFCEE3; margin-bottom: 14px; }
+.mis-cursos-vacio p { margin-bottom: 18px; font-size: 15px; }
+.mis-cursos-vacio .btn-curso { display: inline-block; }
 
-.mis-cursos-vacio i {
-    font-size: 42px;
-    color: #FFCEE3;
-    margin-bottom: 14px;
-}
-
-.mis-cursos-vacio p {
-    margin-bottom: 18px;
-    font-size: 15px;
-}
-
-.mis-cursos-vacio .btn-curso {
-    display: inline-block;
-}
-
-/* Responsive */
+/* ══ RESPONSIVE ═══════════════════════════════════ */
 @media (max-width: 768px) {
-    .mis-cursos-seccion { padding: 45px 6% 20px; }
+    .mis-cursos-seccion  { padding: 45px 6% 20px; }
     .mis-cursos-header h2 { font-size: 24px; }
-    .mis-cursos-grid { grid-template-columns: 1fr; }
+    .mis-cursos-grid     { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
-    .mis-cursos-seccion { padding: 35px 5% 18px; }
+    .mis-cursos-seccion   { padding: 35px 5% 18px; }
     .mis-cursos-header h2 { font-size: 20px; gap: 8px; }
-    .mis-cursos-header p { font-size: 13px; }
-    .mini-curso-top { padding: 16px 18px; }
-    .mini-curso-top h3 { font-size: 16px; }
-    .mini-curso-top p { font-size: 12.5px; }
-    .mini-curso-footer { padding: 10px 18px; font-size: 12px; }
-    .mis-cursos-vacio i { font-size: 34px; }
+    .mis-cursos-header p  { font-size: 13px; }
+    .mini-curso-top       { padding: 16px 18px; }
+    .mini-curso-top h3    { font-size: 16px; }
+    .mini-curso-top p     { font-size: 12.5px; }
+    .mini-curso-footer    { padding: 10px 18px; font-size: 12px; }
+    .mis-cursos-vacio i   { font-size: 34px; }
 }
 
 @media (min-width: 1400px) {
     .mis-cursos-grid { grid-template-columns: repeat(4, 1fr); }
-}
-
-/* ══════════════════════════════
-   DARK MODE
-══════════════════════════════ */
-body.dark-mode .mis-cursos-seccion {
-    background: #111827;
-}
-
-body.dark-mode .mis-cursos-header h2 {
-    color: #f1f5f9;
-}
-
-body.dark-mode .mis-cursos-header p {
-    color: #cbd5e1;
-}
-
-body.dark-mode .mis-cursos-cargando {
-    color: #94a3b8;
-}
-
-body.dark-mode .mini-curso-card {
-    background: #1e293b;
-    border-color: #334155;
-}
-
-body.dark-mode .mini-curso-card:hover {
-    border-color: #FF85BB;
-    box-shadow: 0 12px 28px rgba(0,0,0,.4);
-}
-
-body.dark-mode .mini-curso-top h3 {
-    color: #f1f5f9;
-}
-
-body.dark-mode .mini-curso-top p {
-    color: #cbd5e1;
-}
-
-body.dark-mode .mini-curso-footer {
-    background: #0f172a;
-    border-top-color: #334155;
-    color: #cbd5e1;
-}
-
-body.dark-mode .mis-cursos-vacio {
-    color: #94a3b8;
-}
-
-body.dark-mode .mis-cursos-vacio .btn-curso {
-    background: #0B2F87;
-    color: #fff;
 }
