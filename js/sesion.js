@@ -22,9 +22,11 @@ async function actualizarHeader() {
 
     if (!perfil) return;
 
-    const panel = perfil.rol === "docente"
-        ? "/paginas/panel_docente.html"
-        : "/paginas/panel_estudiante.html";
+const panel = perfil.rol === "administrador"
+    ? "/paginas/panel_admin.html"
+    : perfil.rol === "docente"
+    ? "/paginas/panel_docente.html"
+    : "/paginas/panel_estudiante.html";
 
     contenedor.innerHTML = `
         <div class="usuario-header">
