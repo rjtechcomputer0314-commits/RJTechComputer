@@ -138,6 +138,7 @@
     box-shadow: 0 5px 14px rgba(0,0,0,.1);
     transition: .3s;
 }
+
 .datos span:hover {
     transform: translateY(-4px);
     background: var(--azul2);
