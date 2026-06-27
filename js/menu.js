@@ -58,5 +58,4 @@ preguntas.forEach((item)=>{
         item.classList.toggle("active");
 
     });
-
-});
+);
