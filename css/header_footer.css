@@ -321,6 +321,29 @@ submenu{
     }
 }
 
+/* ══════════════════════════════
+   BOTÓN TEMA (luna/sol)
+══════════════════════════════ */
+.theme-toggle {
+    top: 110px; right: 25px;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: #021A54;
+    color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 22px;
+    z-index: 9999;
+    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+    transition: .4s ease;
+}
+
+.theme-toggle:hover        { transform: scale(1.1); background: #FF85BB; }
+body.dark-mode .theme-toggle { background: #FF85BB; color: #021A54; }
+
 /* ANIMACIÓN MENÚ */
 
 @keyframes menuMobile{
@@ -523,4 +546,3 @@ submenu{
     font-weight: 600;
     font-size: 14px;
 }
-
