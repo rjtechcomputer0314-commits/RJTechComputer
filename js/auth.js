@@ -140,12 +140,14 @@ function iniciarAuth() {
             const perfil = perfiles[0];
 
             alert("Bienvenido " + perfil.nombre);
-
-            if (perfil.rol === "docente") {
-                window.location.href = "/paginas/panel_docente.html";
-            } else {
-                window.location.href = "/paginas/panel_estudiante.html";
-            }
+    // ── esto cambie para el panel administrador  ──
+if (perfil.rol === "administrador") {
+    window.location.href = "/paginas/panel_admin.html";
+} else if (perfil.rol === "docente") {
+    window.location.href = "/paginas/panel_docente.html";
+} else {
+    window.location.href = "/paginas/panel_estudiante.html";
+}
         });
     }
 
