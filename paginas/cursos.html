@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cursos | TechComputer</title>
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="/js/supabase.js"></script>
     <script src="/js/sesion.js"></script>
-
+  <link rel="stylesheet" href="/css/tema.css">
     <link rel="stylesheet" href="../css/header_footer.css">
     <link rel="stylesheet" href="../css/flotantes.css">
     <link rel="stylesheet" href="../css/cursos.css">
@@ -17,13 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
     <div id="header"></div>
-
     <div id="modales"></div>
-
     <div id="flotantes"></div>
-
     <!-- BANNER -->
     <section class="banner-cursos">
         <div class="contenido-banner">
@@ -31,7 +26,6 @@
             <p>Aprende tecnología de manera moderna, interactiva y visual.</p>
         </div>
     </section>
-
     <!-- MIS CURSOS (solo con sesión activa, diferenciado por rol) -->
     <section class="mis-cursos-seccion oculto" id="seccionMisCursos">
         <div class="mis-cursos-header">
@@ -99,17 +93,16 @@
 
     <div class="mensaje-box" id="mensajeBox">🚧 En estos momentos estamos en proceso de creación. Mantente atento a próximas actualizaciones 💻✨
     </div>
-
     <!-- MODALES -->
     <div id="registro-container"></div>
     <div id="login-container"></div>
     <div id="flotantes-container"></div>
     <div id="footer"></div>
-
     <!-- SCRIPTS -->
     <script src="/js/cargarComponentes.js"></script>
     <script src="/js/modales.js"></script>
     <script src="/js/menu.js"></script>
+      <script src="/js/tema.js"></script>
     <script src="/js/mensaje.js"></script>
     <script src="/js/mis-cursos-pagina.js"></script>
     <script>
@@ -119,6 +112,5 @@
             document.body.appendChild(s);
         }, 500);
     </script>
-
 </body>
 </html>
