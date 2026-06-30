@@ -6,7 +6,7 @@
     <meta name="description" content="RJTechComputer | Plataforma educativa de tecnología, hardware, software y programación.">
     <title>RJTechComputer | Edu</title>
 
-
+    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="/js/supabase.js"></script>
     <script src="/js/sesion.js"></script>
@@ -252,16 +252,46 @@
                 </div>
             </div>
 
-            <!-- DERECHA -->
-            <div class="ubicacion">
-                <h2>Nuestra ubicación 📍</h2>
-                <p>Universidad Nacional Federico Villarreal</p>
-                <iframe
-                    src="https://www.google.com/maps?q=Universidad+Nacional+Federico+Villarreal+Av+Nicolas+de+Pierola&output=embed"
-                    title="Mapa de ubicación — UNFV"
-                    allowfullscreen=""
-                    loading="lazy">
-                </iframe>
+            <!-- FORMULARIO -->
+            <div class="caja-pregunta">
+                <div class="icono-pregunta"><i class="fas fa-paper-plane"></i></div>
+                <h2 id="titulo-pregunta">¿Tienes otra pregunta?</h2>
+                <p>Envíanos tu duda y te responderemos pronto a tu correo.</p>
+
+                <form class="formulario-pregunta"
+                      id="formContacto"
+                      action="https://formsubmit.co/rjtechcomputer0314@gmail.com"
+                      method="POST"
+                      novalidate>
+
+                    <!-- Configuración de FormSubmit (no se muestran al usuario) -->
+                    <input type="hidden" name="_subject" value="Nueva pregunta desde RJTechComputer 💻">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+                    <div class="campo-icono">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="nombre" placeholder="Tu nombre" required minlength="2">
+                    </div>
+
+                    <div class="campo-icono">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" name="correo" placeholder="Tu correo electrónico" required>
+                    </div>
+
+                    <div class="campo-icono campo-icono-textarea">
+                        <i class="fas fa-comment-dots"></i>
+                        <textarea name="mensaje" placeholder="Escribe tu pregunta aquí" required minlength="10"></textarea>
+                    </div>
+
+                    <button type="submit" id="btnEnviarPregunta">
+                        <span class="texto-btn"><i class="fas fa-paper-plane"></i> Enviar pregunta</span>
+                        <span class="spinner-btn oculto"><i class="fas fa-spinner fa-spin"></i> Enviando...</span>
+                    </button>
+
+                    <p class="nota-privacidad"><i class="fas fa-lock"></i> Tu mensaje llega directo a nuestro correo, nunca lo compartimos.</p>
+                </form>
             </div>
 
         </div>
@@ -270,19 +300,6 @@
     <!-- FORMULARIO + APOYO -->
     <section class="enviar-pregunta" aria-labelledby="titulo-pregunta">
         <div class="contenedor-ayuda">
-
-            <!-- FORMULARIO -->
-            <div class="caja-pregunta">
-                <h2 id="titulo-pregunta">¿Tienes otra pregunta?</h2>
-                <p>Envíanos tu duda y te responderemos pronto.</p>
-
-                <form class="formulario-pregunta" id="formContacto" novalidate>
-                    <input type="text"  name="nombre"  placeholder="Tu nombre"            required minlength="2">
-                    <input type="email" name="correo"  placeholder="Tu correo electrónico" required>
-                    <textarea           name="mensaje" placeholder="Escribe tu pregunta aquí" required minlength="10"></textarea>
-                    <button type="submit">Enviar pregunta</button>
-                </form>
-            </div>
 
             <!-- ASIDE YAPE -->
             <aside class="apoyo-yape">
@@ -297,6 +314,18 @@
                 </div>
                 <button class="btn-apoyar">Gracias por apoyar 💖</button>
             </aside>
+
+            <!-- DERECHA -->
+            <div class="ubicacion">
+                <h2>Nuestra ubicación 📍</h2>
+                <p>Universidad Nacional Federico Villarreal</p>
+                <iframe
+                    src="https://www.google.com/maps?q=Universidad+Nacional+Federico+Villarreal+Av+Nicolas+de+Pierola&output=embed"
+                    title="Mapa de ubicación — UNFV"
+                    allowfullscreen=""
+                    loading="lazy">
+                </iframe>
+            </div>
 
         </div>
     </section>
@@ -328,7 +357,6 @@
     <script src="/js/registro-pasos.js"></script>
     <script src="/js/tema.js"></script>
     <script src="/js/script.js"></script>
-
     <!-- Acordeón con soporte de teclado -->
     <script>
     document.querySelectorAll(".pregunta-titulo").forEach((titulo) => {
@@ -345,12 +373,37 @@
     });
     </script>
 
-    <!-- Formulario de contacto con toast -->
+    <!-- Formulario de contacto: envío real al correo vía FormSubmit -->
     <script>
-    document.getElementById("formContacto")?.addEventListener("submit", (e) => {
+    document.getElementById("formContacto")?.addEventListener("submit", async (e) => {
         e.preventDefault();
-        showToast("¡Gracias! Recibimos tu pregunta y te responderemos pronto.", "exito", 5000);
-        e.target.reset();
+        const form = e.target;
+        const btn = document.getElementById("btnEnviarPregunta");
+        const textoBtn = btn.querySelector(".texto-btn");
+        const spinnerBtn = btn.querySelector(".spinner-btn");
+
+        textoBtn.classList.add("oculto");
+        spinnerBtn.classList.remove("oculto");
+        btn.disabled = true;
+
+        try {
+            const respuesta = await fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+                headers: { "Accept": "application/json" }
+            });
+
+            if (!respuesta.ok) throw new Error("Respuesta no válida");
+
+            showToast("¡Gracias! Tu pregunta fue enviada, te responderemos pronto.", "exito", 5000);
+            form.reset();
+        } catch (err) {
+            showToast("No se pudo enviar tu pregunta. Intenta de nuevo en un momento.", "error", 5000);
+        } finally {
+            textoBtn.classList.remove("oculto");
+            spinnerBtn.classList.add("oculto");
+            btn.disabled = false;
+        }
     });
     </script>
 
