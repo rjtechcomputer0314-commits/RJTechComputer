@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RJTechComputer | Panel Administrador</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/supabase.js"></script>
+  <script src="/js/sesion.js"></script>
+  <script defer src="/js/panel_admin.js"></script>
+  <link rel="stylesheet" href="/css/header_footer.css">
+  <link rel="stylesheet" href="/css/panel_estudiante.css">
+  <link rel="stylesheet" href="/css/panel_admin.css">
+  <link rel="stylesheet" href="/css/nuevas-funciones.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <script>if(localStorage.getItem("modo")==="oscuro"){document.body.classList.add("dark-mode");}</script>
+
+  <div id="header"></div>
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+  <div class="panel-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+      </div>
+      <div class="sidebar-perfil">
+        <div class="avatar-hex" style="background:linear-gradient(135deg,#0B2F87,#021A54);">
+          <i class="fas fa-user-shield"></i>
+        </div>
+        <div class="perfil-info">
+          <p id="sideNombre" class="perfil-nombre">Cargando...</p>
+          <span class="perfil-rol"><i class="fas fa-circle-dot"></i> Administrador</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item activo" data-vista="resumen">
+          <i class="fas fa-chart-pie"></i><span>Resumen</span>
+        </button>
+        <button class="nav-item" data-vista="usuarios">
+          <i class="fas fa-users"></i><span>Usuarios</span>
+        </button>
+        <button class="nav-item" data-vista="solicitudes">
+          <i class="fas fa-user-clock"></i><span>Solicitudes</span>
+          <span id="badgeSolicitudes" class="badge-nav oculto">0</span>
+        </button>
+        <button class="nav-item" data-vista="cursosadmin">
+          <i class="fas fa-layer-group"></i><span>Cursos</span>
+        </button>
+        <button class="nav-item" data-vista="labs">
+  <i class="fas fa-flask"></i><span>Laboratorios</span>
+</button>
+        <button class="nav-item" data-vista="notificaciones">
+          <i class="fas fa-bell"></i><span>Notificaciones</span>
+        </button>
+      </nav>
+      <button class="btn-salir" id="btnCerrarSesion">
+        <i class="fas fa-arrow-right-from-bracket"></i><span>Cerrar sesión</span>
+      </button>
+      
+    </aside>
+
+    <!-- CUERPO -->
+    <main class="panel-cuerpo">
+
+      <div class="topbar-mobile">
+        <button id="btnAbrirSidebar" class="btn-hamburguesa">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="topbar-titulo"><i class="fas fa-user-shield"></i> Panel Admin</div>
+      </div>
+
+      <!-- SALUDO -->
+      <div class="saludo-hero">
+        <div class="saludo-left">
+          <p class="saludo-tag">PANEL ADMINISTRADOR</p>
+          <h1 id="saludoH1">¡Hola, <span>Admin</span>! 👋</h1>
+          <p class="saludo-frase">Aquí tienes el control total de la plataforma.</p>
+        </div>
+      </div>
+
+      <!-- VISTA: RESUMEN -->
+      <section id="vista-resumen" class="vista">
+        <div class="vista-header">
+          <h2 class="vista-titulo"><i class="fas fa-chart-pie"></i> Resumen general</h2>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card stat-docentes">
+            <div class="stat-icono"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div class="stat-info">
+              <h3 id="statDocentes">0</h3>
+              <p>Docentes registrados</p>
+            </div>
+          </div>
+          <div class="stat-card stat-estudiantes">
+            <div class="stat-icono"><i class="fas fa-user-graduate"></i></div>
+            <div class="stat-info">
+              <h3 id="statEstudiantes">0</h3>
+              <p>Estudiantes registrados</p>
+            </div>
+          </div>
+          <div class="stat-card stat-cursos">
+            <div class="stat-icono"><i class="fas fa-layer-group"></i></div>
+            <div class="stat-info">
+              <h3 id="statCursos">0</h3>
+              <p>Cursos creados</p>
+            </div>
+          </div>
+          <div class="stat-card stat-inscripciones">
+            <div class="stat-icono"><i class="fas fa-right-to-bracket"></i></div>
+            <div class="stat-info">
+              <h3 id="statInscripciones">0</h3>
+              <p>Inscripciones totales</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-codigo-box" style="margin-top:1.5rem;">
+          <i class="fas fa-circle-info"></i>
+          <p>Desde las pestañas <strong>Usuarios</strong> y <strong>Cursos</strong> puedes ver el detalle completo y eliminar registros si es necesario.</p>
+        </div>
+
+        <div class="graficos-grid">
+          <div class="grafico-card">
+            <h4><i class="fas fa-chart-pie"></i> Usuarios por rol</h4>
+            <canvas id="graficoRoles"></canvas>
+          </div>
+          <div class="grafico-card">
+            <h4><i class="fas fa-chart-bar"></i> Top 5 cursos con más inscritos</h4>
+            <canvas id="graficoCursosTop"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISTA: USUARIOS -->
+      <section id="vista-usuarios" class="vista oculto">
+        <div class="vista-header">
+          <h2 class="vista-titulo"><i class="fas fa-users"></i> Todos los usuarios</h2>
+        </div>
+
+        <div class="filtros-usuarios">
+          <input type="text" id="buscarUsuario" class="buscador-inline" placeholder="Buscar por nombre o correo...">
+          <select id="filtroRolUsuario" class="select-filtro">
+            <option value="">Todos los roles</option>
+            <option value="docente">Docentes</option>
+            <option value="estudiante">Estudiantes</option>
+            <option value="administrador">Administradores</option>
+          </select>
+          <button class="btn-exportar" id="btnExportarUsuarios">
+            <i class="fas fa-file-csv"></i> Exportar CSV
+          </button>
+        </div>
+
+        <div id="tablaUsuarios" class="tabla-usuarios-admin"></div>
+      </section>
+
+      <!-- VISTA: SOLICITUDES DE DOCENTES -->
+      <section id="vista-solicitudes" class="vista oculto">
+        <div class="vista-header">
+          <h2 class="vista-titulo"><i class="fas fa-user-clock"></i> Solicitudes de docentes</h2>
+        </div>
+        <div class="info-codigo-box" style="margin-bottom:1.2rem;">
+          <i class="fas fa-circle-info"></i>
+          <p>Cuando alguien se registra como <strong>docente</strong>, su cuenta queda pendiente aquí hasta que la apruebes. No podrá ingresar a su panel hasta entonces.</p>
+        </div>
+        <div id="listaSolicitudes" class="lista-notif-admin"></div>
+      </section>
+
+      <!-- VISTA: CURSOS -->
+      <section id="vista-cursosadmin" class="vista oculto">
+        <div class="vista-header">
+          <h2 class="vista-titulo"><i class="fas fa-layer-group"></i> Todos los cursos</h2>
+        </div>
+
+        <input type="text" id="buscarCurso" class="buscador-inline" placeholder="Buscar por nombre de curso o docente...">
+        <button class="btn-exportar" id="btnExportarCursos" style="margin-bottom:1rem;">
+          <i class="fas fa-file-csv"></i> Exportar CSV
+        </button>
+
+        <div id="gridCursosAdmin" class="grid-cursos-admin"></div>
+      </section>
+<!-- VISTA: LABORATORIOS -->
+<section id="vista-labs" class="vista oculto">
+  <div class="vista-header">
+    <h2 class="vista-titulo"><i class="fas fa-flask"></i> Laboratorios virtuales</h2>
+  </div>
+  <div id="gridLabs" class="labs-grid">
+      </div>
+</section>
+
+<!-- VISTA: NOTIFICACIONES -->
+<section id="vista-notificaciones" class="vista oculto">
+  <div class="vista-header">
+    <h2 class="vista-titulo"><i class="fas fa-bell"></i> Notificaciones globales</h2>
+  </div>
+  <div class="form-inline">
+    <h3 class="form-inline-titulo"><i class="fas fa-paper-plane"></i> Enviar notificación</h3>
+    <div class="campo-grupo">
+      <label>Título</label>
+      <input type="text" id="notifTitulo" placeholder="Ej: Mantenimiento programado">
+    </div>
+    <div class="campo-grupo">
+      <label>Mensaje</label>
+      <textarea id="notifMensaje" rows="3" placeholder="Escribe el mensaje..."></textarea>
+    </div>
+    <div class="campo-grupo campo-angosto">
+      <label>Destinatarios</label>
+      <select id="notifDestino" class="select-filtro">
+        <option value="todos">Todos</option>
+        <option value="docente">Solo docentes</option>
+        <option value="estudiante">Solo estudiantes</option>
+      </select>
+    </div>
+    <div id="alertaNotif" class="alerta"></div>
+    <button id="btnEnviarNotif" class="btn-primario">
+      <i class="fas fa-paper-plane"></i> Enviar a todos
+    </button>
+  </div>
+  <div id="listaNotifAdmin" class="lista-notif-admin"></div>
+</section>
+    </main>
+  </div>
+  <script src="/js/cargarComponentes.js"></script>
+  <script src="/js/menu.js"></script>
+  <script src="/js/tema.js"></script>
+
+    <script src="/js/registro-pasos.js"></script>
+</body>
+</html>

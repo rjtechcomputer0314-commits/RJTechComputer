@@ -1,0 +1,212 @@
+/* ════════════════════════════════════════════
+   RJTechEdu — nuevas-funciones.css
+   Estilos para: notificaciones, foro, notas,
+   certificados, calendario y reportes.
+   ════════════════════════════════════════════ */
+
+/* CAMPANA DE NOTIFICACIONES */
+.btn-campana-notif {
+  position: relative;
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: 1.15rem;
+  color: var(--azul, #0B2F87);
+  cursor: pointer;
+  padding: .4rem .6rem;
+}
+.btn-campana-flotante {
+  position: fixed;
+  top: 100px;
+  right: 24px;
+  z-index: 99999;
+  background: #fff;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .btn-campana-flotante { top: auto; bottom: 20px; right: 18px; }
+}
+.punto-notif {
+  position: absolute;
+  top: 2px; right: 2px;
+  width: 9px; height: 9px;
+  background: #e63757;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.punto-notif.oculto { display: none; }
+
+/* BADGE DE CONTADOR EN EL MENÚ LATERAL (ej. solicitudes de docentes pendientes) */
+.badge-nav {
+  margin-left: auto;
+  background: #e63757;
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  flex-shrink: 0;
+}
+.badge-nav.oculto { display: none; }
+
+.panel-notif {
+  position: fixed;
+  top: 74px; right: 24px;
+  width: min(340px, 90vw);
+  max-height: 70vh;
+  background: var(--fondo-card, #fff);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  z-index: 9999999;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.panel-notif.oculto { display: none; }
+.panel-notif-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem 1rem;
+  border-bottom: 1px solid var(--gris-borde, #e5e7eb);
+  font-size: .95rem;
+}
+.panel-notif-lista { overflow-y: auto; }
+.item-notif {
+  padding: .8rem 1rem;
+  border-bottom: 1px solid var(--gris-borde, #eee);
+  cursor: pointer;
+  font-size: .85rem;
+}
+.item-notif strong { display: block; margin-bottom: .2rem; }
+.item-notif p { color: var(--texto2, #666); margin: 0 0 .3rem; }
+.item-notif-fecha { font-size: .72rem; color: #999; }
+.item-notif.no-leida { background: #eef3ff; }
+.item-notif.no-leida strong::before {
+  content: "●"; color: #e63757; font-size: .6rem; margin-right: .35rem;
+}
+
+/* FORO / COMENTARIOS */
+.foro-caja {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+.foro-form {
+  display: flex; gap: .6rem; align-items: flex-end; flex-wrap: wrap;
+}
+.foro-form textarea {
+  flex: 1; min-width: 200px; padding: .6rem .8rem;
+  border: 1.5px solid var(--gris-borde, #ddd); border-radius: 10px;
+  resize: vertical; font-family: inherit;
+}
+.foro-comentario {
+  background: var(--fondo-card, #fff);
+  border: 1px solid var(--gris-borde, #eee);
+  border-radius: 12px;
+  padding: .8rem 1rem;
+}
+.foro-comentario-top {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: .3rem;
+}
+.foro-comentario-autor { font-weight: 700; font-size: .88rem; }
+.foro-comentario-fecha { font-size: .75rem; color: #999; }
+.foro-comentario p { margin: 0; font-size: .87rem; color: var(--texto2, #444); }
+
+/* NOTAS / CALIFICACIONES */
+.tabla-notas { width: 100%; border-collapse: collapse; margin-top: .8rem; }
+.tabla-notas th, .tabla-notas td {
+  text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--gris-borde, #eee);
+  font-size: .85rem;
+}
+.tabla-notas th { color: var(--texto2, #777); font-weight: 700; }
+.chip-promedio {
+  padding: .2rem .6rem; border-radius: 20px; font-weight: 700; font-size: .78rem;
+}
+.chip-promedio.alto  { background: #e0f7e9; color: #1b7a3e; }
+.chip-promedio.medio { background: #fff3cd; color: #856404; }
+.chip-promedio.bajo  { background: #fde2e2; color: #b42318; }
+
+.barra-progreso-curso {
+  width: 100%; height: 8px; background: #eee; border-radius: 6px; overflow: hidden; margin: .3rem 0 .6rem;
+}
+.barra-progreso-curso > div {
+  height: 100%; background: linear-gradient(90deg,#0B2F87,#021A54);
+}
+
+.tarjeta-nota-curso {
+  background: var(--fondo-card, #fff);
+  border: 1px solid var(--gris-borde, #eee);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+}
+.tarjeta-nota-curso-top {
+  display: flex; justify-content: space-between; align-items: center; gap: .6rem; flex-wrap: wrap;
+}
+
+/* CALENDARIO */
+.calendario-lista { display: flex; flex-direction: column; gap: .6rem; margin-top: .8rem; }
+.calendario-item {
+  display: flex; align-items: center; gap: .9rem;
+  background: var(--fondo-card, #fff);
+  border: 1px solid var(--gris-borde, #eee);
+  border-left: 5px solid #0B2F87;
+  border-radius: 10px;
+  padding: .7rem 1rem;
+}
+.calendario-item.vencido { border-left-color: #e63757; }
+.calendario-item.hoy     { border-left-color: #ffb020; }
+.calendario-fecha-bloque {
+  text-align: center; min-width: 52px;
+  background: #eef3ff; border-radius: 8px; padding: .3rem .2rem;
+}
+.calendario-fecha-bloque .dia { font-size: 1.1rem; font-weight: 800; color: #0B2F87; line-height: 1; }
+.calendario-fecha-bloque .mes { font-size: .65rem; text-transform: uppercase; color: #0B2F87; }
+
+/* REPORTES / EXPORTAR */
+.btn-exportar {
+  background: #1b7a3e; color: #fff; border: none; border-radius: 8px;
+  padding: .5rem .9rem; font-size: .82rem; font-weight: 600; cursor: pointer;
+  display: inline-flex; align-items: center; gap: .4rem;
+}
+.btn-exportar:hover { opacity: .9; }
+
+/* GRÁFICOS ADMIN */
+.graficos-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 1.2rem; margin-top: 1.2rem;
+}
+.grafico-card {
+  background: var(--fondo-card, #fff);
+  border: 1px solid var(--gris-borde, #eee);
+  border-radius: 14px; padding: 1rem 1.2rem;
+}
+.grafico-card h4 { margin: 0 0 .6rem; font-size: .9rem; color: var(--texto2, #555); }
+
+/* CERTIFICADO */
+.btn-certificado {
+  background: linear-gradient(135deg,#d4af37,#b8860b);
+  color: #fff; border: none; border-radius: 8px;
+  padding: .55rem 1rem; font-weight: 700; font-size: .82rem;
+  display: inline-flex; align-items: center; gap: .4rem; cursor: pointer;
+}
+
+/* NOTIFICACIONES ADMIN: formulario */
+.lista-notif-admin { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+.fila-notif-admin {
+  display: flex; justify-content: space-between; align-items: center; gap: .8rem;
+  background: var(--fondo-card, #fff); border: 1px solid var(--gris-borde, #eee);
+  border-radius: 10px; padding: .7rem 1rem; flex-wrap: wrap;
+}
